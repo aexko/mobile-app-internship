@@ -9,4 +9,6 @@
     <string name="titre_connexion">Ha, te revoilà !</string>
     <string name="message_connexion">Nous sommes si heureux de te revoir !</string>
     <string name="information_du_compte">INFORMATIONS DU COMPTE</string>
+    <string name="email">E-mail</string>
+    <string name="mdp">Mot de passe</string>
 </resources>
