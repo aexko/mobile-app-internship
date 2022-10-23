@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">Zoeken</string>
     <string name="title_activity_maps">MapsActivity</string>
+    <string name="inscription">S\'inscrire</string>
+    <string name="connexion">Connexion</string>
+    <string name="titre_page_authentification">Bienvenue sur Zoeken</string>
+    <string name="message_bienvenue">Rejoins plus de 2 millions d\'élèves qui utilisent Zoeken pour faire leur suivi de stages.</string>
+    <string name="app_logo">Zoeken Logo</string>
 </resources>
