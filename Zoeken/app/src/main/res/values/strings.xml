@@ -6,4 +6,7 @@
     <string name="titre_page_authentification">Bienvenue sur Zoeken</string>
     <string name="message_bienvenue">Rejoins plus de 2 millions d\'élèves qui utilisent Zoeken pour faire leur suivi de stages.</string>
     <string name="app_logo">Zoeken Logo</string>
+    <string name="titre_connexion">Ha, te revoilà !</string>
+    <string name="message_connexion">Nous sommes si heureux de te revoir !</string>
+    <string name="information_du_compte">INFORMATIONS DU COMPTE</string>
 </resources>

@@ -14,13 +14,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void openMaps(View view) {
+    public void ouvrirMaps(View view) {
         Intent intent = new Intent(this, MapsActivity.class);
         startActivity(intent);
     }
 
+    public void ouvrirInscription(View view) {
+        Intent intent = new Intent(this, InscriptionActivity.class);
+        startActivity(intent);
+    }
+
     public void ouvrirConnexion(View view) {
-        Intent intent = new Intent(this, MapsActivity.class);
+        Intent intent = new Intent(this, ConnexionActivity.class);
         startActivity(intent);
     }
 }
