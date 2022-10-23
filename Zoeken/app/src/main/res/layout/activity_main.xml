@@ -4,18 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginLeft="10dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginBottom="10dp"
     tools:context=".MainActivity">
 
     <Button
         android:id="@+id/btn_open_maps"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="136dp"
-        android:layout_marginBottom="392dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="124dp"
         android:onClick="ouvrirMaps"
         android:text="openMaps"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logo" />
 
     <TextView
         android:id="@+id/titre_bienvenue"
@@ -29,12 +33,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.739" />
+        app:layout_constraintVertical_bias="0.672" />
 
     <Button
         android:id="@+id/buttonConnexion"
         android:layout_width="360dp"
         android:layout_height="48dp"
+        android:layout_marginTop="8dp"
         android:onClick="ouvrirConnexion"
         android:text="@string/connexion"
         android:textAllCaps="false"
@@ -64,7 +69,6 @@
         android:text="@string/inscription"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.515"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/message_bienvenue" />
 
@@ -72,11 +76,13 @@
         android:id="@+id/logo"
         android:layout_width="319dp"
         android:layout_height="319dp"
+        android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
+        android:layout_marginRight="16dp"
+        android:contentDescription="@string/app_logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/zoeken_transparent"
-        android:contentDescription="@string/app_logo" />
+        app:srcCompat="@drawable/zoeken_transparent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
