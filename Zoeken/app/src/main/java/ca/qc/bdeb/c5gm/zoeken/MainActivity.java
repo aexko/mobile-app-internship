@@ -28,4 +28,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ConnexionActivity.class);
         startActivity(intent);
     }
+
+    public void ouvrirAccueil(View view) {
+        Intent intent = new Intent(this, ConnexionActivity.class);
+        startActivity(intent);
+    }
 }
