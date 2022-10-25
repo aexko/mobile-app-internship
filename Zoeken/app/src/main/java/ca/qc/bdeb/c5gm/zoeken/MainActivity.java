@@ -11,12 +11,16 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
 
+    RecyclerView recyclerView;
+    FloatingActionButton btn_ajouter_compagnie;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        recyclerView = findViewById(R.id.recycler_view);
+        btn_ajouter_compagnie = findViewById(R.id.btn_ajouter_compagnie);
     }
 
     public void ouvrirMaps(View view) {
@@ -24,18 +28,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void ouvrirInscription(View view) {
-        Intent intent = new Intent(this, InscriptionActivity.class);
-        startActivity(intent);
-    }
-
-    public void ouvrirConnexion(View view) {
-        Intent intent = new Intent(this, ConnexionActivity.class);
-        startActivity(intent);
-    }
-
-    public void ouvrirAccueil(View view) {
-        Intent intent = new Intent(this, AccueilActivity.class);
+    public void ouvrirAjouterCompagnie(View view) {
+        Intent intent = new Intent(this, AjouterCompagnieActivity.class);
         startActivity(intent);
     }
 }

@@ -7,91 +7,40 @@
     android:layout_margin="16dp"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/btn_open_maps"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:onClick="ouvrirMaps"
-        android:text="openMaps"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logo" />
 
-    <Button
-        android:id="@+id/btn_ouvrir_accueil"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="ouvrirAccueil"
-        android:text="openAccueil"
-        app:layout_constraintBottom_toTopOf="@+id/titre_bienvenue"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_open_maps" />
-
-    <TextView
-        android:id="@+id/titre_bienvenue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/titre_page_authentification"
-        android:textAllCaps="false"
-        android:textSize="20sp"
-        android:textStyle="bold"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.672" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/buttonConnexion"
-        android:layout_width="360dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="8dp"
-        android:onClick="ouvrirConnexion"
-        android:text="@string/connexion"
-        android:textAllCaps="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_inscription" />
-
-    <TextView
-        android:id="@+id/message_bienvenue"
-        android:layout_width="189dp"
-        android:layout_height="51dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/message_bienvenue"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titre_bienvenue" />
-
-    <Button
-        android:id="@+id/btn_inscription"
-        android:layout_width="360dp"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btn_ajouter_compagnie"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:onClick="ouvrirInscription"
-        android:text="@string/inscription"
-        android:textAllCaps="false"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        android:contentDescription="@string/btn_ajouter_compagnie"
+        android:onClick="ouvrirAjouterCompagnie"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/message_bienvenue" />
+        app:srcCompat="@drawable/ic_baseline_ajouter_compagnie" />
 
-    <ImageView
-        android:id="@+id/logo"
-        android:layout_width="319dp"
-        android:layout_height="319dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginRight="16dp"
-        android:contentDescription="@string/app_logo"
-        app:layout_constraintEnd_toEndOf="parent"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btn_ouvrir_maps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        android:contentDescription="@string/ic_map"
+        android:onClick="ouvrirMaps"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/zoeken_transparent" />
+        app:srcCompat="@drawable/ic_baseline_map_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

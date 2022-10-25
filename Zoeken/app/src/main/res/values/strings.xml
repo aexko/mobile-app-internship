@@ -12,4 +12,5 @@
     <string name="email">E-mail</string>
     <string name="mdp">Mot de passe</string>
     <string name="btn_ajouter_compagnie">Ajouter une compagnie</string>
+    <string name="ic_map">Map</string>
 </resources>
