@@ -7,6 +7,14 @@
     android:layout_margin="16dp"
     tools:context=".AccueilActivity">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="377dp"
+        android:layout_height="649dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Button
         android:id="@+id/btn_maps"
         android:layout_width="114dp"
@@ -17,14 +25,16 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btn_ajouter_compagnie"
-        android:layout_width="114dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="+"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginEnd="16dp"
+        android:clickable="true"
+        android:onClick="ouvrirAjouterCompagnie"
+        android:contentDescription="@string/btn_ajouter_compagnie"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btn_maps" />
+        app:srcCompat="@drawable/ic_baseline_ajouter_compagnie"
+        tools:layout_editor_absoluteY="593dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
