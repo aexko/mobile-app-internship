@@ -12,8 +12,6 @@ public class AjouterCompagnieActivity extends AppCompatActivity {
     EditText et_nom_compagnie, et_nom_contact, et_email, et_telephone, et_site_web,
             et_adresse, et_ville, et_code_postal, et_date_de_contact;
 
-    Button btn_ajouter_compagnie;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,8 +30,8 @@ public class AjouterCompagnieActivity extends AppCompatActivity {
     }
 
     public void ajouterCompagnie(View view) {
-        ZoekenDatabaseHelper db = new ZoekenDatabaseHelper(AjouterCompagnieActivity.this);
-        db.ajouterCompagnie(et_nom_compagnie.getText().toString().trim(),
+        ZoekenDatabaseHelper bd = new ZoekenDatabaseHelper(AjouterCompagnieActivity.this);
+        bd.ajouterCompagnie(et_nom_compagnie.getText().toString().trim(),
                 et_nom_contact.getText().toString().trim(), et_email.getText().toString().trim(),
                 et_telephone.getText().toString().trim(), et_site_web.getText().toString().trim(),
                 et_adresse.getText().toString().trim(), et_ville.getText().toString().trim(),

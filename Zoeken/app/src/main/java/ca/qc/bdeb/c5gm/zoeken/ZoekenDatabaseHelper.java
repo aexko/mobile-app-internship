@@ -2,6 +2,7 @@ package ca.qc.bdeb.c5gm.zoeken;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
@@ -41,6 +42,9 @@ public class ZoekenDatabaseHelper extends SQLiteOpenHelper {
             COLONNE_CODE_POSTAL + " TEXT NOT NULL," +
             COLONNE_DATE_DE_CONTACT + " DATE NOT NULL" +
             ");";
+
+    private static final String REQUETE_SQL_LECTURE_BD =
+            "SELECT * FROM " + NOM_TABLE;
 
     private final Context context;
 
@@ -84,6 +88,16 @@ public class ZoekenDatabaseHelper extends SQLiteOpenHelper {
             Toast.makeText(context, "Échec de l'ajout, veuillez réessayer.", Toast.LENGTH_SHORT).show();
 
         }
+    }
+
+    Cursor lireBD() {
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+
+        Cursor cursor = null;
+        if (sqLiteDatabase != null) {
+            cursor = sqLiteDatabase.rawQuery(REQUETE_SQL_LECTURE_BD, null);
+        }
+        return cursor;
     }
 
 }
