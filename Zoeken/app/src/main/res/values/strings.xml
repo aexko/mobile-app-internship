@@ -13,4 +13,13 @@
     <string name="mdp">Mot de passe</string>
     <string name="btn_ajouter_compagnie">Ajouter une compagnie</string>
     <string name="ic_map">Map</string>
+    <string name="nom_de_la_compagnie">Nom de la compagnie</string>
+    <string name="nom_du_contact">Nom du contact</string>
+    <string name="ajouter">Ajouter</string>
+    <string name="date_contact">Date de contact</string>
+    <string name="code_postal">Code postal</string>
+    <string name="ville">Ville</string>
+    <string name="adresse">Adresse</string>
+    <string name="site_web">Site web</string>
+    <string name="telephone">Numéro de téléphone</string>
 </resources>

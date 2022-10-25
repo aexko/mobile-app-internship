@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         recyclerView = findViewById(R.id.recycler_view);
-        btn_ajouter_compagnie = findViewById(R.id.btn_ajouter_compagnie);
+        btn_ajouter_compagnie = findViewById(R.id.btn_ouvrir_ajouter_compagnie);
     }
 
     public void ouvrirMaps(View view) {
