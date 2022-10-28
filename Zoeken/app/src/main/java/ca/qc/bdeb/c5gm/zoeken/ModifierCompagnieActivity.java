@@ -6,15 +6,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
-public class AjouterCompagnieActivity extends AppCompatActivity {
+public class ModifierCompagnieActivity extends AppCompatActivity {
 
     EditText et_nom_compagnie, et_nom_contact, et_email, et_telephone, et_site_web,
             et_adresse, et_ville, et_code_postal, et_date_de_contact;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ajouter_compagnie);
+        setContentView(R.layout.activity_modifier_compagnie);
 
         et_nom_compagnie = findViewById(R.id.et_nom_compagnie);
         et_nom_contact = findViewById(R.id.et_nom_contact);
@@ -25,16 +24,9 @@ public class AjouterCompagnieActivity extends AppCompatActivity {
         et_ville = findViewById(R.id.et_ville);
         et_code_postal = findViewById(R.id.et_code_postal);
         et_date_de_contact = findViewById(R.id.et_date_contact);
-
     }
 
-    public void ajouterCompagnie(View view) {
-        ZoekenDatabaseHelper bd = new ZoekenDatabaseHelper(AjouterCompagnieActivity.this);
-        bd.ajouterCompagnie(et_nom_compagnie.getText().toString().trim(),
-                et_nom_contact.getText().toString().trim(), et_email.getText().toString().trim(),
-                et_telephone.getText().toString().trim(), et_site_web.getText().toString().trim(),
-                et_adresse.getText().toString().trim(), et_ville.getText().toString().trim(),
-                et_code_postal.getText().toString().trim(),
-                et_date_de_contact.getText().toString().trim());
+    public void modifierCompagnie(View view) {
+
     }
 }

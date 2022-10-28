@@ -22,4 +22,5 @@
     <string name="adresse">Adresse</string>
     <string name="site_web">Site web</string>
     <string name="telephone">Numéro de téléphone</string>
+    <string name="modifier">Modifier</string>
 </resources>

@@ -4,11 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="16dp"
-    tools:context=".AjouterCompagnieActivity">
+    tools:context=".ModifierCompagnieActivity">
 
     <EditText
-        android:id="@+id/et_nom_compagnie"
+        android:id="@+id/et_nom_compagnie_m"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
@@ -23,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/et_nom_contact"
+        android:id="@+id/et_nom_contact_m"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -35,10 +34,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_nom_compagnie" />
+        app:layout_constraintTop_toBottomOf="@+id/et_nom_compagnie_m" />
 
     <EditText
-        android:id="@+id/et_email"
+        android:id="@+id/et_email_m"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -50,10 +49,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_nom_contact" />
+        app:layout_constraintTop_toBottomOf="@+id/et_nom_contact_m" />
 
     <EditText
-        android:id="@+id/et_telephone"
+        android:id="@+id/et_telephone_m"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -65,10 +64,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_email" />
+        app:layout_constraintTop_toBottomOf="@+id/et_email_m" />
 
     <EditText
-        android:id="@+id/et_site_web"
+        android:id="@+id/et_site_web_m"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -80,10 +79,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_telephone" />
+        app:layout_constraintTop_toBottomOf="@+id/et_telephone_m" />
 
     <EditText
-        android:id="@+id/et_adresse"
+        android:id="@+id/et_adresse_m"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -95,10 +94,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_site_web" />
+        app:layout_constraintTop_toBottomOf="@+id/et_site_web_m" />
 
     <EditText
-        android:id="@+id/et_ville"
+        android:id="@+id/et_ville_m"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -110,10 +109,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_adresse" />
+        app:layout_constraintTop_toBottomOf="@+id/et_adresse_m" />
 
     <EditText
-        android:id="@+id/et_code_postal"
+        android:id="@+id/et_code_postal_m"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -125,10 +124,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_ville" />
+        app:layout_constraintTop_toBottomOf="@+id/et_ville_m" />
 
     <EditText
-        android:id="@+id/et_date_contact"
+        android:id="@+id/et_date_contact_m"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -140,17 +139,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_code_postal" />
+        app:layout_constraintTop_toBottomOf="@+id/et_code_postal_m" />
 
     <Button
-        android:id="@+id/btn_ajouter_compagnie"
+        android:id="@+id/btn_modifier_compagnie_m"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:onClick="ajouterCompagnie"
-        android:text="@string/ajouter"
+        android:onClick="modifierCompagnie"
+        android:text="@string/modifier"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_date_contact" />
+        app:layout_constraintTop_toBottomOf="@+id/et_date_contact_m" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

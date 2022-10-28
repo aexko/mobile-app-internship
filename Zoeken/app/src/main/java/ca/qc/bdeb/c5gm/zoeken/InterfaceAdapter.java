@@ -1,10 +1,11 @@
 package ca.qc.bdeb.c5gm.zoeken;
 
 import android.content.Context;
-import android.graphics.drawable.LayerDrawable;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -68,8 +69,23 @@ public class InterfaceAdapter extends RecyclerView.Adapter<InterfaceAdapter.View
      * @param position The position of the item within the adapter's data set.
      */
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.et_nom_compagnie.setText(String.valueOf(nom_compagnie.get(position)));
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
+        holder.tv_nom_compagnie.setText(String.valueOf(nom_compagnie.get(position)));
+        holder.layoutMain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, ModifierCompagnieActivity.class);
+                intent.putExtra("id_compagnie", String.valueOf(id_compagnie.get(position)));
+
+
+                ouvrirModifierCompagnie();
+            }
+        });
+    }
+
+    private void ouvrirModifierCompagnie() {
+
+
     }
 
     /**
@@ -83,10 +99,12 @@ public class InterfaceAdapter extends RecyclerView.Adapter<InterfaceAdapter.View
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView et_nom_compagnie;
+        TextView tv_nom_compagnie;
+        LinearLayout layoutMain;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            et_nom_compagnie = itemView.findViewById(R.id.et_nom_compagnie);
+            tv_nom_compagnie = itemView.findViewById(R.id.tv_nom_compagnie);
+            layoutMain = itemView.findViewById(R.id.layoutMain);
 
         }
     }
