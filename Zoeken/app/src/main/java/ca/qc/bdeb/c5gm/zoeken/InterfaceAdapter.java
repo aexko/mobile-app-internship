@@ -1,17 +1,23 @@
 package ca.qc.bdeb.c5gm.zoeken;
 
 import android.content.Context;
+import android.graphics.drawable.LayerDrawable;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class InterfaceAdapter extends RecyclerView.Adapter<InterfaceAdapter.ViewHolder> {
-    ArrayList id_compagnie, nom_compagnie, nom_contact, email, ;
+    ArrayList id_compagnie, nom_compagnie, nom_contact, email,telephone, site_web, adresse,ville, code_postal,date_contact ;
+    Context context;
+
     /**
      * Called when RecyclerView needs a new {@link ViewHolder} of the given type to represent
      * an item.
@@ -35,7 +41,10 @@ public class InterfaceAdapter extends RecyclerView.Adapter<InterfaceAdapter.View
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View view = inflater.inflate(R.layout.item, parent, false);
+        ViewHolder viewHolder = new ViewHolder(view);
+        return viewHolder;
     }
 
     /**
@@ -60,7 +69,7 @@ public class InterfaceAdapter extends RecyclerView.Adapter<InterfaceAdapter.View
      */
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
+        holder.et_nom_compagnie.setText(String.valueOf(nom_compagnie.get(position)));
     }
 
     /**
@@ -70,16 +79,18 @@ public class InterfaceAdapter extends RecyclerView.Adapter<InterfaceAdapter.View
      */
     @Override
     public int getItemCount() {
-        return 0;
+        return id_compagnie.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
+        TextView et_nom_compagnie;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            et_nom_compagnie = itemView.findViewById(R.id.et_nom_compagnie);
+
         }
     }
 
-    Context context;
 
     public InterfaceAdapter(Context context,
                             ArrayList id_compagnie,
@@ -91,8 +102,19 @@ public class InterfaceAdapter extends RecyclerView.Adapter<InterfaceAdapter.View
                             ArrayList adresse,
                             ArrayList ville,
                             ArrayList code_postal,
-                            ArrayList date_de_contact ) {
+                            ArrayList date_contact ) {
         this.context = context;
         this.id_compagnie = id_compagnie;
+        this.nom_compagnie = nom_compagnie;
+        this.nom_contact = nom_contact;
+        this.email = email;
+        this.telephone = telephone;
+        this.site_web = site_web;
+        this.adresse = adresse;
+        this.ville = ville;
+        this.code_postal = code_postal;
+        this.date_contact = date_contact;
+
+
     }
 }

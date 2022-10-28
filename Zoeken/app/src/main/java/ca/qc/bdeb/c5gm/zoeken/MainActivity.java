@@ -1,8 +1,10 @@
 package ca.qc.bdeb.c5gm.zoeken;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -21,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
     ZoekenDatabaseHelper bd;
     ArrayList<String> id_compagnie, nom_compagnie, nom_contact, email, telephone,
             site_web, adresse, ville, code_postal, date_de_contact;
+    InterfaceAdapter adapteur;
+    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,11 +46,17 @@ public class MainActivity extends AppCompatActivity {
         code_postal = new ArrayList<>();
         date_de_contact = new ArrayList<>();
 
+        sauvegarderCompagnies();
+
+        adapteur = new InterfaceAdapter(MainActivity.this, id_compagnie, nom_compagnie, nom_contact, email,
+                telephone, site_web, adresse, ville, code_postal, date_de_contact);
+        recyclerView.setAdapter(adapteur);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
     public void sauvegarderCompagnies() {
         Cursor curseur = bd.lireBD();
-        if (curseur.getCount()!=0) {
+        if (curseur.getCount() != 0) {
             while (curseur.moveToNext()) {
                 id_compagnie.add(curseur.getString(0));
                 nom_compagnie.add(curseur.getString(1));
