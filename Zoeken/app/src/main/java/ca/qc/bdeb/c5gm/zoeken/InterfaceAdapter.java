@@ -8,7 +8,10 @@ import android.widget.ListView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+
 public class InterfaceAdapter extends RecyclerView.Adapter<InterfaceAdapter.ViewHolder> {
+    ArrayList id_compagnie, nom_compagnie, nom_contact, email, ;
     /**
      * Called when RecyclerView needs a new {@link ViewHolder} of the given type to represent
      * an item.
@@ -78,6 +81,18 @@ public class InterfaceAdapter extends RecyclerView.Adapter<InterfaceAdapter.View
 
     Context context;
 
-    public InterfaceAdapter() {
+    public InterfaceAdapter(Context context,
+                            ArrayList id_compagnie,
+                            ArrayList nom_compagnie,
+                            ArrayList nom_contact,
+                            ArrayList email,
+                            ArrayList telephone,
+                            ArrayList site_web,
+                            ArrayList adresse,
+                            ArrayList ville,
+                            ArrayList code_postal,
+                            ArrayList date_de_contact ) {
+        this.context = context;
+        this.id_compagnie = id_compagnie;
     }
 }
