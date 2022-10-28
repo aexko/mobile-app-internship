@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -71,22 +72,31 @@ public class InterfaceAdapter extends RecyclerView.Adapter<InterfaceAdapter.View
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         holder.tv_nom_compagnie.setText(String.valueOf(nom_compagnie.get(position)));
-        holder.layoutMain.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, ModifierCompagnieActivity.class);
-                intent.putExtra("id_compagnie", String.valueOf(id_compagnie.get(position)));
-
-
-                ouvrirModifierCompagnie();
-            }
-        });
+        holder.tv_.setText(String.valueOf(nom_contact.get(position)));
+        holder.tv_nom_compagnie.setText(String.valueOf(tle.get(position)));
+        holder.tv_nom_compagnie.setText(String.valueOf(nom_compagnie.get(position)));
+        holder.tv_nom_compagnie.setText(String.valueOf(nom_compagnie.get(position)));
+        holder.tv_nom_compagnie.setText(String.valueOf(nom_compagnie.get(position)));
+        holder.tv_nom_compagnie.setText(String.valueOf(nom_compagnie.get(position)));
+        holder.tv_nom_compagnie.setText(String.valueOf(nom_compagnie.get(position)));
+        holder.tv_nom_compagnie.setText(String.valueOf(nom_compagnie.get(position)));
+        holder.tv_nom_compagnie.setText(String.valueOf(nom_compagnie.get(position)));
+//        holder.layoutMain.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(context, ModifierCompagnieActivity.class);
+//                intent.putExtra("id_compagnie", String.valueOf(id_compagnie.get(position)));
+//                intent.putExtra("nom_compagnie", String.valueOf(nom_compagnie.get(position)));
+//                intent.putExtra("id_compagnie", String.valueOf(id_compagnie.get(position)));
+//                intent.putExtra("id_compagnie", String.valueOf(id_compagnie.get(position)));
+//                intent.putExtra("id_compagnie", String.valueOf(id_compagnie.get(position)));
+//                intent.putExtra("id_compagnie", String.valueOf(id_compagnie.get(position)));
+//                Toast.makeText(context, "CA MARCHE", Toast.LENGTH_SHORT).show();
+//
+//            }
+//        });
     }
 
-    private void ouvrirModifierCompagnie() {
-
-
-    }
 
     /**
      * Returns the total number of items in the data set held by the adapter.
