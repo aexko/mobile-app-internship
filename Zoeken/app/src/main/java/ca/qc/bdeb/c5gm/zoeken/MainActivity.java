@@ -50,17 +50,11 @@ public class MainActivity extends AppCompatActivity {
         sauvegarderCompagnies();
 
         adapteur = new InterfaceAdapter(this, id_compagnie, nom_compagnie, nom_contact, email,
-                telephone, site_web, adresse, ville, code_postal, date_de_contact, MainActivity.this );
+                telephone, site_web, adresse, ville, code_postal, date_de_contact, MainActivity.this);
         recyclerView.setAdapter(adapteur);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        if (requestCode == -1 ) {
-//            recreate();
-//        }
 //    }
 
     public void sauvegarderCompagnies() {

@@ -105,6 +105,9 @@ public class ZoekenDatabaseHelper extends SQLiteOpenHelper {
         Toast.makeText(context, "resultat de la modification: " + resultat, Toast.LENGTH_SHORT).show();
         if (resultat == -1) {
             Toast.makeText(context, "Échec de la mise à jour, veuillez réessayer.", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context, "Compagnie mise à jour avec succès", Toast.LENGTH_SHORT).show();
+
         }
     }
 

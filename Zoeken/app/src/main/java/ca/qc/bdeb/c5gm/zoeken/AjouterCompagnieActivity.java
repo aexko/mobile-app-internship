@@ -37,6 +37,7 @@ public class AjouterCompagnieActivity extends AppCompatActivity {
                 et_adresse.getText().toString().trim(), et_ville.getText().toString().trim(),
                 et_code_postal.getText().toString().trim(),
                 et_date_contact.getText().toString().trim());
+        finish();
         Toast.makeText(AjouterCompagnieActivity.this, "Compagnie ajoutée avec succès!", Toast.LENGTH_SHORT).show();
 
     }

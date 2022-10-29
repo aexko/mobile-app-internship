@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 public class ModifierCompagnieActivity extends AppCompatActivity {
 
@@ -36,24 +35,13 @@ public class ModifierCompagnieActivity extends AppCompatActivity {
 
         mettreAJourDonneesAffichage();
 
-        btn_modifier_compagnie.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ZoekenDatabaseHelper bd = new ZoekenDatabaseHelper(ModifierCompagnieActivity.this);
-                bd.mettreAJourBd(
-                        id_compagnie,
-                        et_nom_compagnie.getText().toString().trim(),
-                        et_nom_contact.getText().toString().trim(),
-                        et_email.getText().toString().trim(),
-                        et_telephone.getText().toString().trim(),
-                        et_site_web.getText().toString().trim(),
-                        et_adresse.getText().toString().trim(),
-                        et_ville.getText().toString().trim(),
-                        et_code_postal.getText().toString().trim(),
-                        et_date_contact.getText().toString().trim());
-                Toast.makeText(ModifierCompagnieActivity.this, "Compagnie mise à jour avec succès", Toast.LENGTH_SHORT).show();
-            }
-        });
+//        btn_modifier_compagnie.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//            }
+//
+//        });
 
 
     }
@@ -61,6 +49,7 @@ public class ModifierCompagnieActivity extends AppCompatActivity {
 
     public void mettreAJourDonneesAffichage() {
         id_compagnie = getIntent().getStringExtra("id_compagnie");
+
         nom_compagnie = getIntent().getStringExtra("nom_compagnie");
         nom_contact = getIntent().getStringExtra("nom_contact");
         email = getIntent().getStringExtra("email");
@@ -82,5 +71,21 @@ public class ModifierCompagnieActivity extends AppCompatActivity {
         et_date_contact.setText(date_contact);
 
 
+    }
+
+    public void modifierCompagnie(View view) {
+        ZoekenDatabaseHelper bd = new ZoekenDatabaseHelper(ModifierCompagnieActivity.this);
+        bd.mettreAJourBd(
+                id_compagnie,
+                et_nom_compagnie.getText().toString().trim(),
+                et_nom_contact.getText().toString().trim(),
+                et_email.getText().toString().trim(),
+                et_telephone.getText().toString().trim(),
+                et_site_web.getText().toString().trim(),
+                et_adresse.getText().toString().trim(),
+                et_ville.getText().toString().trim(),
+                et_code_postal.getText().toString().trim(),
+                et_date_contact.getText().toString().trim());
+        finish();
     }
 }
