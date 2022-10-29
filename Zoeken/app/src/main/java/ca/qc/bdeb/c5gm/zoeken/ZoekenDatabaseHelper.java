@@ -31,17 +31,17 @@ public class ZoekenDatabaseHelper extends SQLiteOpenHelper {
 
     private static final String REQUETE_SQL_CREATION_TABLE =
             "CREATE TABLE compagnies (" +
-            COLONNE_ID +" INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE," +
-            COLONNE_NOM_COMPAGNIE + " TEXT NOT NULL," +
+                    COLONNE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE," +
+                    COLONNE_NOM_COMPAGNIE + " TEXT NOT NULL," +
                     COLONNE_NOM_CONTACT + " TEXT NOT NULL," +
-            COLONNE_EMAIL + " TEXT NOT NULL," +
-            COLONNE_TELEPHONE + " TEXT NOT NULL," +
-            COLONNE_SITE_WEB + " TEXT NOT NULL," +
-            COLONNE_ADRESSE + " TEXT NOT NULL," +
-            COLONNE_VILLE + " TEXT NOT NULL," +
-            COLONNE_CODE_POSTAL + " TEXT NOT NULL," +
-            COLONNE_DATE_DE_CONTACT + " DATE NOT NULL" +
-            ");";
+                    COLONNE_EMAIL + " TEXT NOT NULL," +
+                    COLONNE_TELEPHONE + " TEXT NOT NULL," +
+                    COLONNE_SITE_WEB + " TEXT NOT NULL," +
+                    COLONNE_ADRESSE + " TEXT NOT NULL," +
+                    COLONNE_VILLE + " TEXT NOT NULL," +
+                    COLONNE_CODE_POSTAL + " TEXT NOT NULL," +
+                    COLONNE_DATE_DE_CONTACT + " DATE NOT NULL" +
+                    ");";
 
     private static final String REQUETE_SQL_LECTURE_BD =
             "SELECT * FROM " + NOM_TABLE;

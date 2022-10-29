@@ -15,12 +15,11 @@
         <activity
             android:name=".ModifierCompagnieActivity"
             android:exported="false"
-            android:parentActivityName=".MainActivity"
-            android:label="Modifier les détails">
+            android:label="Modifier les détails"
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.app.lib_name"
-                android:value=""
-                />
+                android:value="" />
         </activity>
         <activity
             android:name=".AjouterCompagnieActivity"

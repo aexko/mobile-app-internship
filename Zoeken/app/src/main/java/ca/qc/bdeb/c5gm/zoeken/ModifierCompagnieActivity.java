@@ -32,31 +32,28 @@ public class ModifierCompagnieActivity extends AppCompatActivity {
     }
 
 
-
     public void mettreAJourDonneesAffichage() {
-        if (getIntent().hasExtra("id_compagnie") && getIntent().hasExtra("nom_compagnie") && getIntent().hasExtra("nom_contact")) {
-            nom_compagnie = getIntent().getStringExtra("nom_compagnie");
-            nom_contact = getIntent().getStringExtra("nom_contact");
-            email = getIntent().getStringExtra("email");
-            telephone = getIntent().getStringExtra("telephone");
-            site_web = getIntent().getStringExtra("site_web");
-            adresse = getIntent().getStringExtra("adresse");
-            ville = getIntent().getStringExtra("ville");
-            code_postal = getIntent().getStringExtra("code_postal");
-            date_contact = getIntent().getStringExtra("date_contact");
+        nom_compagnie = getIntent().getStringExtra("nom_compagnie");
+        nom_contact = getIntent().getStringExtra("nom_contact");
+        email = getIntent().getStringExtra("email");
+        telephone = getIntent().getStringExtra("telephone");
+        site_web = getIntent().getStringExtra("site_web");
+        adresse = getIntent().getStringExtra("adresse");
+        ville = getIntent().getStringExtra("ville");
+        code_postal = getIntent().getStringExtra("code_postal");
+        date_contact = getIntent().getStringExtra("date_contact");
 
-            et_nom_compagnie.setText(nom_compagnie);
-            et_nom_contact.setText(nom_contact);
-            et_email.setText(email);
-            et_telephone.setText(telephone);
-            et_site_web.setText(site_web);
-            et_adresse.setText(adresse);
-            et_ville.setText(ville);
-            et_code_postal.setText(code_postal);
-            et_date_contact.setText(date_contact);
+        et_nom_compagnie.setText(nom_compagnie);
+        et_nom_contact.setText(nom_contact);
+        et_email.setText(email);
+        et_telephone.setText(telephone);
+        et_site_web.setText(site_web);
+        et_adresse.setText(adresse);
+        et_ville.setText(ville);
+        et_code_postal.setText(code_postal);
+        et_date_contact.setText(date_contact);
 
 
-        }
     }
 
 }
