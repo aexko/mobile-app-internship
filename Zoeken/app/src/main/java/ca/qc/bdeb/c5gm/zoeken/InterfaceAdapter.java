@@ -87,7 +87,7 @@ public class InterfaceAdapter extends RecyclerView.Adapter<InterfaceAdapter.View
                 intent.putExtra("code_postal", String.valueOf(code_postal.get(holder.getAdapterPosition())));
                 intent.putExtra("date_contact", String.valueOf(date_contact.get(holder.getAdapterPosition())));
                 Toast.makeText(context, String.valueOf(nom_compagnie.get(holder.getAdapterPosition())), Toast.LENGTH_SHORT).show();
-
+                context.startActivity(intent);
             }
         });
     }
