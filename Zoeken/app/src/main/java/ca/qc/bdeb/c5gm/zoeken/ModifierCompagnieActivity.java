@@ -3,7 +3,10 @@ package ca.qc.bdeb.c5gm.zoeken;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class ModifierCompagnieActivity extends AppCompatActivity {
 
@@ -12,6 +15,8 @@ public class ModifierCompagnieActivity extends AppCompatActivity {
 
     String id_compagnie, nom_compagnie, nom_contact, email, telephone,
             site_web, adresse, ville, code_postal, date_contact;
+
+    Button btn_modifier_compagnie;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,12 +32,35 @@ public class ModifierCompagnieActivity extends AppCompatActivity {
         et_ville = findViewById(R.id.et_ville_m);
         et_code_postal = findViewById(R.id.et_code_postal_m);
         et_date_contact = findViewById(R.id.et_date_contact_m);
+        btn_modifier_compagnie = findViewById(R.id.btn_modifier_compagnie);
 
         mettreAJourDonneesAffichage();
+
+        btn_modifier_compagnie.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ZoekenDatabaseHelper bd = new ZoekenDatabaseHelper(ModifierCompagnieActivity.this);
+                bd.mettreAJourBd(
+                        id_compagnie,
+                        et_nom_compagnie.getText().toString().trim(),
+                        et_nom_contact.getText().toString().trim(),
+                        et_email.getText().toString().trim(),
+                        et_telephone.getText().toString().trim(),
+                        et_site_web.getText().toString().trim(),
+                        et_adresse.getText().toString().trim(),
+                        et_ville.getText().toString().trim(),
+                        et_code_postal.getText().toString().trim(),
+                        et_date_contact.getText().toString().trim());
+                Toast.makeText(ModifierCompagnieActivity.this, "Compagnie mise à jour avec succès", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
     }
 
 
     public void mettreAJourDonneesAffichage() {
+        id_compagnie = getIntent().getStringExtra("id_compagnie");
         nom_compagnie = getIntent().getStringExtra("nom_compagnie");
         nom_contact = getIntent().getStringExtra("nom_contact");
         email = getIntent().getStringExtra("email");
@@ -55,5 +83,4 @@ public class ModifierCompagnieActivity extends AppCompatActivity {
 
 
     }
-
 }

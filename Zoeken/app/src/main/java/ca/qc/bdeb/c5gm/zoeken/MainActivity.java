@@ -1,5 +1,6 @@
 package ca.qc.bdeb.c5gm.zoeken;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -48,14 +49,22 @@ public class MainActivity extends AppCompatActivity {
 
         sauvegarderCompagnies();
 
-        adapteur = new InterfaceAdapter(MainActivity.this, id_compagnie, nom_compagnie, nom_contact, email,
-                telephone, site_web, adresse, ville, code_postal, date_de_contact);
+        adapteur = new InterfaceAdapter(this, id_compagnie, nom_compagnie, nom_contact, email,
+                telephone, site_web, adresse, ville, code_postal, date_de_contact, MainActivity.this );
         recyclerView.setAdapter(adapteur);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        if (requestCode == -1 ) {
+//            recreate();
+//        }
+//    }
+
     public void sauvegarderCompagnies() {
-        Cursor curseur = bd.lireBD();
+        Cursor curseur = bd.lireBd();
         if (curseur.getCount() != 0) {
             while (curseur.moveToNext()) {
                 id_compagnie.add(curseur.getString(0));

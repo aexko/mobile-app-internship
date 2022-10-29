@@ -27,7 +27,7 @@ public class ZoekenDatabaseHelper extends SQLiteOpenHelper {
     private static final String COLONNE_ADRESSE = "adresse";
     private static final String COLONNE_VILLE = "ville";
     private static final String COLONNE_CODE_POSTAL = "code_postal";
-    private static final String COLONNE_DATE_DE_CONTACT = "date_de_contact";
+    private static final String COLONNE_DATE_CONTACT = "date_de_contact";
 
     private static final String REQUETE_SQL_CREATION_TABLE =
             "CREATE TABLE compagnies (" +
@@ -40,7 +40,7 @@ public class ZoekenDatabaseHelper extends SQLiteOpenHelper {
                     COLONNE_ADRESSE + " TEXT NOT NULL," +
                     COLONNE_VILLE + " TEXT NOT NULL," +
                     COLONNE_CODE_POSTAL + " TEXT NOT NULL," +
-                    COLONNE_DATE_DE_CONTACT + " DATE NOT NULL" +
+                    COLONNE_DATE_CONTACT + " DATE NOT NULL" +
                     ");";
 
     private static final String REQUETE_SQL_LECTURE_BD =
@@ -67,7 +67,7 @@ public class ZoekenDatabaseHelper extends SQLiteOpenHelper {
 
     public void ajouterCompagnie(String nom_compagnie, String nom_contact, String email,
                                  String telephone, String site_web, String adresse, String ville,
-                                 String code_postal, String date_de_contact) {
+                                 String code_postal, String date_contact) {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
@@ -79,18 +79,36 @@ public class ZoekenDatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(COLONNE_ADRESSE, adresse);
         contentValues.put(COLONNE_VILLE, ville);
         contentValues.put(COLONNE_CODE_POSTAL, code_postal);
-        contentValues.put(COLONNE_DATE_DE_CONTACT, date_de_contact);
+        contentValues.put(COLONNE_DATE_CONTACT, date_contact);
         long resultat = sqLiteDatabase.insert(NOM_TABLE, null, contentValues);
-
-        if (resultat != -1) {
-            Toast.makeText(context, "Compagnie ajoutée avec succès!", Toast.LENGTH_SHORT).show();
-        } else {
+        Toast.makeText(context, "resultat de l'ajout: " + resultat, Toast.LENGTH_SHORT).show();
+        if (resultat == -1) {
             Toast.makeText(context, "Échec de l'ajout, veuillez réessayer.", Toast.LENGTH_SHORT).show();
-
         }
     }
 
-    Cursor lireBD() {
+    void mettreAJourBd(String id_compagnie, String nom_compagnie, String nom_contact, String email,
+                       String telephone, String site_web, String adresse, String ville,
+                       String code_postal, String date_contact) {
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COLONNE_NOM_COMPAGNIE, nom_compagnie);
+        contentValues.put(COLONNE_NOM_CONTACT, nom_contact);
+        contentValues.put(COLONNE_EMAIL, email);
+        contentValues.put(COLONNE_TELEPHONE, telephone);
+        contentValues.put(COLONNE_SITE_WEB, site_web);
+        contentValues.put(COLONNE_ADRESSE, adresse);
+        contentValues.put(COLONNE_VILLE, ville);
+        contentValues.put(COLONNE_CODE_POSTAL, code_postal);
+        contentValues.put(COLONNE_DATE_CONTACT, date_contact);
+        long resultat = sqLiteDatabase.update(NOM_TABLE, contentValues, "_id=?", new String[]{id_compagnie});
+        Toast.makeText(context, "resultat de la modification: " + resultat, Toast.LENGTH_SHORT).show();
+        if (resultat == -1) {
+            Toast.makeText(context, "Échec de la mise à jour, veuillez réessayer.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    Cursor lireBd() {
         SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
 
         Cursor cursor = null;

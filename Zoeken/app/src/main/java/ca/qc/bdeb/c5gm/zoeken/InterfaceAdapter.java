@@ -1,5 +1,6 @@
 package ca.qc.bdeb.c5gm.zoeken;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -19,6 +20,7 @@ import java.util.List;
 public class InterfaceAdapter extends RecyclerView.Adapter<InterfaceAdapter.ViewHolder> {
     ArrayList id_compagnie, nom_compagnie, nom_contact, email, telephone, site_web, adresse, ville, code_postal, date_contact;
     Context context;
+    Activity activity;
 
     /**
      * Called when RecyclerView needs a new {@link ViewHolder} of the given type to represent
@@ -87,6 +89,8 @@ public class InterfaceAdapter extends RecyclerView.Adapter<InterfaceAdapter.View
                 intent.putExtra("code_postal", String.valueOf(code_postal.get(holder.getAdapterPosition())));
                 intent.putExtra("date_contact", String.valueOf(date_contact.get(holder.getAdapterPosition())));
                 context.startActivity(intent);
+//                activity.startActivityForResult(intent, 1);
+
             }
         });
     }
@@ -125,7 +129,8 @@ public class InterfaceAdapter extends RecyclerView.Adapter<InterfaceAdapter.View
                             ArrayList adresse,
                             ArrayList ville,
                             ArrayList code_postal,
-                            ArrayList date_contact) {
+                            ArrayList date_contact,
+                            Activity activity) {
         this.context = context;
         this.id_compagnie = id_compagnie;
         this.nom_compagnie = nom_compagnie;
@@ -137,6 +142,7 @@ public class InterfaceAdapter extends RecyclerView.Adapter<InterfaceAdapter.View
         this.ville = ville;
         this.code_postal = code_postal;
         this.date_contact = date_contact;
+        this.activity = activity;
 
 
     }
