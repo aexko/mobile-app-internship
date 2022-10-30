@@ -2,6 +2,7 @@ package ca.qc.bdeb.c5gm.zoeken;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -37,6 +38,7 @@ public class AjouterCompagnieActivity extends AppCompatActivity {
                 et_adresse.getText().toString().trim(), et_ville.getText().toString().trim(),
                 et_code_postal.getText().toString().trim(),
                 et_date_contact.getText().toString().trim());
+        startActivity(new Intent(AjouterCompagnieActivity.this, MainActivity.class));
         finish();
         Toast.makeText(AjouterCompagnieActivity.this, "Compagnie ajoutée avec succès!", Toast.LENGTH_SHORT).show();
 

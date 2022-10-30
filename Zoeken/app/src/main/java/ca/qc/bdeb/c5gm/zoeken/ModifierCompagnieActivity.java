@@ -1,7 +1,9 @@
 package ca.qc.bdeb.c5gm.zoeken;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -77,6 +79,28 @@ public class ModifierCompagnieActivity extends AppCompatActivity {
     }
 
     public void supprimerCompagnie(View view) {
-
+        ouvrirDialogueConfirmation();
     }
+
+    void ouvrirDialogueConfirmation() {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setTitle("Suppression de la compagnie « " + nom_compagnie + " » ");
+        alertDialogBuilder.setMessage("Êtes-vous sûr(e) de vouloir supprimer la compagnie « " + nom_compagnie + " » ?");
+        alertDialogBuilder.setPositiveButton("Oui", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                ZoekenDatabaseHelper bd = new ZoekenDatabaseHelper(ModifierCompagnieActivity.this);
+                bd.supprimerCompagnie(id_compagnie);
+                finish();
+            }
+        });
+        alertDialogBuilder.setNegativeButton("Non", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+        alertDialogBuilder.create().show();
+    }
+
 }
