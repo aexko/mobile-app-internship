@@ -68,6 +68,7 @@ public class ZoekenDatabaseHelper extends SQLiteOpenHelper {
     public void ajouterCompagnie(String nom_compagnie, String nom_contact, String email,
                                  String telephone, String site_web, String adresse, String ville,
                                  String code_postal, String date_contact) {
+
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
@@ -81,7 +82,6 @@ public class ZoekenDatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(COLONNE_CODE_POSTAL, code_postal);
         contentValues.put(COLONNE_DATE_CONTACT, date_contact);
         long resultat = sqLiteDatabase.insert(NOM_TABLE, null, contentValues);
-        Toast.makeText(context, "resultat de l'ajout: " + resultat, Toast.LENGTH_SHORT).show();
         if (resultat == -1) {
             Toast.makeText(context, "Échec de l'ajout, veuillez réessayer.", Toast.LENGTH_SHORT).show();
         }
@@ -90,8 +90,10 @@ public class ZoekenDatabaseHelper extends SQLiteOpenHelper {
     void mettreAJourBd(String id_compagnie, String nom_compagnie, String nom_contact, String email,
                        String telephone, String site_web, String adresse, String ville,
                        String code_postal, String date_contact) {
+
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
+
         contentValues.put(COLONNE_NOM_COMPAGNIE, nom_compagnie);
         contentValues.put(COLONNE_NOM_CONTACT, nom_contact);
         contentValues.put(COLONNE_EMAIL, email);
@@ -101,19 +103,18 @@ public class ZoekenDatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(COLONNE_VILLE, ville);
         contentValues.put(COLONNE_CODE_POSTAL, code_postal);
         contentValues.put(COLONNE_DATE_CONTACT, date_contact);
+        
         long resultat = sqLiteDatabase.update(NOM_TABLE, contentValues, "_id=?", new String[]{id_compagnie});
-        Toast.makeText(context, "resultat de la modification: " + resultat, Toast.LENGTH_SHORT).show();
+
         if (resultat == -1) {
             Toast.makeText(context, "Échec de la mise à jour, veuillez réessayer.", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(context, "Compagnie mise à jour avec succès", Toast.LENGTH_SHORT).show();
-
         }
     }
 
     Cursor lireBd() {
         SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
-
         Cursor cursor = null;
         if (sqLiteDatabase != null) {
             cursor = sqLiteDatabase.rawQuery(REQUETE_SQL_LECTURE_BD, null);

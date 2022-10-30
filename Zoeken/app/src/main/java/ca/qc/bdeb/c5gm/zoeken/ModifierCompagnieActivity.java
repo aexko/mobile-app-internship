@@ -34,22 +34,11 @@ public class ModifierCompagnieActivity extends AppCompatActivity {
         btn_modifier_compagnie = findViewById(R.id.btn_modifier_compagnie);
 
         mettreAJourDonneesAffichage();
-
-//        btn_modifier_compagnie.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//            }
-//
-//        });
-
-
     }
 
 
     public void mettreAJourDonneesAffichage() {
         id_compagnie = getIntent().getStringExtra("id_compagnie");
-
         nom_compagnie = getIntent().getStringExtra("nom_compagnie");
         nom_contact = getIntent().getStringExtra("nom_contact");
         email = getIntent().getStringExtra("email");
@@ -69,8 +58,6 @@ public class ModifierCompagnieActivity extends AppCompatActivity {
         et_ville.setText(ville);
         et_code_postal.setText(code_postal);
         et_date_contact.setText(date_contact);
-
-
     }
 
     public void modifierCompagnie(View view) {
@@ -87,5 +74,9 @@ public class ModifierCompagnieActivity extends AppCompatActivity {
                 et_code_postal.getText().toString().trim(),
                 et_date_contact.getText().toString().trim());
         finish();
+    }
+
+    public void supprimerCompagnie(View view) {
+
     }
 }

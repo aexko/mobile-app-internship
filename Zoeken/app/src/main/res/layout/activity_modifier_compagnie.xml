@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="16dp"
     tools:context=".ModifierCompagnieActivity">
 
     <EditText
         android:id="@+id/et_nom_compagnie_m"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
         android:ems="10"
         android:hint="@string/nom_de_la_compagnie"
         android:inputType="text"
@@ -148,6 +148,18 @@
         android:layout_marginTop="16dp"
         android:onClick="modifierCompagnie"
         android:text="@string/modifier"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_date_contact_m" />
+
+    <Button
+        android:id="@+id/btn_supprimer_compagnie"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="76dp"
+        android:onClick="supprimerCompagnie"
+        android:text="@string/supprimer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
