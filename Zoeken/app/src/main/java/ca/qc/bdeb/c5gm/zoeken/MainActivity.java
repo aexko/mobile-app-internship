@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -28,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<String> id_compagnie, nom_compagnie, nom_contact, email, telephone,
             site_web, adresse, ville, code_postal, date_de_contact;
     InterfaceAdapter adapteur;
-    private ArrayList<Compagnie> listeCompagnies;
+    ListView lv_compagnies;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapteur);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        listeCompagnies = new ArrayList<>();
 
     }
 
@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void trierCompagniesOrdreCroissant(MenuItem item) {
-        Collections.sort(listeCompagnies);
+
         Toast.makeText(this, "TRIER ORDRE CROISSANT", Toast.LENGTH_SHORT).show();
     }
 }

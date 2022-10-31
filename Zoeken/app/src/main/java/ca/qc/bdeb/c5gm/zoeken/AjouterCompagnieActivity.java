@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.Random;
+
 public class AjouterCompagnieActivity extends AppCompatActivity {
 
     EditText et_nom_compagnie, et_nom_contact, et_email, et_telephone, et_site_web,
@@ -31,6 +33,35 @@ public class AjouterCompagnieActivity extends AppCompatActivity {
     }
 
     public void ajouterCompagnie(View view) {
+        Random random = new Random();
+        int id = random.nextInt(100000000);
+        try {
+            Compagnie compagnieModele = new Compagnie(id,
+                    et_nom_compagnie.getText().toString().trim(),
+                    et_nom_contact.getText().toString().trim(),
+                    et_email.getText().toString().trim(),
+                    et_telephone.getText().toString().trim(),
+                    et_site_web.getText().toString().trim(),
+                    et_adresse.getText().toString().trim(),
+                    et_ville.getText().toString().trim(),
+                    et_code_postal.getText().toString().trim(),
+                    et_date_contact.getText().toString().trim());
+            System.out.println("ID compagnie : " + id);
+            ajouterCompagnieDansBd();
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+
+
+        // add to array global
+        startActivity(new Intent(AjouterCompagnieActivity.this, MainActivity.class));
+        finish();
+        Toast.makeText(AjouterCompagnieActivity.this, "Compagnie ajoutée avec succès!", Toast.LENGTH_SHORT).show();
+
+    }
+
+    private void ajouterCompagnieDansBd() {
         ZoekenDatabaseHelper bd = new ZoekenDatabaseHelper(AjouterCompagnieActivity.this);
         bd.ajouterCompagnie(et_nom_compagnie.getText().toString().trim(),
                 et_nom_contact.getText().toString().trim(), et_email.getText().toString().trim(),
@@ -38,10 +69,5 @@ public class AjouterCompagnieActivity extends AppCompatActivity {
                 et_adresse.getText().toString().trim(), et_ville.getText().toString().trim(),
                 et_code_postal.getText().toString().trim(),
                 et_date_contact.getText().toString().trim());
-        // add to array global
-        startActivity(new Intent(AjouterCompagnieActivity.this, MainActivity.class));
-        finish();
-        Toast.makeText(AjouterCompagnieActivity.this, "Compagnie ajoutée avec succès!", Toast.LENGTH_SHORT).show();
-
     }
 }
