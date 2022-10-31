@@ -1,8 +1,9 @@
 package ca.qc.bdeb.c5gm.zoeken;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
-public class Compagnie implements Comparable<Compagnie> {
+public class Compagnie {
 
     private ArrayList<Compagnie> listeCompagnies;
 
@@ -18,8 +19,14 @@ public class Compagnie implements Comparable<Compagnie> {
         return listeCompagnies;
     }
 
-    @Override
-    public int compareTo(Compagnie autreCompagnie) {
-        return this.nom.compareTo(autreCompagnie.nom);
+    public static Comparator<Compagnie> triAZCompagnies = new Comparator<Compagnie>() {
+        @Override
+        public int compare(Compagnie compagnie1, Compagnie compagnie2) {
+            return compagnie1.getNom().compareTo(compagnie2.getNom()) ;
+        }
+    };
+
+    public String getNom() {
+        return nom;
     }
 }
