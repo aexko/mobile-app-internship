@@ -10,22 +10,25 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     FloatingActionButton btn_ajouter_compagnie;
-
     ZoekenDatabaseHelper bd;
     ArrayList<String> id_compagnie, nom_compagnie, nom_contact, email, telephone,
             site_web, adresse, ville, code_postal, date_de_contact;
     InterfaceAdapter adapteur;
+    private ArrayList<Compagnie> listeCompagnies;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +56,9 @@ public class MainActivity extends AppCompatActivity {
                 telephone, site_web, adresse, ville, code_postal, date_de_contact, MainActivity.this);
         recyclerView.setAdapter(adapteur);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        listeCompagnies = new ArrayList<>();
+
     }
 
     @Override
@@ -100,4 +106,8 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    public void trierCompagniesOrdreCroissant(MenuItem item) {
+        Collections.sort(listeCompagnies);
+        Toast.makeText(this, "TRIER ORDRE CROISSANT", Toast.LENGTH_SHORT).show();
+    }
 }

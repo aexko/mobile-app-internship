@@ -86,6 +86,9 @@ public class ZoekenDatabaseHelper extends SQLiteOpenHelper {
         if (resultat == -1) {
             Toast.makeText(context, "Échec de l'ajout, veuillez réessayer.", Toast.LENGTH_SHORT).show();
         }
+
+
+
     }
 
     void mettreAJourBd(String id_compagnie, String nom_compagnie, String nom_contact, String email,
