@@ -19,17 +19,17 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    RecyclerView recyclerView;
-    FloatingActionButton btn_ajouter_compagnie;
-    ZoekenDatabaseHelper bd;
-    ArrayList<String> id_compagnie, nom_compagnie, nom_contact, email, telephone,
+    private RecyclerView recyclerView;
+    private FloatingActionButton btn_ajouter_compagnie;
+    private ZoekenDatabaseHelper bd;
+    private ArrayList<String> id_compagnie, nom_compagnie, nom_contact, email, telephone,
             site_web, adresse, ville, code_postal, date_de_contact;
-    InterfaceAdapter adapteur;
-    ListView lv_compagnies;
+    private InterfaceAdapter adapteur;
+    private ListView lv_compagnies;
+    private ArrayList<Compagnie> listeCompagnies;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

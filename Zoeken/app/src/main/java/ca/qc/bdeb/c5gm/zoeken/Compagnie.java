@@ -5,6 +5,10 @@ import java.util.Comparator;
 
 public class Compagnie {
 
+
+
+    private ArrayList<Compagnie> listeCompagnies;
+
     private int id;
     private String nom;
     private String nom_contact;
@@ -39,6 +43,10 @@ public class Compagnie {
             return compagnie1.getNom().compareTo(compagnie2.getNom());
         }
     };
+
+    public ArrayList<Compagnie> getListeCompagnies() {
+        return listeCompagnies;
+    }
 
     public int getId() {
         return id;
