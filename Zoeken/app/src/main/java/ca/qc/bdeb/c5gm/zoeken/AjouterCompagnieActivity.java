@@ -48,10 +48,9 @@ public class AjouterCompagnieActivity extends AppCompatActivity {
                     et_date_contact.getText().toString().trim());
             System.out.println("ID compagnie : " + id);
             ajouterCompagnieDansBd();
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-
 
 
         // add to array global

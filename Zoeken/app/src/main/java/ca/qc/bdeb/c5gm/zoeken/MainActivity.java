@@ -1,12 +1,21 @@
 package ca.qc.bdeb.c5gm.zoeken;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -15,12 +24,14 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.GoogleMap;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
 public class MainActivity extends AppCompatActivity {
+
 
     private RecyclerView recyclerView;
     private FloatingActionButton btn_ajouter_compagnie;
@@ -30,6 +41,11 @@ public class MainActivity extends AppCompatActivity {
     private InterfaceAdapter adapteur;
     private ListView lv_compagnies;
     private ArrayList<Compagnie> listeCompagnies;
+
+    int LOCATION_REFRESH_TIME = 15000; // 15 seconds to update
+    int LOCATION_REFRESH_DISTANCE = 500; // 500 meters to update
+    LocationManager locationManager;
+    GoogleMap googleMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,8 +73,6 @@ public class MainActivity extends AppCompatActivity {
                 telephone, site_web, adresse, ville, code_postal, date_de_contact, MainActivity.this);
         recyclerView.setAdapter(adapteur);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-
     }
 
     @Override
@@ -106,8 +120,4 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    public void trierCompagniesOrdreCroissant(MenuItem item) {
-
-        Toast.makeText(this, "TRIER ORDRE CROISSANT", Toast.LENGTH_SHORT).show();
-    }
 }

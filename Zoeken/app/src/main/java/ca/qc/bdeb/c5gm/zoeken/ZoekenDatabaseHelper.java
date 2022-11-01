@@ -44,7 +44,7 @@ public class ZoekenDatabaseHelper extends SQLiteOpenHelper {
                     ");";
 
     private static final String REQUETE_SQL_LECTURE_BD =
-            "SELECT * FROM " + NOM_TABLE;
+            "SELECT * FROM " + NOM_TABLE + " ORDER BY nom_compagnie" ;
 
     private final Context context;
 
