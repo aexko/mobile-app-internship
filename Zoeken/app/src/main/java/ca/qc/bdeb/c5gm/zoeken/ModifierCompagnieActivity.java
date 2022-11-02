@@ -38,7 +38,10 @@ public class ModifierCompagnieActivity extends AppCompatActivity {
         mettreAJourDonneesAffichage();
     }
 
-
+    /**
+     * GET et SET les données correspondantes (passées par InterfaceAdapter)
+     * pour remplir les champs de la compagnie
+     */
     public void mettreAJourDonneesAffichage() {
         id_compagnie = getIntent().getStringExtra("id_compagnie");
         nom_compagnie = getIntent().getStringExtra("nom_compagnie");
@@ -62,6 +65,10 @@ public class ModifierCompagnieActivity extends AppCompatActivity {
         et_date_contact.setText(date_contact);
     }
 
+    /**
+     * Pour mettre à jour la base de données SQLite
+     * @param view
+     */
     public void modifierCompagnie(View view) {
         ZoekenDatabaseHelper bd = new ZoekenDatabaseHelper(ModifierCompagnieActivity.this);
         bd.mettreAJourBd(
@@ -78,10 +85,17 @@ public class ModifierCompagnieActivity extends AppCompatActivity {
         finish();
     }
 
+    /**
+     * Pour supprimer une compagnie
+     * @param view
+     */
     public void supprimerCompagnie(View view) {
         ouvrirDialogueConfirmation();
     }
 
+    /**
+     * Pour ouvrir une fenêtre pour confirmer la supression d'une compagnie
+     */
     void ouvrirDialogueConfirmation() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder.setTitle("Suppression de la compagnie « " + nom_compagnie + " » ");

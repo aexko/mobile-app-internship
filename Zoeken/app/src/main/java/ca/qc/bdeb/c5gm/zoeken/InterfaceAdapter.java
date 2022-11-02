@@ -25,15 +25,6 @@ public class InterfaceAdapter extends RecyclerView.Adapter<InterfaceAdapter.View
     /**
      * Called when RecyclerView needs a new {@link ViewHolder} of the given type to represent
      * an item.
-     * <p>
-     * This new ViewHolder should be constructed with a new View that can represent the items
-     * of the given type. You can either create a new View manually or inflate it from an XML
-     * layout file.
-     * <p>
-     * The new ViewHolder will be used to display items of the adapter using
-     * {@link #onBindViewHolder(ViewHolder, int, List)}. Since it will be re-used to display
-     * different items in the data set, it is a good idea to cache references to sub views of
-     * the View to avoid unnecessary {@link View#findViewById(int)} calls.
      *
      * @param parent   The ViewGroup into which the new View will be added after it is bound to
      *                 an adapter position.
@@ -50,21 +41,28 @@ public class InterfaceAdapter extends RecyclerView.Adapter<InterfaceAdapter.View
         return new ViewHolder(view);
     }
 
+    public InterfaceAdapter(Context context, ArrayList id_compagnie, ArrayList nom_compagnie,
+                            ArrayList nom_contact, ArrayList email, ArrayList telephone,
+                            ArrayList site_web, ArrayList adresse, ArrayList ville,
+                            ArrayList code_postal, ArrayList date_contact, Activity activity) {
+        this.context = context;
+        this.id_compagnie = id_compagnie;
+        this.nom_compagnie = nom_compagnie;
+        this.nom_contact = nom_contact;
+        this.email = email;
+        this.telephone = telephone;
+        this.site_web = site_web;
+        this.adresse = adresse;
+        this.ville = ville;
+        this.code_postal = code_postal;
+        this.date_contact = date_contact;
+        this.activity = activity;
+    }
+
     /**
      * Called by RecyclerView to display the data at the specified position. This method should
      * update the contents of the {@link ViewHolder#itemView} to reflect the item at the given
      * position.
-     * <p>
-     * Note that unlike {@link ListView}, RecyclerView will not call this method
-     * again if the position of the item changes in the data set unless the item itself is
-     * invalidated or the new position cannot be determined. For this reason, you should only
-     * use the <code>position</code> parameter while acquiring the related data item inside
-     * this method and should not keep a copy of it. If you need the position of an item later
-     * on (e.g. in a click listener), use {@link ViewHolder#getAdapterPosition()} which will
-     * have the updated adapter position.
-     * <p>
-     * Override {@link #onBindViewHolder(ViewHolder, int, List)} instead if Adapter can
-     * handle efficient partial bind.
      *
      * @param holder   The ViewHolder which should be updated to represent the contents of the
      *                 item at the given position in the data set.
@@ -95,16 +93,16 @@ public class InterfaceAdapter extends RecyclerView.Adapter<InterfaceAdapter.View
 
 
     /**
-     * Returns the total number of items in the data set held by the adapter.
+     * Retourne le nombre total d'items de l'adapteur
      *
-     * @return The total number of items in this adapter.
+     * @return Le nombre total d'items
      */
     @Override
     public int getItemCount() {
         return id_compagnie.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView tv_nom_compagnie;
         LinearLayout layoutMain;
 
@@ -116,32 +114,4 @@ public class InterfaceAdapter extends RecyclerView.Adapter<InterfaceAdapter.View
         }
     }
 
-
-    public InterfaceAdapter(Context context,
-                            ArrayList id_compagnie,
-                            ArrayList nom_compagnie,
-                            ArrayList nom_contact,
-                            ArrayList email,
-                            ArrayList telephone,
-                            ArrayList site_web,
-                            ArrayList adresse,
-                            ArrayList ville,
-                            ArrayList code_postal,
-                            ArrayList date_contact,
-                            Activity activity) {
-        this.context = context;
-        this.id_compagnie = id_compagnie;
-        this.nom_compagnie = nom_compagnie;
-        this.nom_contact = nom_contact;
-        this.email = email;
-        this.telephone = telephone;
-        this.site_web = site_web;
-        this.adresse = adresse;
-        this.ville = ville;
-        this.code_postal = code_postal;
-        this.date_contact = date_contact;
-        this.activity = activity;
-
-
-    }
 }

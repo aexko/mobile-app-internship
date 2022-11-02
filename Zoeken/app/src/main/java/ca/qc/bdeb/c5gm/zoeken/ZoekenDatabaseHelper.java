@@ -44,7 +44,7 @@ public class ZoekenDatabaseHelper extends SQLiteOpenHelper {
                     ");";
 
     private static final String REQUETE_SQL_LECTURE_BD =
-            "SELECT * FROM " + NOM_TABLE + " ORDER BY nom_compagnie" ;
+            "SELECT * FROM " + NOM_TABLE + " ORDER BY nom_compagnie";
 
     private final Context context;
 
@@ -86,9 +86,6 @@ public class ZoekenDatabaseHelper extends SQLiteOpenHelper {
         if (resultat == -1) {
             Toast.makeText(context, "Échec de l'ajout, veuillez réessayer.", Toast.LENGTH_SHORT).show();
         }
-
-
-
     }
 
     void mettreAJourBd(String id_compagnie, String nom_compagnie, String nom_contact, String email,
