@@ -1,7 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
-        android:id="@+id/menu_trier_ordre_croissant"
-        android:title="Trier par ordre croissant"
-        android:onClick="trierCompagniesOrdreCroissant"/>
+
 </menu>
