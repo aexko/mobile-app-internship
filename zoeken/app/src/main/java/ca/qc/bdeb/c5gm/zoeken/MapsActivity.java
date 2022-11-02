@@ -9,6 +9,7 @@ import android.annotation.SuppressLint;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -25,68 +26,114 @@ import ca.qc.bdeb.c5gm.zoeken.databinding.ActivityMapsBinding;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
-    private static final int LOCATION_REQUEST_CODE = 1;
-    SupportMapFragment supportMapFragment;
-    FusedLocationProviderClient fusedLocationProviderClient;
+    private ActivityMapsBinding binding;
+    private GoogleMap googleMap;
+    private FusedLocationProviderClient fusedLocationProviderClient;
+    private static final int LOCATION_REQUEST_CODE = 101;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        ca.qc.bdeb.c5gm.zoeken.databinding.ActivityMapsBinding binding = ActivityMapsBinding.inflate(getLayoutInflater());
+        binding = ActivityMapsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        supportMapFragment = (SupportMapFragment) getSupportFragmentManager()
+        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
-
-        if (ActivityCompat.checkSelfPermission(MapsActivity.this,
-                Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            activerLocalisation();
-        } else {
-            ActivityCompat.requestPermissions(MapsActivity.this,
-                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_REQUEST_CODE);
-        }
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        LatLng sydney = new LatLng(-34, 151);
-        googleMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        this.googleMap = googleMap;
+
+//        // Add a marker in Sydney and move the camera
+//        LatLng collegeBdeB = new LatLng(45.5380, -73.6760);
+//        mMap.addMarker(new MarkerOptions().position(collegeBdeB).title("Collège Bois-de-Boulogne"));
+//        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(collegeBdeB, 13));
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.ACCESS_COARSE_LOCATION}, LOCATION_REQUEST_CODE);
+
+        }
+        else {
+            activerLocalisation();
+        }
+
+        mettreMarqueurs();
+
+    }
+
+    private void mettreMarqueurs() {
+
+        for
+        LatLng collegeBdeB = new LatLng(45.5380, -73.6760);
+        googleMap.addMarker(new MarkerOptions().position(collegeBdeB).title("Collège Bois-de-Boulogne"));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(collegeBdeB, 13));
     }
 
 
+    @SuppressLint("MissingSuperCall")
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
-                                           @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == LOCATION_REQUEST_CODE) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == LOCATION_REQUEST_CODE){
+            if(isPermissionAuth(permissions, grantResults, Manifest.permission.ACCESS_FINE_LOCATION) ||
+                    isPermissionAuth(permissions, grantResults, Manifest.permission.ACCESS_COARSE_LOCATION)){
                 activerLocalisation();
             }
         }
     }
 
+    private boolean isPermissionAuth(String[] permissions, int[] grantResults, String accessLocation) {
+        for (int i = 0; i < permissions.length; i++) {
+            if (permissions[i].compareToIgnoreCase(accessLocation) == 0){
+                return grantResults[i] == PackageManager.PERMISSION_GRANTED;
+            }
+        }
+        return false;
+    }
+
+    @SuppressLint("MissingPermission")
     private void activerLocalisation() {
-        @SuppressLint("MissingPermission") Task<Location> task = fusedLocationProviderClient.getLastLocation();
-        task.addOnSuccessListener(new OnSuccessListener<Location>() {
+        fusedLocationProviderClient.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<Location>() {
             @Override
-            public void onSuccess(final Location location) {
-                if (location != null) {
-                    supportMapFragment.getMapAsync(new OnMapReadyCallback() {
-                        @Override
-                        public void onMapReady(@NonNull GoogleMap googleMap) {
-                            LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-                            MarkerOptions options = new MarkerOptions().position(latLng).title("Ma position");
-                            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10));
-                            googleMap.addMarker(options);
-                        }
-                    });
+            public void onSuccess(Location location) {
+                if (location != null){
+                    LatLng position = new LatLng(location.getLatitude(), location.getLongitude());
+                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(position, 12));
                 }
             }
         });
+        if(googleMap != null){
+            googleMap.setMyLocationEnabled(true);
+        }
     }
+
+
+
+//    private void activerLocalisation() {
+//        @SuppressLint("MissingPermission") Task<Location> task = fusedLocationProviderClient.getLastLocation();
+//        task.addOnSuccessListener(new OnSuccessListener<Location>() {
+//            @Override
+//            public void onSuccess(final Location location) {
+//                if (location != null) {
+//                    supportMapFragment.getMapAsync(new OnMapReadyCallback() {
+//                        @Override
+//                        public void onMapReady(@NonNull GoogleMap googleMap) {
+//                            LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+//                            MarkerOptions options = new MarkerOptions().position(latLng).title("Ma position");
+//                            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10));
+//                            googleMap.addMarker(options);
+//                        }
+//                    });
+//                }
+//            }
+//        });
+//    }
 
 }
