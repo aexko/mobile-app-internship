@@ -25,10 +25,7 @@ import ca.qc.bdeb.c5gm.zoeken.databinding.ActivityMapsBinding;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
-    private static final int LOCATION_REQUEST_CODE = 44;
-    private GoogleMap mMap;
-    private ActivityMapsBinding binding;
-    //    public static final int LOCATION_REQUEST_CODE = 0;
+    private static final int LOCATION_REQUEST_CODE = 1;
     SupportMapFragment supportMapFragment;
     FusedLocationProviderClient fusedLocationProviderClient;
 
@@ -36,57 +33,28 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = ActivityMapsBinding.inflate(getLayoutInflater());
+        ca.qc.bdeb.c5gm.zoeken.databinding.ActivityMapsBinding binding = ActivityMapsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         supportMapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
+
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
         if (ActivityCompat.checkSelfPermission(MapsActivity.this,
-                Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
+                Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             activerLocalisation();
-
         } else {
             ActivityCompat.requestPermissions(MapsActivity.this,
                     new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_REQUEST_CODE);
         }
-
-
-//        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
-//                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-//            activerLocalisation();
-//        }
-
-//        mMap.setOnMyLocationButtonClickListener(new GoogleMap.OnMyLocationButtonClickListener() {
-//            @Override
-//            public boolean onMyLocationButtonClick() {
-//                Toast.makeText(MapsActivity.this, "MyLocationButton Clicked", Toast.LENGTH_SHORT).show();
-//                return false;
-//            }
-////            @Override
-////            public void onMyLocationClick(@NonNull Location location) {
-////                Toast.makeText(MapsActivity.this, "Ma localisation: \n" + location, Toast.LENGTH_LONG).show();
-////            }
-//        });
-
-
-
-//        ActivityCompat.requestPermissions(MapsActivity.this,
-//                new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-//                1);
-
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
-
-        // Add a marker in Sydney and move the camera
         LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        googleMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
 
 
@@ -99,8 +67,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 activerLocalisation();
             }
         }
-
-
     }
 
     private void activerLocalisation() {
@@ -123,40 +89,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
     }
 
-//    @Override
-//    public void onRequestPermissionsResult(int requestCode,
-//                                           String permissions[], int[] grantResults) {
-//        switch (requestCode) {
-//            case 1: {
-//
-//                // If request is cancelled, the result arrays are empty.
-//                if (grantResults.length > 0
-//                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-//
-//                    // permission was granted, yay! Do the
-//                    // contacts-related task you need to do.
-//                } else {
-//
-//                    // permission denied, boo! Disable the
-//                    // functionality that depends on this permission.
-//                    Toast.makeText(MapsActivity.this, "Permission denied to read your External storage", Toast.LENGTH_SHORT).show();
-//                }
-//                return;
+//    private boolean isPermissionAuth(String[] permissions, int[] grantResults, String permission) {
+//        for (int i = 0; i < permissions.length; i++) {
+//            if (permissions[i].compareToIgnoreCase(permission) == 0) {
+//                return (grantResults[i] == PackageManager.PERMISSION_GRANTED);
 //            }
-//
-//            // other 'case' lines to check for other
-//            // permissions this app might request
 //        }
+//        return false;
 //    }
-
-    private boolean isPermissionAuth(String[] permissions, int[] grantResults, String permission) {
-        for (int i = 0; i < permissions.length; i++) {
-            if (permissions[i].compareToIgnoreCase(permission) == 0) {
-                return (grantResults[i] == PackageManager.PERMISSION_GRANTED);
-            }
-        }
-        return false;
-    }
-
 
 }

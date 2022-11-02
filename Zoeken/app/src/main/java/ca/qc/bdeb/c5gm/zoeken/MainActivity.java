@@ -34,18 +34,11 @@ public class MainActivity extends AppCompatActivity {
 
 
     private RecyclerView recyclerView;
-    private FloatingActionButton btn_ajouter_compagnie;
     private ZoekenDatabaseHelper bd;
     private ArrayList<String> id_compagnie, nom_compagnie, nom_contact, email, telephone,
             site_web, adresse, ville, code_postal, date_de_contact;
     private InterfaceAdapter adapteur;
-    private ListView lv_compagnies;
-    private ArrayList<Compagnie> listeCompagnies;
 
-    int LOCATION_REFRESH_TIME = 15000; // 15 seconds to update
-    int LOCATION_REFRESH_DISTANCE = 500; // 500 meters to update
-    LocationManager locationManager;
-    GoogleMap googleMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         recyclerView = findViewById(R.id.recycler_view);
-        btn_ajouter_compagnie = findViewById(R.id.btn_ouvrir_ajouter_compagnie);
 
         bd = new ZoekenDatabaseHelper(MainActivity.this);
         id_compagnie = new ArrayList<>();
@@ -69,12 +61,20 @@ public class MainActivity extends AppCompatActivity {
 
         sauvegarderCompagnies();
 
-        adapteur = new InterfaceAdapter(this, id_compagnie, nom_compagnie, nom_contact, email,
-                telephone, site_web, adresse, ville, code_postal, date_de_contact, MainActivity.this);
+        adapteur = new InterfaceAdapter(this, id_compagnie, nom_compagnie, nom_contact,
+                email, telephone, site_web, adresse, ville, code_postal, date_de_contact,
+                MainActivity.this);
         recyclerView.setAdapter(adapteur);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
+    /**
+     * Pour rafraîchir la page après une modification
+     *
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -83,6 +83,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Sauvegarde les compagnies dans la base de données SQLite
+     */
     public void sauvegarderCompagnies() {
         Cursor curseur = bd.lireBd();
         if (curseur.getCount() != 0) {
@@ -103,16 +106,32 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Pour ouvrir l'activité "MapsActivity" avec le bouton
+     *
+     * @param view
+     */
     public void ouvrirMaps(View view) {
         Intent intent = new Intent(this, MapsActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Pour ouvrir l'activité "AjouterCompagnie" avec le bouton
+     *
+     * @param view
+     */
     public void ouvrirAjouterCompagnie(View view) {
         Intent intent = new Intent(this, AjouterCompagnieActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Pour faire apparaître le toolbar avec le menu
+     *
+     * @param menu
+     * @return
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
