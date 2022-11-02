@@ -17,8 +17,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
+// SOURCE: https://www.youtube.com/playlist?list=PLSrm9z4zp4mGK0g_0_jxYGgg3os9tqRUQ
+
 public class InterfaceAdapter extends RecyclerView.Adapter<InterfaceAdapter.ViewHolder> {
-    ArrayList id_compagnie, nom_compagnie, nom_contact, email, telephone, site_web, adresse, ville, code_postal, date_contact;
+    ArrayList id_compagnie, nom_compagnie, nom_contact, email, telephone, site_web, adresse,
+            ville, code_postal, date_contact;
     Context context;
     Activity activity;
 

@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+// SOURCE: https://www.youtube.com/playlist?list=PLSrm9z4zp4mGK0g_0_jxYGgg3os9tqRUQ
+
 public class ModifierCompagnieActivity extends AppCompatActivity {
 
     EditText et_nom_compagnie, et_nom_contact, et_email, et_telephone, et_site_web,

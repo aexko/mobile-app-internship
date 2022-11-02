@@ -24,6 +24,8 @@ import com.google.android.gms.tasks.Task;
 
 import ca.qc.bdeb.c5gm.zoeken.databinding.ActivityMapsBinding;
 
+// SOURCE: Exemple du professeur
+
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private ActivityMapsBinding binding;
@@ -71,7 +73,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private void mettreMarqueurs() {
 
-        for
         LatLng collegeBdeB = new LatLng(45.5380, -73.6760);
         googleMap.addMarker(new MarkerOptions().position(collegeBdeB).title("Collège Bois-de-Boulogne"));
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(collegeBdeB, 13));
