@@ -89,13 +89,4 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
     }
 
-//    private boolean isPermissionAuth(String[] permissions, int[] grantResults, String permission) {
-//        for (int i = 0; i < permissions.length; i++) {
-//            if (permissions[i].compareToIgnoreCase(permission) == 0) {
-//                return (grantResults[i] == PackageManager.PERMISSION_GRANTED);
-//            }
-//        }
-//        return false;
-//    }
-
 }
