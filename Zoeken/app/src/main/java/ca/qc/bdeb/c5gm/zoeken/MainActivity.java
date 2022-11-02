@@ -60,6 +60,8 @@ public class MainActivity extends AppCompatActivity {
         date_de_contact = new ArrayList<>();
 
         sauvegarderCompagnies();
+//        getIntent().getStringArrayListExtra("tableauCompagnies");
+
 
         adapteur = new InterfaceAdapter(this, id_compagnie, nom_compagnie, nom_contact,
                 email, telephone, site_web, adresse, ville, code_postal, date_de_contact,
@@ -100,6 +102,8 @@ public class MainActivity extends AppCompatActivity {
                 ville.add(curseur.getString(7));
                 code_postal.add(curseur.getString(8));
                 date_de_contact.add(curseur.getString(9));
+
+
             }
         } else {
             Toast.makeText(this, "Aucune compagnie à afficher", Toast.LENGTH_SHORT).show();

@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentActivity;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.location.Location;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -22,6 +23,8 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
+import java.util.ArrayList;
+
 import ca.qc.bdeb.c5gm.zoeken.databinding.ActivityMapsBinding;
 
 // SOURCE: Exemple du professeur
@@ -32,6 +35,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap googleMap;
     private FusedLocationProviderClient fusedLocationProviderClient;
     private static final int LOCATION_REQUEST_CODE = 101;
+
+    private ArrayList<String> nom_compagnie,adresse, ville, code_postal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +77,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     private void mettreMarqueurs() {
+        for (int i = 0; i < 4; i++) {
 
+            Toast.makeText(this, "Marqueur" + i, Toast.LENGTH_SHORT).show();
+        }
+//        ZoekenDatabaseHelper bd = new ZoekenDatabaseHelper(MapsActivity.this);
+//        Cursor curseur = bd.lireBd();
+//        if (curseur.getCount() != 0) {
+//            while (curseur.moveToNext()) {
+//                nom_compagnie.add(curseur.getString(1));
+//                adresse.add(curseur.getString(6));
+//                ville.add(curseur.getString(7));
+//                code_postal.add(curseur.getString(8));
+//                System.out.println( nom_compagnie.add(curseur.getString(1)));
+//            }
+//        } else {
+//            Toast.makeText(this, "Aucune compagnie à afficher", Toast.LENGTH_SHORT).show();
+//        }
+        // loop dans un array qui contient tous les compagnies
+
+//        https://stackoverflow.com/questions/15731029/array-list-intent-extra-in-java
         LatLng collegeBdeB = new LatLng(45.5380, -73.6760);
         googleMap.addMarker(new MarkerOptions().position(collegeBdeB).title("Collège Bois-de-Boulogne"));
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(collegeBdeB, 13));

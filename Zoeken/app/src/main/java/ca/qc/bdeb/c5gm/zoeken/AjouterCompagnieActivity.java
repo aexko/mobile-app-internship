@@ -8,12 +8,15 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class AjouterCompagnieActivity extends AppCompatActivity {
 
     EditText et_nom_compagnie, et_nom_contact, et_email, et_telephone, et_site_web,
             et_adresse, et_ville, et_code_postal, et_date_contact;
+
+    private ArrayList<String> tabNomsCompagnies, tabAdresses, tabVilles, tabCodesPostaux;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,10 +36,8 @@ public class AjouterCompagnieActivity extends AppCompatActivity {
     }
 
     public void ajouterCompagnie(View view) {
-        Random random = new Random();
-        int id = random.nextInt(100000000);
         try {
-            System.out.println("ID compagnie : " + id);
+            ajouterCompagnieDansArray();
             ajouterCompagnieDansBd();
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -45,6 +46,14 @@ public class AjouterCompagnieActivity extends AppCompatActivity {
         startActivity(new Intent(AjouterCompagnieActivity.this, MainActivity.class));
         finish();
         Toast.makeText(AjouterCompagnieActivity.this, "Compagnie ajoutée avec succès!", Toast.LENGTH_SHORT).show();
+
+    }
+
+    private void ajouterCompagnieDansArray() {
+        tabNomsCompagnies.add(et_nom_compagnie.getText().toString().trim());
+        tabAdresses.add(et_adresse.getText().toString().trim());
+        tabVilles.add(et_ville.getText().toString().trim());
+        tabCodesPostaux.add(et_code_postal.getText().toString().trim());
 
     }
 
