@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -16,7 +17,7 @@ public class AjouterCompagnieActivity extends AppCompatActivity {
     EditText et_nom_compagnie, et_nom_contact, et_email, et_telephone, et_site_web,
             et_adresse, et_ville, et_code_postal, et_date_contact;
 
-    private ArrayList<String> tabNomsCompagnies, tabAdresses, tabVilles, tabCodesPostaux;
+    private Bundle tabNomsCompagnies, tabAdresses, tabVilles, tabCodesPostaux;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,27 +34,40 @@ public class AjouterCompagnieActivity extends AppCompatActivity {
         et_code_postal = findViewById(R.id.et_code_postal);
         et_date_contact = findViewById(R.id.et_date_contact);
 
+        tabNomsCompagnies = new Bundle();
+        tabAdresses = new Bundle();
+        tabVilles = new Bundle();
+        tabCodesPostaux = new Bundle();
+
     }
 
     public void ajouterCompagnie(View view) {
         try {
             ajouterCompagnieDansArray();
             ajouterCompagnieDansBd();
+            Toast.makeText(AjouterCompagnieActivity.this,
+                    "Compagnie ajoutée avec succès!", Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
 
         startActivity(new Intent(AjouterCompagnieActivity.this, MainActivity.class));
         finish();
-        Toast.makeText(AjouterCompagnieActivity.this, "Compagnie ajoutée avec succès!", Toast.LENGTH_SHORT).show();
 
     }
 
     private void ajouterCompagnieDansArray() {
-        tabNomsCompagnies.add(et_nom_compagnie.getText().toString().trim());
-        tabAdresses.add(et_adresse.getText().toString().trim());
-        tabVilles.add(et_ville.getText().toString().trim());
-        tabCodesPostaux.add(et_code_postal.getText().toString().trim());
+
+//        tabAdresses.add(et_adresse.getText().toString().trim());
+//        tabVilles.add(et_ville.getText().toString().trim());
+//        tabCodesPostaux.add(et_code_postal.getText().toString().trim());
+        Intent intent = new Intent(AjouterCompagnieActivity.this, MapsActivity.class);
+//        intent.putExtra("Compagnie", listeCompagnies.get(position));
+//        Log.d("passageData", intent1.toString());
+
+//        intent.putExtra("tableauAdresses", tabAdresses);
+//        intent.putExtra("tableauVilles", tabVilles);
+//        intent.putExtra("tableauCodesPostaux", tabCodesPostaux);
 
     }
 

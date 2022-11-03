@@ -85,7 +85,7 @@ public class InterfaceAdapter extends RecyclerView.Adapter<InterfaceAdapter.View
     }
 
     private void passerDonneesVersActiviteMaps(ViewHolder holder) {
-        Intent intent = new Intent(context, ModifierCompagnieActivity.class);
+        Intent intent = new Intent(context, MapsActivity.class);
         intent.putExtra("id_compagnie", String.valueOf(id_compagnie.get(holder.getAdapterPosition())));
         intent.putExtra("nom_compagnie", String.valueOf(nom_compagnie.get(holder.getAdapterPosition())));
         intent.putExtra("nom_contact", String.valueOf(nom_contact.get(holder.getAdapterPosition())));

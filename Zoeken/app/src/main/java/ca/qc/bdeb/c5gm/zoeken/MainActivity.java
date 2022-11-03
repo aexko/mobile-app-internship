@@ -1,34 +1,20 @@
 package ca.qc.bdeb.c5gm.zoeken;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.ListView;
 import android.widget.Toast;
 
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -38,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<String> id_compagnie, nom_compagnie, nom_contact, email, telephone,
             site_web, adresse, ville, code_postal, date_de_contact;
     private InterfaceAdapter adapteur;
+
+    private ArrayList<Compagnie> listeCompagnies;
 
 
     @Override
@@ -89,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
      * Sauvegarde les compagnies dans la base de données SQLite
      */
     public void sauvegarderCompagnies() {
+
         Cursor curseur = bd.lireBd();
         if (curseur.getCount() != 0) {
             while (curseur.moveToNext()) {
@@ -102,11 +91,26 @@ public class MainActivity extends AppCompatActivity {
                 ville.add(curseur.getString(7));
                 code_postal.add(curseur.getString(8));
                 date_de_contact.add(curseur.getString(9));
-
-
             }
+            ajouterCompagnieDansListe(curseur);
+
         } else {
             Toast.makeText(this, "Aucune compagnie à afficher", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void ajouterCompagnieDansListe(Cursor curseur) {
+        if (curseur.getCount() != 0) {
+            while (curseur.moveToNext()) {
+                String strNomCompagnie = curseur.getString(1);
+                String strAdresse = curseur.getString(6);
+                String strVille = curseur.getString(7);
+                String strCodePostal = curseur.getString(8);
+                Compagnie nouvelleCompagnie = new Compagnie(strNomCompagnie, strAdresse, strVille, strCodePostal);
+                Log.d("ajoutCompagnie", "ajouterCompagnieDansListe: " + nouvelleCompagnie);
+                listeCompagnies.add(nouvelleCompagnie);
+
+            }
         }
     }
 
