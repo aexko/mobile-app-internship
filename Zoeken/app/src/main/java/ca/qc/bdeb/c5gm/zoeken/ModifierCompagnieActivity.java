@@ -73,6 +73,7 @@ public class ModifierCompagnieActivity extends AppCompatActivity {
 
     /**
      * Pour mettre à jour la base de données SQLite
+     *
      * @param view
      */
     public void modifierCompagnie(View view) {
@@ -93,6 +94,7 @@ public class ModifierCompagnieActivity extends AppCompatActivity {
 
     /**
      * Pour supprimer une compagnie
+     *
      * @param view
      */
     public void supprimerCompagnie(View view) {
@@ -124,8 +126,16 @@ public class ModifierCompagnieActivity extends AppCompatActivity {
     }
 
     public void allerVersSite(View view) {
-        Toast.makeText(this, "site", Toast.LENGTH_SHORT).show();
-
+        String url = "https://" + et_site_web.getText().toString();
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(url));
+        startActivity(intent);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        } else {
+            Toast.makeText(this, "Aucune application disponible",
+                    Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void appelerTelephone(View view) {
@@ -144,8 +154,7 @@ public class ModifierCompagnieActivity extends AppCompatActivity {
         if (intent.resolveActivity(getPackageManager()) != null) {
             startActivity(Intent.createChooser(intent, "Veuillez sélectionner une " +
                     "application pour envoyer votre courriel."));
-        }
-        else {
+        } else {
             Toast.makeText(this, "Aucune application disponible",
                     Toast.LENGTH_SHORT).show();
         }
