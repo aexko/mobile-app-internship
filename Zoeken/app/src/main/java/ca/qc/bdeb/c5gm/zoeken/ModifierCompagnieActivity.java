@@ -2,9 +2,13 @@ package ca.qc.bdeb.c5gm.zoeken;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -20,11 +24,14 @@ import ca.qc.bdeb.c5gm.zoeken.databinding.ActivityMainBinding;
 
 public class ModifierCompagnieActivity extends AppCompatActivity {
 
+    public static int REQUEST_CALL = 1;
+
     EditText et_nom_compagnie, et_nom_contact, et_email, et_telephone, et_site_web,
             et_adresse, et_ville, et_code_postal, et_date_contact;
 
     String id_compagnie, nom_compagnie, nom_contact, email, telephone,
             site_web, adresse, ville, code_postal, date_contact;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,6 +132,7 @@ public class ModifierCompagnieActivity extends AppCompatActivity {
         alertDialogBuilder.create().show();
     }
 
+    // SOURCE: https://developer.android.com/guide/components/intents-common#Browser
     public void allerVersSite(View view) {
         String url = "https://" + et_site_web.getText().toString();
         Intent intent = new Intent(Intent.ACTION_VIEW);
@@ -138,9 +146,19 @@ public class ModifierCompagnieActivity extends AppCompatActivity {
         }
     }
 
+    // SOURCE: https://www.youtube.com/watch?v=UDwj5j4tBYg
     public void appelerTelephone(View view) {
-        Toast.makeText(this, "telephone", Toast.LENGTH_SHORT).show();
-
+        String numero_telephone = et_telephone.getText().toString();
+        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+Uri.encode(numero_telephone)));
+        intent.setData((Uri.parse("tel:"+numero_telephone)));
+        if (numero_telephone.trim().length() > 0) {
+            if (ContextCompat.checkSelfPermission(ModifierCompagnieActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(ModifierCompagnieActivity.this, new String[] {Manifest.permission.CALL_PHONE}, REQUEST_CALL);
+            }
+            startActivity(intent);
+        } else {
+            Toast.makeText(this, "Numéro de téléphone invalide.", Toast.LENGTH_SHORT).show();
+        }
     }
 
     // SOURCE: https://developer.android.com/guide/components/intents-common#ComposeEmail
