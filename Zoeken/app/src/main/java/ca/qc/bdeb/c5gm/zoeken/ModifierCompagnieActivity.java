@@ -4,10 +4,17 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import ca.qc.bdeb.c5gm.zoeken.databinding.ActivityMainBinding;
 
 // SOURCE: https://www.youtube.com/playlist?list=PLSrm9z4zp4mGK0g_0_jxYGgg3os9tqRUQ
 
@@ -18,8 +25,6 @@ public class ModifierCompagnieActivity extends AppCompatActivity {
 
     String id_compagnie, nom_compagnie, nom_contact, email, telephone,
             site_web, adresse, ville, code_postal, date_contact;
-
-    Button btn_modifier_compagnie;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +40,6 @@ public class ModifierCompagnieActivity extends AppCompatActivity {
         et_ville = findViewById(R.id.et_ville_m);
         et_code_postal = findViewById(R.id.et_code_postal_m);
         et_date_contact = findViewById(R.id.et_date_contact_m);
-        btn_modifier_compagnie = findViewById(R.id.btn_modifier_compagnie);
 
         mettreAJourDonneesAffichage();
     }
@@ -119,4 +123,31 @@ public class ModifierCompagnieActivity extends AppCompatActivity {
         alertDialogBuilder.create().show();
     }
 
+    public void allerVersSite(View view) {
+        Toast.makeText(this, "site", Toast.LENGTH_SHORT).show();
+
+    }
+
+    public void appelerTelephone(View view) {
+        Toast.makeText(this, "telephone", Toast.LENGTH_SHORT).show();
+
+    }
+
+    // SOURCE: https://developer.android.com/guide/components/intents-common#ComposeEmail
+    public void envoyerEmail(View view) {
+        String[] email = new String[1];
+        email[0] = et_email.getText().toString();
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setData(Uri.parse("mailto:"));
+        intent.putExtra(Intent.EXTRA_EMAIL, email);
+
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(Intent.createChooser(intent, "Veuillez sélectionner une " +
+                    "application pour envoyer votre courriel."));
+        }
+        else {
+            Toast.makeText(this, "Aucune application disponible",
+                    Toast.LENGTH_SHORT).show();
+        }
+    }
 }
