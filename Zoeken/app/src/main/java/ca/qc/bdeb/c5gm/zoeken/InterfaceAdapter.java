@@ -91,6 +91,12 @@ public class InterfaceAdapter extends RecyclerView.Adapter<InterfaceAdapter.View
         });
     }
 
+    /**
+     * Passage des données vers MapsActivity.
+     *
+     * @param holder Le ViewHolder qui doit être mis à jour pour représenter le contenu du
+     *               élément à la position donnée dans l'ensemble de données.
+     */
     private void passerDonneesVersActiviteMaps(ViewHolder holder) {
         Intent intent = new Intent(context, MapsActivity.class);
         intent.putExtra("id_compagnie", String.valueOf(id_compagnie.get
