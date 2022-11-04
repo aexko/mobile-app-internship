@@ -137,12 +137,12 @@ public class ModifierCompagnieActivity extends AppCompatActivity {
     public void allerVersSite(View view) {
         String entreeUtilisateur = et_site_web.getText().toString();
         String url;
-        if (entreeUtilisateur.contains("https://www.") || entreeUtilisateur.contains("http://www.") ) {
+        if (entreeUtilisateur.contains("https://www.") || entreeUtilisateur.contains("http://www.")) {
             url = et_site_web.getText().toString();
-            Log.d("urlW", "allerVersSite: "+ entreeUtilisateur.contains("https://"));
+            Log.d("urlW", "allerVersSite: " + entreeUtilisateur.contains("https://"));
         } else {
             url = "https://www." + et_site_web.getText().toString();
-            Log.d("urlW", "allerVersSite: "+ entreeUtilisateur.contains("https://"));
+            Log.d("urlW", "allerVersSite: " + entreeUtilisateur.contains("https://"));
 
         }
         Intent intent = new Intent(Intent.ACTION_VIEW);
@@ -150,24 +150,32 @@ public class ModifierCompagnieActivity extends AppCompatActivity {
         startActivity(intent);
         if (intent.resolveActivity(getPackageManager()) != null) {
             startActivity(intent);
+        } else {
+            Toast.makeText(this, "Erreur, veuillez réessayer.",
+                    Toast.LENGTH_SHORT).show();
         }
     }
 
     // SOURCE: https://www.youtube.com/watch?v=UDwj5j4tBYg
     public void appelerTelephone(View view) {
         String numero_telephone = et_telephone.getText().toString();
-        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+
+        if (numero_telephone.length() != 10) {
+            Toast.makeText(this, "Numéro de téléphone dépasse 10 chiffres, " +
+                            "veuillez rentrer un numéro de téléphone valide",
+                    Toast.LENGTH_LONG).show();
+        }
+        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" +
                 Uri.encode(numero_telephone)));
-        intent.setData((Uri.parse("tel:"+numero_telephone)));
+        intent.setData((Uri.parse("tel:" + numero_telephone)));
         if (numero_telephone.trim().length() > 0) {
             if (ContextCompat.checkSelfPermission(ModifierCompagnieActivity.this,
                     Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(ModifierCompagnieActivity.this,
-                        new String[] {Manifest.permission.CALL_PHONE}, REQUEST_CALL);
+                        new String[]{Manifest.permission.CALL_PHONE}, REQUEST_CALL);
             }
             startActivity(intent);
         } else {
-            Toast.makeText(this, "Numéro de téléphone invalide.",
+            Toast.makeText(this, "Erreur, veuillez réessayer.",
                     Toast.LENGTH_SHORT).show();
         }
     }
@@ -175,17 +183,23 @@ public class ModifierCompagnieActivity extends AppCompatActivity {
     // SOURCE: https://developer.android.com/guide/components/intents-common#ComposeEmail
     public void envoyerEmail(View view) {
         String[] email = new String[1];
-        email[0] = et_email.getText().toString();
-        Intent intent = new Intent(Intent.ACTION_SENDTO);
-        intent.setData(Uri.parse("mailto:"));
-        intent.putExtra(Intent.EXTRA_EMAIL, email);
-
-        if (intent.resolveActivity(getPackageManager()) != null) {
-            startActivity(Intent.createChooser(intent, "Veuillez sélectionner une " +
-                    "application pour envoyer votre courriel."));
-        } else {
-            Toast.makeText(this, "Aucune application disponible",
+        if (!email[0].contains("@")) {
+            Toast.makeText(this, "Veuillez rentrer une adresse courriel valide.",
                     Toast.LENGTH_SHORT).show();
+        } else {
+            email[0] = et_email.getText().toString();
+            Intent intent = new Intent(Intent.ACTION_SENDTO);
+            intent.setData(Uri.parse("mailto:"));
+            intent.putExtra(Intent.EXTRA_EMAIL, email);
+
+            if (intent.resolveActivity(getPackageManager()) != null) {
+                startActivity(Intent.createChooser(intent, "Veuillez sélectionner une " +
+                        "application pour envoyer votre courriel."));
+            } else {
+                Toast.makeText(this, "Erreur, aucune application disponible.",
+                        Toast.LENGTH_SHORT).show();
+            }
         }
     }
+    
 }
