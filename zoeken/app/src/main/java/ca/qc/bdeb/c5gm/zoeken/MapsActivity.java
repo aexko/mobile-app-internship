@@ -64,9 +64,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         if (ActivityCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(this,
-                        Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
-                    Manifest.permission.ACCESS_COARSE_LOCATION}, LOCATION_REQUEST_CODE);
+                        Manifest.permission.ACCESS_COARSE_LOCATION) !=
+                        PackageManager.PERMISSION_GRANTED) {
+
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.
+                    ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION},
+                    LOCATION_REQUEST_CODE);
 
         } else {
             activerLocalisation();
@@ -110,6 +113,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     /**
      * Permet la localisation de l'appareil si les permissions sont autorisées
+     *
      * @param requestCode
      * @param permissions
      * @param grantResults
@@ -129,6 +133,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     /**
      * Vérifie les permissions
+     *
      * @param permissions
      * @param grantResults
      * @param accessLocation
@@ -154,8 +159,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     @Override
                     public void onSuccess(Location location) {
                         if (location != null) {
-                            LatLng position = new LatLng(location.getLatitude(), location.getLongitude());
-                            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(position, 12));
+                            LatLng position = new LatLng(location.getLatitude(),
+                                    location.getLongitude());
+                            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(position,
+                                    12));
                         }
                     }
                 });

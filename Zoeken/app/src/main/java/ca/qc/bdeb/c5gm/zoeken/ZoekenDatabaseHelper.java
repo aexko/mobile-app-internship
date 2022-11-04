@@ -85,7 +85,8 @@ public class ZoekenDatabaseHelper extends SQLiteOpenHelper {
 
         long resultat = sqLiteDatabase.insert(NOM_TABLE, null, contentValues);
         if (resultat == -1) {
-            Toast.makeText(context, "Échec de l'ajout, veuillez réessayer.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Échec de l'ajout, veuillez réessayer.",
+                    Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -106,12 +107,15 @@ public class ZoekenDatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(COLONNE_CODE_POSTAL, code_postal);
         contentValues.put(COLONNE_DATE_CONTACT, date_contact);
 
-        long resultat = sqLiteDatabase.update(NOM_TABLE, contentValues, "_id=?", new String[]{id_compagnie});
+        long resultat = sqLiteDatabase.update(NOM_TABLE, contentValues, "_id=?",
+                new String[]{id_compagnie});
 
         if (resultat == -1) {
-            Toast.makeText(context, "Échec de la mise à jour, veuillez réessayer.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Échec de la mise à jour, veuillez réessayer.",
+                    Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(context, "Compagnie mise à jour avec succès", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Compagnie mise à jour avec succès",
+                    Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -126,11 +130,14 @@ public class ZoekenDatabaseHelper extends SQLiteOpenHelper {
 
     void supprimerCompagnie(String id_compagnie) {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
-        long resultat = sqLiteDatabase.delete(NOM_TABLE, "_id=?", new String[]{id_compagnie});
+        long resultat = sqLiteDatabase.delete(NOM_TABLE, "_id=?",
+                new String[]{id_compagnie});
         if (resultat == -1) {
-            Toast.makeText(context, "Échec de la suppression de la compagnie, veuillez réessayer.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Échec de la suppression de la compagnie, " +
+                    "veuillez réessayer.", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(context, "Compagnie supprimée avec succès !", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Compagnie supprimée avec succès !",
+                    Toast.LENGTH_SHORT).show();
         }
     }
 

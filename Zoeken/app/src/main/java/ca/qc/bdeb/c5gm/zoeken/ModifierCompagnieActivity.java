@@ -115,11 +115,13 @@ public class ModifierCompagnieActivity extends AppCompatActivity {
     void ouvrirDialogueConfirmation() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder.setTitle("Suppression de la compagnie « " + nom_compagnie + " » ");
-        alertDialogBuilder.setMessage("Êtes-vous sûr(e) de vouloir supprimer la compagnie « " + nom_compagnie + " » ?");
+        alertDialogBuilder.setMessage("Êtes-vous sûr(e) de vouloir supprimer la compagnie « " +
+                nom_compagnie + " » ?");
         alertDialogBuilder.setPositiveButton("Oui", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                ZoekenDatabaseHelper bd = new ZoekenDatabaseHelper(ModifierCompagnieActivity.this);
+                ZoekenDatabaseHelper bd = new ZoekenDatabaseHelper
+                        (ModifierCompagnieActivity.this);
                 bd.supprimerCompagnie(id_compagnie);
                 finish();
             }
@@ -137,7 +139,8 @@ public class ModifierCompagnieActivity extends AppCompatActivity {
     public void allerVersSite(View view) {
         String entreeUtilisateur = et_site_web.getText().toString();
         String url;
-        if (entreeUtilisateur.contains("https://www.") || entreeUtilisateur.contains("http://www.")) {
+        if (entreeUtilisateur.contains("https://www.") || entreeUtilisateur.contains
+                ("http://www.")) {
             url = et_site_web.getText().toString();
             Log.d("urlW", "allerVersSite: " + entreeUtilisateur.contains("https://"));
         } else {
@@ -201,5 +204,5 @@ public class ModifierCompagnieActivity extends AppCompatActivity {
             }
         }
     }
-    
+
 }

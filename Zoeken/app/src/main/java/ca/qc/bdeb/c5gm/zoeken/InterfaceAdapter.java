@@ -80,7 +80,8 @@ public class InterfaceAdapter extends RecyclerView.Adapter<InterfaceAdapter.View
      */
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
-        holder.tv_nom_compagnie.setText(String.valueOf(nom_compagnie.get(holder.getAdapterPosition())));
+        holder.tv_nom_compagnie.setText(String.valueOf(nom_compagnie.get(holder.
+                getAdapterPosition())));
         holder.layoutMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -92,16 +93,28 @@ public class InterfaceAdapter extends RecyclerView.Adapter<InterfaceAdapter.View
 
     private void passerDonneesVersActiviteMaps(ViewHolder holder) {
         Intent intent = new Intent(context, MapsActivity.class);
-        intent.putExtra("id_compagnie", String.valueOf(id_compagnie.get(holder.getAdapterPosition())));
-        intent.putExtra("nom_compagnie", String.valueOf(nom_compagnie.get(holder.getAdapterPosition())));
-        intent.putExtra("nom_contact", String.valueOf(nom_contact.get(holder.getAdapterPosition())));
-        intent.putExtra("email", String.valueOf(email.get(holder.getAdapterPosition())));
-        intent.putExtra("telephone", String.valueOf(telephone.get(holder.getAdapterPosition())));
-        intent.putExtra("site_web", String.valueOf(site_web.get(holder.getAdapterPosition())));
-        intent.putExtra("adresse", String.valueOf(adresse.get(holder.getAdapterPosition())));
-        intent.putExtra("ville", String.valueOf(ville.get(holder.getAdapterPosition())));
-        intent.putExtra("code_postal", String.valueOf(code_postal.get(holder.getAdapterPosition())));
-        intent.putExtra("date_contact", String.valueOf(date_contact.get(holder.getAdapterPosition())));
+        intent.putExtra("id_compagnie", String.valueOf(id_compagnie.get
+                (holder.getAdapterPosition())));
+        intent.putExtra("nom_compagnie", String.valueOf(nom_compagnie.get
+                (holder.getAdapterPosition())));
+        intent.putExtra("nom_contact", String.valueOf(nom_contact.get
+                (holder.getAdapterPosition())));
+        intent.putExtra("email", String.valueOf(email.get
+                (holder.getAdapterPosition())));
+        intent.putExtra("telephone", String.valueOf(telephone.get
+                (holder.getAdapterPosition())));
+        intent.putExtra("site_web", String.valueOf(site_web.get
+                (holder.getAdapterPosition())));
+        intent.putExtra("adresse", String.valueOf(adresse.get
+                (holder.getAdapterPosition())));
+        intent.putExtra("ville", String.valueOf(ville.get
+                (holder.getAdapterPosition())));
+        intent.putExtra("code_postal", String.valueOf(code_postal.get
+                (holder.getAdapterPosition())));
+        intent.putExtra("date_contact", String.valueOf(date_contact.get
+                (holder.getAdapterPosition())));
+
+
         activity.startActivityForResult(intent, CODE_DEMANDE);
     }
 
@@ -113,20 +126,29 @@ public class InterfaceAdapter extends RecyclerView.Adapter<InterfaceAdapter.View
      */
     private void passerDonneesVersActiviteModifier(ViewHolder holder) {
         Intent intent = new Intent(context, ModifierCompagnieActivity.class);
-        intent.putExtra("id_compagnie", String.valueOf(id_compagnie.get(holder.getAdapterPosition())));
-        intent.putExtra("nom_compagnie", String.valueOf(nom_compagnie.get(holder.getAdapterPosition())));
-        intent.putExtra("nom_contact", String.valueOf(nom_contact.get(holder.getAdapterPosition())));
-        intent.putExtra("email", String.valueOf(email.get(holder.getAdapterPosition())));
-        intent.putExtra("telephone", String.valueOf(telephone.get(holder.getAdapterPosition())));
-        intent.putExtra("site_web", String.valueOf(site_web.get(holder.getAdapterPosition())));
-        intent.putExtra("adresse", String.valueOf(adresse.get(holder.getAdapterPosition())));
-        intent.putExtra("ville", String.valueOf(ville.get(holder.getAdapterPosition())));
-        intent.putExtra("code_postal", String.valueOf(code_postal.get(holder.getAdapterPosition())));
-        intent.putExtra("date_contact", String.valueOf(date_contact.get(holder.getAdapterPosition())));
+        intent.putExtra("id_compagnie", String.valueOf(id_compagnie.get
+                (holder.getAdapterPosition())));
+        intent.putExtra("nom_compagnie", String.valueOf(nom_compagnie.get
+                (holder.getAdapterPosition())));
+        intent.putExtra("nom_contact", String.valueOf(nom_contact.get
+                (holder.getAdapterPosition())));
+        intent.putExtra("email", String.valueOf(email.get
+                (holder.getAdapterPosition())));
+        intent.putExtra("telephone", String.valueOf(telephone.get
+                (holder.getAdapterPosition())));
+        intent.putExtra("site_web", String.valueOf(site_web.get
+                (holder.getAdapterPosition())));
+        intent.putExtra("adresse", String.valueOf(adresse.get
+                (holder.getAdapterPosition())));
+        intent.putExtra("ville", String.valueOf(ville.get
+                (holder.getAdapterPosition())));
+        intent.putExtra("code_postal", String.valueOf(code_postal.get
+                (holder.getAdapterPosition())));
+        intent.putExtra("date_contact", String.valueOf(date_contact.get
+                (holder.getAdapterPosition())));
+
         activity.startActivityForResult(intent, CODE_DEMANDE);
-
     }
-
 
     /**
      * Retourne le nombre total d'items de l'adapteur
