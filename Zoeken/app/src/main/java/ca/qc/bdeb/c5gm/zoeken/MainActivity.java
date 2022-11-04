@@ -1,10 +1,5 @@
 package ca.qc.bdeb.c5gm.zoeken;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -13,6 +8,11 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private ZoekenDatabaseHelper bd;
     private ArrayList<String> id_compagnie, nom_compagnie, nom_contact, email, telephone,
             site_web, adresse, ville, code_postal, date_de_contact;
+    //    private ImageView logo_compagnie;
     private InterfaceAdapter adapteur;
 
     private ArrayList<Compagnie> listeCompagnies;

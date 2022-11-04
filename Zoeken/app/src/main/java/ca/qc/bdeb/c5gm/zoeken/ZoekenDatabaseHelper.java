@@ -29,6 +29,7 @@ public class ZoekenDatabaseHelper extends SQLiteOpenHelper {
     private static final String COLONNE_VILLE = "ville";
     private static final String COLONNE_CODE_POSTAL = "code_postal";
     private static final String COLONNE_DATE_CONTACT = "date_de_contact";
+    private static final String COLONNE_IMG = "img";
 
     private static final String REQUETE_SQL_CREATION_TABLE =
             "CREATE TABLE compagnies (" +
@@ -41,7 +42,8 @@ public class ZoekenDatabaseHelper extends SQLiteOpenHelper {
                     COLONNE_ADRESSE + " TEXT NOT NULL," +
                     COLONNE_VILLE + " TEXT NOT NULL," +
                     COLONNE_CODE_POSTAL + " TEXT NOT NULL," +
-                    COLONNE_DATE_CONTACT + " DATE NOT NULL" +
+                    COLONNE_DATE_CONTACT + " DATE NOT NULL," +
+                    COLONNE_IMG + " IMAGE" +
                     ");";
 
     private static final String REQUETE_SQL_LECTURE_BD =
@@ -81,6 +83,7 @@ public class ZoekenDatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(COLONNE_ADRESSE, adresse);
         contentValues.put(COLONNE_VILLE, ville);
         contentValues.put(COLONNE_CODE_POSTAL, code_postal);
+        contentValues.put(COLONNE_DATE_CONTACT, date_contact);
         contentValues.put(COLONNE_DATE_CONTACT, date_contact);
 
         long resultat = sqLiteDatabase.insert(NOM_TABLE, null, contentValues);

@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="16dp"
+    tools:context=".AjouterCompagnieActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/et_code_postal"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:ems="10"
+                android:hint="@string/code_postal"
+                android:inputType="textPostalAddress"
+                android:minHeight="48dp"
+                android:textColorHint="#757575"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/et_ville"
+                app:layout_constraintTop_toBottomOf="@+id/et_adresse" />
+
+            <EditText
+                android:id="@+id/et_adresse"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:layout_marginTop="8dp"
+                android:ems="10"
+                android:hint="@string/adresse"
+                android:inputType="text"
+                android:minHeight="48dp"
+                android:textColorHint="#757575"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_telephone" />
+
+            <EditText
+                android:id="@+id/et_telephone"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:ems="10"
+                android:hint="@string/telephone"
+                android:inputType="phone"
+                android:minHeight="48dp"
+                android:textColorHint="#757575"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/et_email"
+                app:layout_constraintTop_toBottomOf="@+id/et_nom_contact" />
+
+            <EditText
+                android:id="@+id/et_nom_contact"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:layout_marginStart="8dp"
+                android:ems="10"
+                android:hint="@string/nom_du_contact"
+                android:inputType="textPersonName"
+                android:minHeight="48dp"
+                android:textColorHint="#757575"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/et_nom_compagnie"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/et_date_contact"
+                android:layout_width="179dp"
+                android:layout_height="56dp"
+                android:layout_marginTop="8dp"
+                android:ems="10"
+                android:hint="@string/date_contact"
+                android:inputType="date"
+                android:minHeight="48dp"
+                android:textColorHint="#757575"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_ville" />
+
+            <Button
+                android:id="@+id/btn_ajouter_compagnie"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:layout_marginTop="16dp"
+                android:onClick="ajouterCompagnie"
+                android:text="@string/ajouter"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_date_contact" />
+
+            <EditText
+                android:id="@+id/et_email"
+                android:layout_width="471dp"
+                android:layout_height="56dp"
+                android:layout_marginTop="8dp"
+                android:ems="10"
+                android:hint="@string/email"
+                android:inputType="textEmailAddress"
+                android:minHeight="48dp"
+                android:textColorHint="#757575"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_nom_contact" />
+
+            <EditText
+                android:id="@+id/et_nom_compagnie"
+                android:layout_width="413dp"
+                android:layout_height="56dp"
+                android:ems="10"
+                android:hint="@string/nom_de_la_compagnie"
+                android:inputType="text"
+                android:minHeight="48dp"
+                android:textColorHint="#757575"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/et_site_web"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:ems="10"
+                android:hint="@string/site_web"
+                android:inputType="text"
+                android:minHeight="48dp"
+                android:textColorHint="#757575"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/et_date_contact"
+                app:layout_constraintTop_toBottomOf="@+id/et_code_postal" />
+
+            <EditText
+                android:id="@+id/et_ville"
+                android:layout_width="449dp"
+                android:layout_height="56dp"
+                android:layout_marginTop="8dp"
+                android:ems="10"
+                android:hint="@string/ville"
+                android:inputType="textEmailAddress"
+                android:minHeight="48dp"
+                android:textColorHint="#757575"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_adresse" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

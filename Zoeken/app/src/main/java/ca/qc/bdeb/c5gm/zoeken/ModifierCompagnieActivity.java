@@ -1,10 +1,5 @@
 package ca.qc.bdeb.c5gm.zoeken;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
 import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -13,13 +8,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import ca.qc.bdeb.c5gm.zoeken.databinding.ActivityMainBinding;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 // SOURCE: https://www.youtube.com/playlist?list=PLSrm9z4zp4mGK0g_0_jxYGgg3os9tqRUQ
 
@@ -153,9 +148,6 @@ public class ModifierCompagnieActivity extends AppCompatActivity {
         startActivity(intent);
         if (intent.resolveActivity(getPackageManager()) != null) {
             startActivity(intent);
-        } else {
-            Toast.makeText(this, "Erreur, veuillez réessayer.",
-                    Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -186,23 +178,16 @@ public class ModifierCompagnieActivity extends AppCompatActivity {
     // SOURCE: https://developer.android.com/guide/components/intents-common#ComposeEmail
     public void envoyerEmail(View view) {
         String[] email = new String[1];
-        if (!email[0].contains("@")) {
-            Toast.makeText(this, "Veuillez rentrer une adresse courriel valide.",
-                    Toast.LENGTH_SHORT).show();
+        email[0] = et_email.getText().toString();
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setData(Uri.parse("mailto:"));
+        intent.putExtra(Intent.EXTRA_EMAIL, email);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(Intent.createChooser(intent, "Veuillez sélectionner une " +
+                    "application pour envoyer votre courriel."));
         } else {
-            email[0] = et_email.getText().toString();
-            Intent intent = new Intent(Intent.ACTION_SENDTO);
-            intent.setData(Uri.parse("mailto:"));
-            intent.putExtra(Intent.EXTRA_EMAIL, email);
-
-            if (intent.resolveActivity(getPackageManager()) != null) {
-                startActivity(Intent.createChooser(intent, "Veuillez sélectionner une " +
-                        "application pour envoyer votre courriel."));
-            } else {
-                Toast.makeText(this, "Erreur, aucune application disponible.",
-                        Toast.LENGTH_SHORT).show();
-            }
+            Toast.makeText(this, "Erreur, aucune application disponible.",
+                    Toast.LENGTH_SHORT).show();
         }
     }
-
 }

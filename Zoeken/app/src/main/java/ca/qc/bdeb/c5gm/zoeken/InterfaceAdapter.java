@@ -6,16 +6,14 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 // SOURCE: https://www.youtube.com/playlist?list=PLSrm9z4zp4mGK0g_0_jxYGgg3os9tqRUQ
 
@@ -23,8 +21,18 @@ public class InterfaceAdapter extends RecyclerView.Adapter<InterfaceAdapter.View
 
     public static int CODE_DEMANDE = 1;
 
-    ArrayList id_compagnie, nom_compagnie, nom_contact, email, telephone, site_web, adresse,
-            ville, code_postal, date_contact;
+    ArrayList id_compagnie;
+    ArrayList nom_compagnie;
+    ArrayList nom_contact;
+    ArrayList email;
+    ArrayList telephone;
+    ArrayList site_web;
+    ArrayList adresse;
+    ArrayList ville;
+    ArrayList code_postal;
+    ArrayList date_contact;
+//    ImageView logo_compagnie;
+    
     Context context;
     Activity activity;
 
@@ -67,6 +75,7 @@ public class InterfaceAdapter extends RecyclerView.Adapter<InterfaceAdapter.View
         this.code_postal = code_postal;
         this.date_contact = date_contact;
         this.activity = activity;
+//        this.logo_compagnie = logo_compagnie;
     }
 
     /**
@@ -119,9 +128,8 @@ public class InterfaceAdapter extends RecyclerView.Adapter<InterfaceAdapter.View
                 (holder.getAdapterPosition())));
         intent.putExtra("date_contact", String.valueOf(date_contact.get
                 (holder.getAdapterPosition())));
-
-
-        activity.startActivityForResult(intent, CODE_DEMANDE);
+//        intent.putExtra("logo_compagnie", String.valueOf(logo_compagnie.get
+//                (holder.getAdapterPosition())));
     }
 
     /**
@@ -152,6 +160,8 @@ public class InterfaceAdapter extends RecyclerView.Adapter<InterfaceAdapter.View
                 (holder.getAdapterPosition())));
         intent.putExtra("date_contact", String.valueOf(date_contact.get
                 (holder.getAdapterPosition())));
+//        intent.putExtra("logo_compagnie", String.valueOf(logo_compagnie.get
+//                (holder.getAdapterPosition())));
 
         activity.startActivityForResult(intent, CODE_DEMANDE);
     }
@@ -172,11 +182,13 @@ public class InterfaceAdapter extends RecyclerView.Adapter<InterfaceAdapter.View
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView tv_nom_compagnie;
         LinearLayout layoutMain;
+        ImageView logo;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tv_nom_compagnie = itemView.findViewById(R.id.tv_nom_compagnie);
             layoutMain = itemView.findViewById(R.id.layoutMain);
+            logo = itemView.findViewById(R.id.logo_compagnie);
         }
     }
 

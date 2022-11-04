@@ -1,16 +1,12 @@
 package ca.qc.bdeb.c5gm.zoeken;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.Random;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class AjouterCompagnieActivity extends AppCompatActivity {
 
@@ -43,7 +39,8 @@ public class AjouterCompagnieActivity extends AppCompatActivity {
 
     /**
      * Ajoute une compagnie dans la base de données SQLite
-     * @param view  Bouton lié dans l'interface
+     *
+     * @param view Bouton lié dans l'interface
      */
     public void ajouterCompagnie(View view) {
         try {

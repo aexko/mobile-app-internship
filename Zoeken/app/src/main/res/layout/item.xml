@@ -30,11 +30,11 @@
                 android:padding="12dp"
                 android:text="@string/nom_de_la_compagnie"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageView"
+                app:layout_constraintStart_toEndOf="@+id/logo_compagnie"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/logo_compagnie"
                 android:layout_width="64dp"
                 android:layout_height="64dp"
                 android:layout_marginStart="16dp"
