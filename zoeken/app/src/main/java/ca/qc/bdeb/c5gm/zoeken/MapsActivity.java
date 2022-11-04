@@ -64,6 +64,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //        mMap.addMarker(new MarkerOptions().position(collegeBdeB).title("Collège Bois-de-Boulogne"));
 //        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(collegeBdeB, 13));
 
+        // demande des permissions avant d'accéder à l'activité
         if (ActivityCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(this,
@@ -79,6 +80,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
 
+    /**
+     * Met les marqueurs de l'emplacement des compagnies
+     */
     private void mettreMarqueurs() {
         for (int i = 0; i < 4; i++) {
             String nom_compagnie = getIntent().getStringExtra("nom_compagnie");
@@ -108,7 +112,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .title("Collège Bois-de-Boulogne"));
     }
 
-
+    /**
+     * Permet la localisation de l'appareil si les permissions sont autorisées
+     * @param requestCode
+     * @param permissions
+     * @param grantResults
+     */
     @SuppressLint("MissingSuperCall")
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
@@ -122,6 +131,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
     }
 
+    /**
+     * Vérifie les permissions
+     * @param permissions
+     * @param grantResults
+     * @param accessLocation
+     * @return
+     */
     private boolean isPermissionAuth(String[] permissions, int[] grantResults,
                                      String accessLocation) {
         for (int i = 0; i < permissions.length; i++) {
@@ -132,6 +148,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         return false;
     }
 
+    /**
+     * Permet la localisation de l'appareil
+     */
     @SuppressLint("MissingPermission")
     private void activerLocalisation() {
         fusedLocationProviderClient.getLastLocation().addOnSuccessListener(this,
