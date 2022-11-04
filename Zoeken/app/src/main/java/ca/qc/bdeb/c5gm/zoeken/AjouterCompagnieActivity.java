@@ -41,6 +41,10 @@ public class AjouterCompagnieActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Ajoute une compagnie dans la base de données SQLite
+     * @param view  Bouton lié dans l'interface
+     */
     public void ajouterCompagnie(View view) {
         try {
             ajouterCompagnieDansArray();

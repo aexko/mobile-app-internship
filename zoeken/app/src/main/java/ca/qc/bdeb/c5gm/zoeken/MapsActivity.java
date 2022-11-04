@@ -33,10 +33,11 @@ import ca.qc.bdeb.c5gm.zoeken.databinding.ActivityMapsBinding;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
+    private static final int LOCATION_REQUEST_CODE = 101;
+
     private ActivityMapsBinding binding;
     private GoogleMap googleMap;
     private FusedLocationProviderClient fusedLocationProviderClient;
-    private static final int LOCATION_REQUEST_CODE = 101;
 
     private ArrayList<String> nom_compagnie, adresse, ville, code_postal;
 
@@ -58,11 +59,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         this.googleMap = googleMap;
-
-//        // Add a marker in Sydney and move the camera
-//        LatLng collegeBdeB = new LatLng(45.5380, -73.6760);
-//        mMap.addMarker(new MarkerOptions().position(collegeBdeB).title("Collège Bois-de-Boulogne"));
-//        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(collegeBdeB, 13));
 
         // demande des permissions avant d'accéder à l'activité
         if (ActivityCompat.checkSelfPermission(this,

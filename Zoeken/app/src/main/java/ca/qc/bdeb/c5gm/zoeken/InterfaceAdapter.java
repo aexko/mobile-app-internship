@@ -20,19 +20,23 @@ import java.util.List;
 // SOURCE: https://www.youtube.com/playlist?list=PLSrm9z4zp4mGK0g_0_jxYGgg3os9tqRUQ
 
 public class InterfaceAdapter extends RecyclerView.Adapter<InterfaceAdapter.ViewHolder> {
+
+    public static int CODE_DEMANDE = 1;
+
     ArrayList id_compagnie, nom_compagnie, nom_contact, email, telephone, site_web, adresse,
             ville, code_postal, date_contact;
     Context context;
     Activity activity;
 
+
     /**
-     * Called when RecyclerView needs a new {@link ViewHolder} of the given type to represent
-     * an item.
+     * Appelé lorsque RecyclerView a besoin d'un nouveau {@link ViewHolder} du type donné à
+     * représenter un élément.
      *
-     * @param parent   The ViewGroup into which the new View will be added after it is bound to
-     *                 an adapter position.
-     * @param viewType The view type of the new View.
-     * @return A new ViewHolder that holds a View of the given view type.
+     * @param parent   Le ViewGroup dans lequel la nouvelle vue sera ajoutée après avoir été liée à
+     *                 une position d'adaptation.
+     * @param viewType Le type de vue de la nouvelle vue.
+     * @return Un nouveau ViewHolder qui contient une vue du type de vue donné.
      * @see #getItemViewType(int)
      * @see #onBindViewHolder(ViewHolder, int)
      */
@@ -44,6 +48,9 @@ public class InterfaceAdapter extends RecyclerView.Adapter<InterfaceAdapter.View
         return new ViewHolder(view);
     }
 
+    /**
+     * Constructeur de la classe InterfaceAdapter.
+     */
     public InterfaceAdapter(Context context, ArrayList id_compagnie, ArrayList nom_compagnie,
                             ArrayList nom_contact, ArrayList email, ArrayList telephone,
                             ArrayList site_web, ArrayList adresse, ArrayList ville,
@@ -63,18 +70,17 @@ public class InterfaceAdapter extends RecyclerView.Adapter<InterfaceAdapter.View
     }
 
     /**
-     * Called by RecyclerView to display the data at the specified position. This method should
-     * update the contents of the {@link ViewHolder#itemView} to reflect the item at the given
+     * Appelé par RecyclerView pour afficher les données à la position spécifiée. Cette méthode devrait
+     * mettre à jour le contenu du {@link ViewHolder#itemView} pour refléter l'élément au moment donné
      * position.
      *
-     * @param holder   The ViewHolder which should be updated to represent the contents of the
-     *                 item at the given position in the data set.
-     * @param position The position of the item within the adapter's data set.
+     * @param holder   Le ViewHolder qui doit être mis à jour pour représenter le contenu du
+     *                 élément à la position donnée dans l'ensemble de données.
+     * @param position Position de l'élément dans l'ensemble de données de l'adaptateur.
      */
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         holder.tv_nom_compagnie.setText(String.valueOf(nom_compagnie.get(holder.getAdapterPosition())));
-
         holder.layoutMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -96,9 +102,15 @@ public class InterfaceAdapter extends RecyclerView.Adapter<InterfaceAdapter.View
         intent.putExtra("ville", String.valueOf(ville.get(holder.getAdapterPosition())));
         intent.putExtra("code_postal", String.valueOf(code_postal.get(holder.getAdapterPosition())));
         intent.putExtra("date_contact", String.valueOf(date_contact.get(holder.getAdapterPosition())));
-
+        activity.startActivityForResult(intent, CODE_DEMANDE);
     }
 
+    /**
+     * Passage des données vers ModifierCompagnieActivity.
+     *
+     * @param holder Le ViewHolder qui doit être mis à jour pour représenter le contenu du
+     *               élément à la position donnée dans l'ensemble de données.
+     */
     private void passerDonneesVersActiviteModifier(ViewHolder holder) {
         Intent intent = new Intent(context, ModifierCompagnieActivity.class);
         intent.putExtra("id_compagnie", String.valueOf(id_compagnie.get(holder.getAdapterPosition())));
@@ -111,7 +123,7 @@ public class InterfaceAdapter extends RecyclerView.Adapter<InterfaceAdapter.View
         intent.putExtra("ville", String.valueOf(ville.get(holder.getAdapterPosition())));
         intent.putExtra("code_postal", String.valueOf(code_postal.get(holder.getAdapterPosition())));
         intent.putExtra("date_contact", String.valueOf(date_contact.get(holder.getAdapterPosition())));
-        activity.startActivityForResult(intent, 1);
+        activity.startActivityForResult(intent, CODE_DEMANDE);
 
     }
 
@@ -126,6 +138,9 @@ public class InterfaceAdapter extends RecyclerView.Adapter<InterfaceAdapter.View
         return id_compagnie.size();
     }
 
+    /**
+     * Liaison des composantes du ViewHolder
+     */
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView tv_nom_compagnie;
         LinearLayout layoutMain;
@@ -134,7 +149,6 @@ public class InterfaceAdapter extends RecyclerView.Adapter<InterfaceAdapter.View
             super(itemView);
             tv_nom_compagnie = itemView.findViewById(R.id.tv_nom_compagnie);
             layoutMain = itemView.findViewById(R.id.layoutMain);
-
         }
     }
 

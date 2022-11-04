@@ -71,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == 1) {
             recreate();
         }
+
     }
 
     /**

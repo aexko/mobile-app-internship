@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -134,30 +135,40 @@ public class ModifierCompagnieActivity extends AppCompatActivity {
 
     // SOURCE: https://developer.android.com/guide/components/intents-common#Browser
     public void allerVersSite(View view) {
-        String url = "https://" + et_site_web.getText().toString();
+        String entreeUtilisateur = et_site_web.getText().toString();
+        String url;
+        if (entreeUtilisateur.contains("https://www.") || entreeUtilisateur.contains("http://www.") ) {
+            url = et_site_web.getText().toString();
+            Log.d("urlW", "allerVersSite: "+ entreeUtilisateur.contains("https://"));
+        } else {
+            url = "https://www." + et_site_web.getText().toString();
+            Log.d("urlW", "allerVersSite: "+ entreeUtilisateur.contains("https://"));
+
+        }
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.parse(url));
         startActivity(intent);
         if (intent.resolveActivity(getPackageManager()) != null) {
             startActivity(intent);
-        } else {
-            Toast.makeText(this, "Aucune application disponible",
-                    Toast.LENGTH_SHORT).show();
         }
     }
 
     // SOURCE: https://www.youtube.com/watch?v=UDwj5j4tBYg
     public void appelerTelephone(View view) {
         String numero_telephone = et_telephone.getText().toString();
-        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+Uri.encode(numero_telephone)));
+        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+
+                Uri.encode(numero_telephone)));
         intent.setData((Uri.parse("tel:"+numero_telephone)));
         if (numero_telephone.trim().length() > 0) {
-            if (ContextCompat.checkSelfPermission(ModifierCompagnieActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(ModifierCompagnieActivity.this, new String[] {Manifest.permission.CALL_PHONE}, REQUEST_CALL);
+            if (ContextCompat.checkSelfPermission(ModifierCompagnieActivity.this,
+                    Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(ModifierCompagnieActivity.this,
+                        new String[] {Manifest.permission.CALL_PHONE}, REQUEST_CALL);
             }
             startActivity(intent);
         } else {
-            Toast.makeText(this, "Numéro de téléphone invalide.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Numéro de téléphone invalide.",
+                    Toast.LENGTH_SHORT).show();
         }
     }
 
