@@ -23,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
     private ZoekenDatabaseHelper bd;
     private ArrayList<String> id_compagnie, nom_compagnie, nom_contact, email, telephone,
             site_web, adresse, ville, code_postal, date_de_contact;
-    //    private ImageView logo_compagnie;
     private InterfaceAdapter adapteur;
 
     private ArrayList<Compagnie> listeCompagnies;
@@ -49,8 +48,6 @@ public class MainActivity extends AppCompatActivity {
         date_de_contact = new ArrayList<>();
 
         sauvegarderCompagnies();
-//        getIntent().getStringArrayListExtra("tableauCompagnies");
-
 
         adapteur = new InterfaceAdapter(this, id_compagnie, nom_compagnie, nom_contact,
                 email, telephone, site_web, adresse, ville, code_postal, date_de_contact,
@@ -72,7 +69,6 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == 1) {
             recreate();
         }
-
     }
 
     /**
