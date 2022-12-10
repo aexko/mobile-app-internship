@@ -22,10 +22,10 @@ public class ModifierCompagnieActivity extends AppCompatActivity {
 
     public static int REQUEST_CALL = 1;
 
-    EditText et_nom_compagnie, et_nom_contact, et_email, et_telephone, et_site_web,
+    private EditText et_nom_compagnie, et_nom_contact, et_email, et_telephone, et_site_web,
             et_adresse, et_ville, et_code_postal, et_date_contact;
 
-    String id_compagnie, nom_compagnie, nom_contact, email, telephone,
+    private String id_compagnie, nom_compagnie, nom_contact, email, telephone,
             site_web, adresse, ville, code_postal, date_contact;
 
 
