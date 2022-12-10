@@ -17,20 +17,23 @@ import retrofit2.http.Path;
 
 public interface MonApi {
     @POST("/auth/connexion")
+
     @Headers({
             "Content-Type:application/json",
             "Authorization:Token"
     })
+
     Call<Compte> connecter(@Body HashMap<String, Object> loginData);
 
     @POST("/auth/deconnexion")
     Call<ResponseBody> deconnecter(@Header("Authorization") String token);
 
-
     @POST("/auth/testerconnexion")
     Call<ResponseBody> testerConnexion(@Header("Authorization") String token, @Body HashMap<String, Object> userId);
+
     @GET("/compte/getcomptesetudiantsactifs")
     Call<List<ComptePOJO>> getComptesEleves(@Header("Authorization") String token);
+
     @DELETE("/stage/{idStage}")
     Call<ResponseBody> supprStage(@Header("Authorization") String token, @Path("idStage") String idStage);
 

@@ -2,7 +2,6 @@ package ca.qc.bdeb.c5gm.zoeken.Connexion;
 
 // SOURCE: Docs du cours
 
-
 public class ConnecterUtilisateur {
     static String authToken;
     static String authID;

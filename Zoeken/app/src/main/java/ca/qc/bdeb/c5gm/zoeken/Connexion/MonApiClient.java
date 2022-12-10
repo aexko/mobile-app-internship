@@ -12,7 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MonApiClient {
     private static Retrofit retrofit = null;
     private static OkHttpClient client = null;
-    private static String adresse = "192.168.56.1";
+    private static String adresse = "192.168.56.1"; // adresse IP de VirtualBox
     private static String server_url = "http://" + adresse + ":8888/";
 
     public static Retrofit getRetrofit() {
