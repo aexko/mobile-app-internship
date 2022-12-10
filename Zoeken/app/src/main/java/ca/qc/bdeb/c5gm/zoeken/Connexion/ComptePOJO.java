@@ -1,5 +1,8 @@
 package ca.qc.bdeb.c5gm.zoeken.Connexion;
 
+
+// SOURCE: Docs du cours
+
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;

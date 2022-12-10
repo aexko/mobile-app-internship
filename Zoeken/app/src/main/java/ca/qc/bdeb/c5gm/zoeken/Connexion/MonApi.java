@@ -13,6 +13,8 @@ import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 
+// SOURCE: Docs du cours
+
 public interface MonApi {
     @POST("/auth/connexion")
     @Headers({

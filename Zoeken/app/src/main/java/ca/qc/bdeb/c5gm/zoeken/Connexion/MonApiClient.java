@@ -7,6 +7,8 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+// SOURCE: Docs du cours
+
 public class MonApiClient {
     private static Retrofit retrofit = null;
     private static OkHttpClient client = null;
