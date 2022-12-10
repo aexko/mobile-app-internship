@@ -37,7 +37,7 @@ public class AjouterCompagnieActivity extends AppCompatActivity {
      */
     public void ajouterCompagnie(View view) {
         try {
-            ajouterCompagnieDansArray();
+//            ajouterCompagnieDansArray();
             ajouterCompagnieDansBd();
             Toast.makeText(AjouterCompagnieActivity.this,
                     "Compagnie ajoutée avec succès!", Toast.LENGTH_SHORT).show();
