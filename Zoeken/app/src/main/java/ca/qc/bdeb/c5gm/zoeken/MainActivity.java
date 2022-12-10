@@ -101,20 +101,20 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void ajouterCompagnieDansListe(Cursor curseur) {
-        if (curseur.getCount() != 0) {
-            while (curseur.moveToNext()) {
-                String strNomCompagnie = curseur.getString(1);
-                String strAdresse = curseur.getString(6);
-                String strVille = curseur.getString(7);
-                String strCodePostal = curseur.getString(8);
-                Compagnie nouvelleCompagnie = new Compagnie(strNomCompagnie, strAdresse, strVille, strCodePostal);
-                Log.d("ajoutCompagnie", "ajouterCompagnieDansListe: " + nouvelleCompagnie);
-                listeCompagnies.add(nouvelleCompagnie);
-
-            }
-        }
-    }
+//    private void ajouterCompagnieDansListe(Cursor curseur) {
+//        if (curseur.getCount() != 0) {
+//            while (curseur.moveToNext()) {
+//                String strNomCompagnie = curseur.getString(1);
+//                String strAdresse = curseur.getString(6);
+//                String strVille = curseur.getString(7);
+//                String strCodePostal = curseur.getString(8);
+//                Compagnie nouvelleCompagnie = new Compagnie(strNomCompagnie, strAdresse, strVille, strCodePostal);
+//                Log.d("ajoutCompagnie", "ajouterCompagnieDansListe: " + nouvelleCompagnie);
+//                listeCompagnies.add(nouvelleCompagnie);
+//
+//            }
+//        }
+//    }
 
     /**
      * Pour ouvrir l'activité "MapsActivity" avec le bouton

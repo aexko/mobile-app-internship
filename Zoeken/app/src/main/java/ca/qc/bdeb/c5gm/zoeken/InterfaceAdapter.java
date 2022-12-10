@@ -31,8 +31,7 @@ public class InterfaceAdapter extends RecyclerView.Adapter<InterfaceAdapter.View
     ArrayList ville;
     ArrayList code_postal;
     ArrayList date_contact;
-//    ImageView logo_compagnie;
-    
+
     Context context;
     Activity activity;
 
@@ -75,7 +74,6 @@ public class InterfaceAdapter extends RecyclerView.Adapter<InterfaceAdapter.View
         this.code_postal = code_postal;
         this.date_contact = date_contact;
         this.activity = activity;
-//        this.logo_compagnie = logo_compagnie;
     }
 
     /**
@@ -94,7 +92,7 @@ public class InterfaceAdapter extends RecyclerView.Adapter<InterfaceAdapter.View
         holder.layoutMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                passerDonneesVersActiviteMaps(holder);
+//                passerDonneesVersActiviteMaps(holder);
                 passerDonneesVersActiviteModifier(holder);
             }
         });
@@ -107,29 +105,29 @@ public class InterfaceAdapter extends RecyclerView.Adapter<InterfaceAdapter.View
      *               élément à la position donnée dans l'ensemble de données.
      */
     private void passerDonneesVersActiviteMaps(ViewHolder holder) {
+        // changer pour passer une compagnie ou une liste
         Intent intent = new Intent(context, MapsActivity.class);
         intent.putExtra("id_compagnie", String.valueOf(id_compagnie.get
                 (holder.getAdapterPosition())));
-        intent.putExtra("nom_compagnie", String.valueOf(nom_compagnie.get
-                (holder.getAdapterPosition())));
-        intent.putExtra("nom_contact", String.valueOf(nom_contact.get
-                (holder.getAdapterPosition())));
-        intent.putExtra("email", String.valueOf(email.get
-                (holder.getAdapterPosition())));
-        intent.putExtra("telephone", String.valueOf(telephone.get
-                (holder.getAdapterPosition())));
-        intent.putExtra("site_web", String.valueOf(site_web.get
-                (holder.getAdapterPosition())));
-        intent.putExtra("adresse", String.valueOf(adresse.get
-                (holder.getAdapterPosition())));
-        intent.putExtra("ville", String.valueOf(ville.get
-                (holder.getAdapterPosition())));
-        intent.putExtra("code_postal", String.valueOf(code_postal.get
-                (holder.getAdapterPosition())));
-        intent.putExtra("date_contact", String.valueOf(date_contact.get
-                (holder.getAdapterPosition())));
-//        intent.putExtra("logo_compagnie", String.valueOf(logo_compagnie.get
+//        intent.putExtra("nom_compagnie", String.valueOf(nom_compagnie.get
 //                (holder.getAdapterPosition())));
+//        intent.putExtra("nom_contact", String.valueOf(nom_contact.get
+//                (holder.getAdapterPosition())));
+//        intent.putExtra("email", String.valueOf(email.get
+//                (holder.getAdapterPosition())));
+//        intent.putExtra("telephone", String.valueOf(telephone.get
+//                (holder.getAdapterPosition())));
+//        intent.putExtra("site_web", String.valueOf(site_web.get
+//                (holder.getAdapterPosition())));
+//        intent.putExtra("adresse", String.valueOf(adresse.get
+//                (holder.getAdapterPosition())));
+//        intent.putExtra("ville", String.valueOf(ville.get
+//                (holder.getAdapterPosition())));
+//        intent.putExtra("code_postal", String.valueOf(code_postal.get
+//                (holder.getAdapterPosition())));
+//        intent.putExtra("date_contact", String.valueOf(date_contact.get
+//                (holder.getAdapterPosition())));
+
     }
 
     /**
@@ -160,8 +158,7 @@ public class InterfaceAdapter extends RecyclerView.Adapter<InterfaceAdapter.View
                 (holder.getAdapterPosition())));
         intent.putExtra("date_contact", String.valueOf(date_contact.get
                 (holder.getAdapterPosition())));
-//        intent.putExtra("logo_compagnie", String.valueOf(logo_compagnie.get
-//                (holder.getAdapterPosition())));
+
 
         activity.startActivityForResult(intent, CODE_DEMANDE);
     }

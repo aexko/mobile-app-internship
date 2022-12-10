@@ -122,6 +122,7 @@ public class ZoekenDatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    // retourner une liste et pas un curseur
     Cursor lireBd() {
         SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
         Cursor cursor = null;

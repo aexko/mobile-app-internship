@@ -8,28 +8,6 @@ import java.util.Comparator;
 
 public class Compagnie implements Parcelable {
 
-    private int imgResource;
-    private String nom;
-    private String adresse;
-    private String ville;
-    private String code_postal;
-
-    public Compagnie( String nom, String adresse, String ville, String code_postal) {
-//        this.imgResource = imgResource;
-        this.nom = nom;
-        this.adresse = adresse;
-        this.ville = ville;
-        this.code_postal = code_postal;
-    }
-
-    protected Compagnie(Parcel in) {
-        imgResource = in.readInt();
-        nom = in.readString();
-        adresse = in.readString();
-        ville = in.readString();
-        code_postal = in.readString();
-    }
-
     public static final Creator<Compagnie> CREATOR = new Creator<Compagnie>() {
         @Override
         public Compagnie createFromParcel(Parcel in) {
@@ -41,34 +19,77 @@ public class Compagnie implements Parcelable {
             return new Compagnie[size];
         }
     };
+    private int id_compagnie;
+    private String nom_compagnie;
+    private String nom_contact;
+    private String email;
+    private String telephone;
+    private String site_web;
+    private String adresse;
+    private String ville;
+    private String code_postal;
+    private String date_contact;
 
-    public String getNom() {
-        return nom;
+
+    public Compagnie(int id_compagnie, String nom_compagnie, String nom_contact, String email, String telephone, String site_web, String adresse, String ville, String code_postal, String date_contact) {
+        this.id_compagnie = id_compagnie;
+        this.nom_compagnie = nom_compagnie;
+        this.nom_contact = nom_contact;
+        this.email = email;
+        this.telephone = telephone;
+        this.site_web = site_web;
+        this.adresse = adresse;
+        this.ville = ville;
+        this.code_postal = code_postal;
+        this.date_contact = date_contact;
     }
 
-    public String getAdresse() {
-        return adresse;
+    protected Compagnie(Parcel in) {
+        id_compagnie = in.readInt();
+        nom_compagnie = in.readString();
+        nom_contact = in.readString();
+        email = in.readString();
+        telephone = in.readString();
+        site_web = in.readString();
+        adresse = in.readString();
+        ville = in.readString();
+        code_postal = in.readString();
+        date_contact = in.readString();
     }
 
-    public String getVille() {
-        return ville;
-    }
-
-    public String getCode_postal() {
-        return code_postal;
-    }
-
+    /**
+     * Describe the kinds of special objects contained in this Parcelable
+     * instance's marshaled representation. For example, if the object will
+     * include a file descriptor in the output of {@link #writeToParcel(Parcel, int)},
+     * the return value of this method must include the
+     * {@link #CONTENTS_FILE_DESCRIPTOR} bit.
+     *
+     * @return a bitmask indicating the set of special object types marshaled
+     * by this Parcelable object instance.
+     */
     @Override
     public int describeContents() {
         return 0;
     }
 
+    /**
+     * Flatten this object in to a Parcel.
+     *
+     * @param dest  The Parcel in which the object should be written.
+     * @param flags Additional flags about how the object should be written.
+     *              May be 0 or {@link #PARCELABLE_WRITE_RETURN_VALUE}.
+     */
     @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeInt(imgResource);
-        parcel.writeString(nom);
-        parcel.writeString(adresse);
-        parcel.writeString(ville);
-        parcel.writeString(code_postal);
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id_compagnie);
+        dest.writeString(nom_compagnie);
+        dest.writeString(nom_contact);
+        dest.writeString(email);
+        dest.writeString(telephone);
+        dest.writeString(site_web);
+        dest.writeString(adresse);
+        dest.writeString(ville);
+        dest.writeString(code_postal);
+        dest.writeString(date_contact);
     }
 }
