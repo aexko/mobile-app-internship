@@ -21,8 +21,8 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private ZoekenDatabaseHelper bd;
-    private ArrayList<String> id_compagnie, nom_compagnie, nom_contact, email, telephone,
-            site_web, adresse, ville, code_postal, date_de_contact;
+//    private ArrayList<String> id_compagnie, nom_compagnie, nom_contact, email, telephone,
+//            site_web, adresse, ville, code_postal, date_de_contact;
     private InterfaceAdapter adapteur;
 
     private ArrayList<Compagnie> listeCompagnies;
@@ -36,22 +36,21 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recycler_view);
 
         bd = new ZoekenDatabaseHelper(MainActivity.this);
-        id_compagnie = new ArrayList<>();
-        nom_compagnie = new ArrayList<>();
-        nom_contact = new ArrayList<>();
-        email = new ArrayList<>();
-        telephone = new ArrayList<>();
-        site_web = new ArrayList<>();
-        adresse = new ArrayList<>();
-        ville = new ArrayList<>();
-        code_postal = new ArrayList<>();
-        date_de_contact = new ArrayList<>();
+//        id_compagnie = new ArrayList<>();
+//        nom_compagnie = new ArrayList<>();
+//        nom_contact = new ArrayList<>();
+//        email = new ArrayList<>();
+//        telephone = new ArrayList<>();
+//        site_web = new ArrayList<>();
+//        adresse = new ArrayList<>();
+//        ville = new ArrayList<>();
+//        code_postal = new ArrayList<>();
+//        date_de_contact = new ArrayList<>();
 
-        sauvegarderCompagnies();
 
-        adapteur = new InterfaceAdapter(this, id_compagnie, nom_compagnie, nom_contact,
-                email, telephone, site_web, adresse, ville, code_postal, date_de_contact,
-                MainActivity.this);
+//        adapteur = new InterfaceAdapter(this, id_compagnie, nom_compagnie, nom_contact,
+//                email, telephone, site_web, adresse, ville, code_postal, date_de_contact,
+//                MainActivity.this);
         recyclerView.setAdapter(adapteur);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
@@ -70,47 +69,6 @@ public class MainActivity extends AppCompatActivity {
             recreate();
         }
     }
-
-    /**
-     * Sauvegarde les compagnies dans la base de données SQLite
-     */
-    public void sauvegarderCompagnies() {
-
-        Cursor curseur = bd.lireBd();
-        if (curseur.getCount() != 0) {
-            while (curseur.moveToNext()) {
-                id_compagnie.add(curseur.getString(0));
-                nom_compagnie.add(curseur.getString(1));
-                nom_contact.add(curseur.getString(2));
-                email.add(curseur.getString(3));
-                telephone.add(curseur.getString(4));
-                site_web.add(curseur.getString(5));
-                adresse.add(curseur.getString(6));
-                ville.add(curseur.getString(7));
-                code_postal.add(curseur.getString(8));
-                date_de_contact.add(curseur.getString(9));
-            }
-//            ajouterCompagnieDansListe(curseur);
-
-        } else {
-            Toast.makeText(this, "Aucune compagnie à afficher", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-//    private void ajouterCompagnieDansListe(Cursor curseur) {
-//        if (curseur.getCount() != 0) {
-//            while (curseur.moveToNext()) {
-//                String strNomCompagnie = curseur.getString(1);
-//                String strAdresse = curseur.getString(6);
-//                String strVille = curseur.getString(7);
-//                String strCodePostal = curseur.getString(8);
-//                Compagnie nouvelleCompagnie = new Compagnie(strNomCompagnie, strAdresse, strVille, strCodePostal);
-//                Log.d("ajoutCompagnie", "ajouterCompagnieDansListe: " + nouvelleCompagnie);
-//                listeCompagnies.add(nouvelleCompagnie);
-//
-//            }
-//        }
-//    }
 
     /**
      * Pour ouvrir l'activité "MapsActivity" avec le bouton

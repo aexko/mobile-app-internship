@@ -20,7 +20,7 @@ import androidx.core.content.ContextCompat;
 
 public class ModifierCompagnieActivity extends AppCompatActivity {
 
-    public static int REQUEST_CALL = 1;
+    private static int REQUEST_CALL = 1;
 
     private EditText et_nom_compagnie, et_nom_contact, et_email, et_telephone, et_site_web,
             et_adresse, et_ville, et_code_postal, et_date_contact;
