@@ -19,7 +19,7 @@ public class Compagnie implements Parcelable {
             return new Compagnie[size];
         }
     };
-    private int id_compagnie;
+
     private String nom_compagnie;
     private String nom_contact;
     private String email;
@@ -31,8 +31,7 @@ public class Compagnie implements Parcelable {
     private String date_contact;
 
 
-    public Compagnie(int id_compagnie, String nom_compagnie, String nom_contact, String email, String telephone, String site_web, String adresse, String ville, String code_postal, String date_contact) {
-        this.id_compagnie = id_compagnie;
+    public Compagnie(String nom_compagnie, String nom_contact, String email, String telephone, String site_web, String adresse, String ville, String code_postal, String date_contact) {
         this.nom_compagnie = nom_compagnie;
         this.nom_contact = nom_contact;
         this.email = email;
@@ -44,8 +43,21 @@ public class Compagnie implements Parcelable {
         this.date_contact = date_contact;
     }
 
+    public void ajouterCompagnie(String nom_compagnie, String nom_contact, String email, String telephone, String site_web, String adresse, String ville, String code_postal, String date_contact){
+        Compagnie nouvelleCompagnie = new Compagnie(
+                nom_compagnie.toString().trim(),
+                nom_contact.toString().trim(),
+                email.toString().trim(),
+                telephone.toString().trim(),
+                site_web.toString().trim(),
+                adresse.toString().trim(),
+                ville.toString().trim(),
+                code_postal.toString().trim(),
+                date_contact.toString().trim());
+
+    }
+
     protected Compagnie(Parcel in) {
-        id_compagnie = in.readInt();
         nom_compagnie = in.readString();
         nom_contact = in.readString();
         email = in.readString();
@@ -81,7 +93,6 @@ public class Compagnie implements Parcelable {
      */
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(id_compagnie);
         dest.writeString(nom_compagnie);
         dest.writeString(nom_contact);
         dest.writeString(email);

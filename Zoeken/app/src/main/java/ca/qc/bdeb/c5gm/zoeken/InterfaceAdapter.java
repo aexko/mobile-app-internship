@@ -13,28 +13,19 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 // SOURCE: https://www.youtube.com/playlist?list=PLSrm9z4zp4mGK0g_0_jxYGgg3os9tqRUQ
 
 public class InterfaceAdapter extends RecyclerView.Adapter<InterfaceAdapter.ViewHolder> {
 
-    public static int CODE_DEMANDE = 1;
+    private static int CODE_DEMANDE = 1;
 
-    ArrayList id_compagnie;
-    ArrayList nom_compagnie;
-    ArrayList nom_contact;
-    ArrayList email;
-    ArrayList telephone;
-    ArrayList site_web;
-    ArrayList adresse;
-    ArrayList ville;
-    ArrayList code_postal;
-    ArrayList date_contact;
+    ArrayList<Compagnie> listeCompagnies;
 
     Context context;
     Activity activity;
-
 
     /**
      * Appelé lorsque RecyclerView a besoin d'un nouveau {@link ViewHolder} du type donné à
@@ -58,21 +49,9 @@ public class InterfaceAdapter extends RecyclerView.Adapter<InterfaceAdapter.View
     /**
      * Constructeur de la classe InterfaceAdapter.
      */
-    public InterfaceAdapter(Context context, ArrayList id_compagnie, ArrayList nom_compagnie,
-                            ArrayList nom_contact, ArrayList email, ArrayList telephone,
-                            ArrayList site_web, ArrayList adresse, ArrayList ville,
-                            ArrayList code_postal, ArrayList date_contact, Activity activity) {
+    public InterfaceAdapter(Context context, ArrayList<Compagnie> listeCompagnies, Activity activity) {
         this.context = context;
-        this.id_compagnie = id_compagnie;
-        this.nom_compagnie = nom_compagnie;
-        this.nom_contact = nom_contact;
-        this.email = email;
-        this.telephone = telephone;
-        this.site_web = site_web;
-        this.adresse = adresse;
-        this.ville = ville;
-        this.code_postal = code_postal;
-        this.date_contact = date_contact;
+        this.listeCompagnies = listeCompagnies;
         this.activity = activity;
     }
 
@@ -87,7 +66,7 @@ public class InterfaceAdapter extends RecyclerView.Adapter<InterfaceAdapter.View
      */
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
-        holder.tv_nom_compagnie.setText(String.valueOf(nom_compagnie.get(holder.
+        holder.tv_nom_compagnie.setText(String.valueOf(listeCompagnies.get(holder.
                 getAdapterPosition())));
         holder.layoutMain.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,37 +77,7 @@ public class InterfaceAdapter extends RecyclerView.Adapter<InterfaceAdapter.View
         });
     }
 
-    /**
-     * Passage des données vers MapsActivity.
-     *
-     * @param holder Le ViewHolder qui doit être mis à jour pour représenter le contenu du
-     *               élément à la position donnée dans l'ensemble de données.
-     */
-    private void passerDonneesVersActiviteMaps(ViewHolder holder) {
-        // changer pour passer une compagnie ou une liste
-        Intent intent = new Intent(context, MapsActivity.class);
-        intent.putExtra("id_compagnie", String.valueOf(id_compagnie.get
-                (holder.getAdapterPosition())));
-//        intent.putExtra("nom_compagnie", String.valueOf(nom_compagnie.get
-//                (holder.getAdapterPosition())));
-//        intent.putExtra("nom_contact", String.valueOf(nom_contact.get
-//                (holder.getAdapterPosition())));
-//        intent.putExtra("email", String.valueOf(email.get
-//                (holder.getAdapterPosition())));
-//        intent.putExtra("telephone", String.valueOf(telephone.get
-//                (holder.getAdapterPosition())));
-//        intent.putExtra("site_web", String.valueOf(site_web.get
-//                (holder.getAdapterPosition())));
-//        intent.putExtra("adresse", String.valueOf(adresse.get
-//                (holder.getAdapterPosition())));
-//        intent.putExtra("ville", String.valueOf(ville.get
-//                (holder.getAdapterPosition())));
-//        intent.putExtra("code_postal", String.valueOf(code_postal.get
-//                (holder.getAdapterPosition())));
-//        intent.putExtra("date_contact", String.valueOf(date_contact.get
-//                (holder.getAdapterPosition())));
 
-    }
 
     /**
      * Passage des données vers ModifierCompagnieActivity.
@@ -138,27 +87,8 @@ public class InterfaceAdapter extends RecyclerView.Adapter<InterfaceAdapter.View
      */
     private void passerDonneesVersActiviteModifier(ViewHolder holder) {
         Intent intent = new Intent(context, ModifierCompagnieActivity.class);
-        intent.putExtra("id_compagnie", String.valueOf(id_compagnie.get
+        intent.putExtra("id_compagnie", String.valueOf(listeCompagnies.get
                 (holder.getAdapterPosition())));
-        intent.putExtra("nom_compagnie", String.valueOf(nom_compagnie.get
-                (holder.getAdapterPosition())));
-        intent.putExtra("nom_contact", String.valueOf(nom_contact.get
-                (holder.getAdapterPosition())));
-        intent.putExtra("email", String.valueOf(email.get
-                (holder.getAdapterPosition())));
-        intent.putExtra("telephone", String.valueOf(telephone.get
-                (holder.getAdapterPosition())));
-        intent.putExtra("site_web", String.valueOf(site_web.get
-                (holder.getAdapterPosition())));
-        intent.putExtra("adresse", String.valueOf(adresse.get
-                (holder.getAdapterPosition())));
-        intent.putExtra("ville", String.valueOf(ville.get
-                (holder.getAdapterPosition())));
-        intent.putExtra("code_postal", String.valueOf(code_postal.get
-                (holder.getAdapterPosition())));
-        intent.putExtra("date_contact", String.valueOf(date_contact.get
-                (holder.getAdapterPosition())));
-
 
         activity.startActivityForResult(intent, CODE_DEMANDE);
     }
@@ -170,7 +100,7 @@ public class InterfaceAdapter extends RecyclerView.Adapter<InterfaceAdapter.View
      */
     @Override
     public int getItemCount() {
-        return id_compagnie.size();
+        return listeCompagnies.size();
     }
 
     /**

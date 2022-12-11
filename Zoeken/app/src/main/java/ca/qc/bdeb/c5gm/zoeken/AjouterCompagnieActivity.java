@@ -1,5 +1,7 @@
 package ca.qc.bdeb.c5gm.zoeken;
 
+import static ca.qc.bdeb.c5gm.zoeken.MainActivity.listeCompagnies;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -27,7 +29,6 @@ public class AjouterCompagnieActivity extends AppCompatActivity {
         et_ville = findViewById(R.id.et_ville);
         et_code_postal = findViewById(R.id.et_code_postal);
         et_date_contact = findViewById(R.id.et_date_contact);
-
     }
 
     /**
@@ -37,7 +38,7 @@ public class AjouterCompagnieActivity extends AppCompatActivity {
      */
     public void ajouterCompagnie(View view) {
         try {
-//            ajouterCompagnieDansArray();
+            ajouterCompagnieDansArray();
             ajouterCompagnieDansBd();
             Toast.makeText(AjouterCompagnieActivity.this,
                     "Compagnie ajoutée avec succès!", Toast.LENGTH_SHORT).show();
@@ -50,9 +51,21 @@ public class AjouterCompagnieActivity extends AppCompatActivity {
 
     }
 
+    private void ajouterCompagnieDansArray() {
+        Compagnie nouvelleCompagnie = new Compagnie(et_nom_compagnie.getText().toString(),
+                et_nom_contact.getText().toString(), et_email.getText().toString(),
+                et_telephone.getText().toString(), et_site_web.getText().toString(),
+                et_adresse.getText().toString(), et_ville.getText().toString(),
+                et_code_postal.getText().toString(),
+                et_date_contact.getText().toString());
+        listeCompagnies.add(nouvelleCompagnie);
+
+    }
+
     private void ajouterCompagnieDansBd() {
         ZoekenDatabaseHelper bd = new ZoekenDatabaseHelper(AjouterCompagnieActivity.this);
-        bd.ajouterCompagnie(et_nom_compagnie.getText().toString().trim(),
+        bd.ajouterCompagnie(
+                et_nom_compagnie.getText().toString().trim(),
                 et_nom_contact.getText().toString().trim(), et_email.getText().toString().trim(),
                 et_telephone.getText().toString().trim(), et_site_web.getText().toString().trim(),
                 et_adresse.getText().toString().trim(), et_ville.getText().toString().trim(),

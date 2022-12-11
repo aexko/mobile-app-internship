@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
 //            site_web, adresse, ville, code_postal, date_de_contact;
     private InterfaceAdapter adapteur;
 
-    private ArrayList<Compagnie> listeCompagnies;
+    public static ArrayList<Compagnie> listeCompagnies;
 
 
     @Override
@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recycler_view);
 
         bd = new ZoekenDatabaseHelper(MainActivity.this);
+//        listeCompagnies = new ArrayList<>();
 //        id_compagnie = new ArrayList<>();
 //        nom_compagnie = new ArrayList<>();
 //        nom_contact = new ArrayList<>();
@@ -47,10 +48,9 @@ public class MainActivity extends AppCompatActivity {
 //        code_postal = new ArrayList<>();
 //        date_de_contact = new ArrayList<>();
 
+        listeCompagnies = new ArrayList<>();
 
-//        adapteur = new InterfaceAdapter(this, id_compagnie, nom_compagnie, nom_contact,
-//                email, telephone, site_web, adresse, ville, code_postal, date_de_contact,
-//                MainActivity.this);
+        adapteur = new InterfaceAdapter(this, listeCompagnies, MainActivity.this);
         recyclerView.setAdapter(adapteur);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
