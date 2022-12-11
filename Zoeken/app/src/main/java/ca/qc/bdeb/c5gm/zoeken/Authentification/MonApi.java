@@ -1,6 +1,5 @@
-package ca.qc.bdeb.c5gm.zoeken.Connexion;
+package ca.qc.bdeb.c5gm.zoeken.Authentification;
 
-import java.util.HashMap;
 import java.util.List;
 
 import ca.qc.bdeb.c5gm.zoeken.POJO.CompteEtudiant;

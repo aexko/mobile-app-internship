@@ -12,6 +12,11 @@ public class LoginData {
     private String motDePasse;
     private final static long serialVersionUID = 715309548398645260L;
 
+    public LoginData(String email, String motDePasse) {
+        this.email = email;
+        this.motDePasse = motDePasse;
+    }
+
     public String getEmail() {
         return email;
     }

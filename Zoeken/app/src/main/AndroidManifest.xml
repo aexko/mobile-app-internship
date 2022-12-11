@@ -15,11 +15,18 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Zoeken">
+        android:theme="@style/Theme.Zoeken"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".PageInscription"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <activity
             android:name=".PageConnexion"
             android:exported="true">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -81,8 +88,6 @@
         <activity
             android:name=".MainActivity"
             android:exported="true">
-
-
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

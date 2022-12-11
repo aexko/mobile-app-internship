@@ -1,4 +1,4 @@
-package ca.qc.bdeb.c5gm.zoeken.Connexion;
+package ca.qc.bdeb.c5gm.zoeken.Authentification;
 
 // SOURCE: Docs du cours
 
