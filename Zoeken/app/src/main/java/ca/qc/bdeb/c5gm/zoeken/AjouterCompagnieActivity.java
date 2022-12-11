@@ -1,6 +1,5 @@
 package ca.qc.bdeb.c5gm.zoeken;
 
-import static ca.qc.bdeb.c5gm.zoeken.MainActivity.listeCompagnies;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -38,7 +37,6 @@ public class AjouterCompagnieActivity extends AppCompatActivity {
      */
     public void ajouterCompagnie(View view) {
         try {
-            ajouterCompagnieDansArray();
             ajouterCompagnieDansBd();
             Toast.makeText(getApplicationContext(),
                     "Compagnie ajoutée avec succès!", Toast.LENGTH_SHORT).show();
@@ -49,22 +47,6 @@ public class AjouterCompagnieActivity extends AppCompatActivity {
         startActivity(new Intent(AjouterCompagnieActivity.this, MainActivity.class));
         finish();
 
-    }
-
-    private void ajouterCompagnieDansArray() {
-        Toast.makeText(getApplicationContext(), "nouvelleCompagnieArray", Toast.LENGTH_SHORT).show();
-
-        Compagnie nouvelleCompagnie = new Compagnie(
-                et_nom_compagnie.getText().toString().trim(),
-                et_nom_contact.getText().toString().trim(),
-                et_email.getText().toString().trim(),
-                et_telephone.getText().toString().trim(),
-                et_site_web.getText().toString().trim(),
-                et_adresse.getText().toString().trim(),
-                et_ville.getText().toString().trim(),
-                et_code_postal.getText().toString().trim(),
-                et_date_contact.getText().toString().trim());
-        listeCompagnies.add(nouvelleCompagnie);
     }
 
     private void ajouterCompagnieDansBd() {

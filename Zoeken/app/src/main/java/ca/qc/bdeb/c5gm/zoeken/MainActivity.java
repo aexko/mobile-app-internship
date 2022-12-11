@@ -17,6 +17,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
+import ca.qc.bdeb.c5gm.zoeken.POJO.Entreprise;
+
 public class MainActivity extends AppCompatActivity {
 
 
@@ -26,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
 //            site_web, adresse, ville, code_postal, date_de_contact;
     private InterfaceAdapter adapteur;
 
-    public static List<Compagnie> listeCompagnies;
+    private List<Entreprise> listeCompagnies;
 
 
     @Override

@@ -3,6 +3,8 @@ package ca.qc.bdeb.c5gm.zoeken.Connexion;
 import java.util.HashMap;
 import java.util.List;
 
+import ca.qc.bdeb.c5gm.zoeken.POJO.CompteEtudiant;
+import ca.qc.bdeb.c5gm.zoeken.POJO.LoginData;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -23,16 +25,13 @@ public interface MonApi {
             "Authorization:Token"
     })
 
-    Call<Compte> connecter(@Body HashMap<String, Object> loginData);
+    Call<CompteEtudiant> connecter(@Body LoginData loginData);
 
     @POST("/auth/deconnexion")
     Call<ResponseBody> deconnecter(@Header("Authorization") String token);
 
-    @POST("/auth/testerconnexion")
-    Call<ResponseBody> testerConnexion(@Header("Authorization") String token, @Body HashMap<String, Object> userId);
-
     @GET("/compte/getcomptesetudiantsactifs")
-    Call<List<ComptePOJO>> getComptesEleves(@Header("Authorization") String token);
+    Call<List<CompteEtudiant>> getComptesEleves(@Header("Authorization") String token);
 
     @DELETE("/stage/{idStage}")
     Call<ResponseBody> supprStage(@Header("Authorization") String token, @Path("idStage") String idStage);
