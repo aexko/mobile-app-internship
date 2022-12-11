@@ -13,8 +13,6 @@ public class AjouterCompagnieActivity extends AppCompatActivity {
     EditText et_nom_compagnie, et_nom_contact, et_email, et_telephone, et_site_web,
             et_adresse, et_ville, et_code_postal, et_date_contact;
 
-    private Bundle tabNomsCompagnies, tabAdresses, tabVilles, tabCodesPostaux;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,12 +27,6 @@ public class AjouterCompagnieActivity extends AppCompatActivity {
         et_ville = findViewById(R.id.et_ville);
         et_code_postal = findViewById(R.id.et_code_postal);
         et_date_contact = findViewById(R.id.et_date_contact);
-
-        tabNomsCompagnies = new Bundle();
-        tabAdresses = new Bundle();
-        tabVilles = new Bundle();
-        tabCodesPostaux = new Bundle();
-
     }
 
     /**

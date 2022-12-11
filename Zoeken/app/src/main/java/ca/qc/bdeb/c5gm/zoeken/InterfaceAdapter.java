@@ -31,7 +31,6 @@ public class InterfaceAdapter extends RecyclerView.Adapter<InterfaceAdapter.View
     ArrayList ville;
     ArrayList code_postal;
     ArrayList date_contact;
-//    ImageView logo_compagnie;
     
     Context context;
     Activity activity;
@@ -63,6 +62,7 @@ public class InterfaceAdapter extends RecyclerView.Adapter<InterfaceAdapter.View
                             ArrayList nom_contact, ArrayList email, ArrayList telephone,
                             ArrayList site_web, ArrayList adresse, ArrayList ville,
                             ArrayList code_postal, ArrayList date_contact, Activity activity) {
+
         this.context = context;
         this.id_compagnie = id_compagnie;
         this.nom_compagnie = nom_compagnie;
@@ -75,7 +75,7 @@ public class InterfaceAdapter extends RecyclerView.Adapter<InterfaceAdapter.View
         this.code_postal = code_postal;
         this.date_contact = date_contact;
         this.activity = activity;
-//        this.logo_compagnie = logo_compagnie;
+
     }
 
     /**
@@ -128,8 +128,7 @@ public class InterfaceAdapter extends RecyclerView.Adapter<InterfaceAdapter.View
                 (holder.getAdapterPosition())));
         intent.putExtra("date_contact", String.valueOf(date_contact.get
                 (holder.getAdapterPosition())));
-//        intent.putExtra("logo_compagnie", String.valueOf(logo_compagnie.get
-//                (holder.getAdapterPosition())));
+
     }
 
     /**
@@ -182,13 +181,11 @@ public class InterfaceAdapter extends RecyclerView.Adapter<InterfaceAdapter.View
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView tv_nom_compagnie;
         LinearLayout layoutMain;
-        ImageView logo;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tv_nom_compagnie = itemView.findViewById(R.id.tv_nom_compagnie);
             layoutMain = itemView.findViewById(R.id.layoutMain);
-            logo = itemView.findViewById(R.id.logo_compagnie);
         }
     }
 
