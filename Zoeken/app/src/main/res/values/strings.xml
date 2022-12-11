@@ -25,4 +25,7 @@
     <string name="modifier">Modifier</string>
     <string name="supprimer">Supprimer</string>
     <string name="appeler">Appeler</string>
+    <string name="pr_nom">Prénom</string>
+    <string name="nom">Nom</string>
+    <string name="confirmation_mot_de_passe">Confirmation mot de passe</string>
 </resources>
