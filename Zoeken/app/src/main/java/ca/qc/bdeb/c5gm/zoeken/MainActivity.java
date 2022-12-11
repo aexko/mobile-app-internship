@@ -6,15 +6,30 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+
+import ca.qc.bdeb.c5gm.zoeken.Authentification.MonApi;
+import ca.qc.bdeb.c5gm.zoeken.Authentification.MonApiClient;
+import ca.qc.bdeb.c5gm.zoeken.POJO.CompteEtudiant;
+import ca.qc.bdeb.c5gm.zoeken.POJO.ConnectUtils;
+import ca.qc.bdeb.c5gm.zoeken.POJO.LoginData;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,10 +38,16 @@ public class MainActivity extends AppCompatActivity {
     private ZoekenDatabaseHelper bd;
     private ArrayList<String> id_compagnie, nom_compagnie, nom_contact, email, telephone,
             site_web, adresse, ville, code_postal, date_de_contact;
-    //    private ImageView logo_compagnie;
+
     private InterfaceAdapter adapteur;
 
+    private MonApi client;
+
+
+    // MODIFIER
     private ArrayList<Compagnie> listeCompagnies;
+//    private MenuItem menuItemDeconnexion;
+    private Button btnDeconnexion;
 
 
     @Override
@@ -34,8 +55,30 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        recyclerView = findViewById(R.id.recycler_view);
 
+        recyclerView = findViewById(R.id.recycler_view);
+        btnDeconnexion = (Button) findViewById(R.id.btn_deconnexion);
+        client = MonApiClient.getRetrofit().create(MonApi.class);
+
+        btnDeconnexion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                deconnexion();
+            }
+        });
+
+
+
+        // Setup de toolbar
+        Toolbar myToolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(myToolbar);
+        TextView tv_dashboard = (TextView) myToolbar.findViewById(R.id.tv_toolbar);
+
+
+
+
+
+        // MODIFIER
         bd = new ZoekenDatabaseHelper(MainActivity.this);
         id_compagnie = new ArrayList<>();
         nom_compagnie = new ArrayList<>();
@@ -49,8 +92,6 @@ public class MainActivity extends AppCompatActivity {
         date_de_contact = new ArrayList<>();
 
         sauvegarderCompagnies();
-//        getIntent().getStringArrayListExtra("tableauCompagnies");
-
 
         adapteur = new InterfaceAdapter(this, id_compagnie, nom_compagnie, nom_contact,
                 email, telephone, site_web, adresse, ville, code_postal, date_de_contact,
@@ -75,6 +116,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    // MODIFIER
     /**
      * Sauvegarde les compagnies dans la base de données SQLite
      */
@@ -101,6 +143,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    // MODIFIER
     private void ajouterCompagnieDansListe(Cursor curseur) {
         if (curseur.getCount() != 0) {
             while (curseur.moveToNext()) {
@@ -136,6 +179,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+
+
     /**
      * Pour faire apparaître le toolbar avec le menu
      *
@@ -148,5 +193,40 @@ public class MainActivity extends AppCompatActivity {
         inflater.inflate(R.menu.menu, menu);
         return true;
     }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.menu_item_deconnexion:
 
+                deconnexion();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+
+    public void deconnexion() {
+        client.deconnecter(ConnectUtils.authToken).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.isSuccessful()) {
+                    Toast.makeText(MainActivity.this, "OK", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Toast.makeText(MainActivity.this, "NON-OK", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void ouvrirPageConnexion() {
+        Intent intent = new Intent(MainActivity.this, PageConnexion.class);
+        startActivity(intent);
+    }
 }

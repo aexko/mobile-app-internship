@@ -28,4 +28,5 @@
     <string name="pr_nom">Prénom</string>
     <string name="nom">Nom</string>
     <string name="confirmation_mot_de_passe">Confirmation mot de passe</string>
+    <string name="se_d_connecter">Se déconnecter</string>
 </resources>

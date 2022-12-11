@@ -21,6 +21,14 @@ public class CreationCompteData {
     private String motDePasseConfirmation;
     private final static long serialVersionUID = -3798612850575773101L;
 
+    public CreationCompteData(String nom, String prenom, String email, String motDePasse, String motDePasseConfirmation) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.email = email;
+        this.motDePasse = motDePasse;
+        this.motDePasseConfirmation = motDePasseConfirmation;
+    }
+
     public String getNom() {
         return nom;
     }
