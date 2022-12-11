@@ -3,10 +3,31 @@ package ca.qc.bdeb.c5gm.zoeken;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-
 public class Compagnie implements Parcelable {
+
+
+    private String nomCompagnie;
+    private String nomContact;
+    private String email;
+    private String telephone;
+    private String siteWeb;
+    private String adresse;
+    private String ville;
+    private String codePostal;
+    private String dateContact;
+
+
+    public Compagnie(String nomCompagnie, String nomContact, String email, String telephone, String siteWeb, String adresse, String ville, String codePostal, String dateContact) {
+        this.nomCompagnie = nomCompagnie;
+        this.nomContact = nomContact;
+        this.email = email;
+        this.telephone = telephone;
+        this.siteWeb = siteWeb;
+        this.adresse = adresse;
+        this.ville = ville;
+        this.codePostal = codePostal;
+        this.dateContact = dateContact;
+    }
 
     public static final Creator<Compagnie> CREATOR = new Creator<Compagnie>() {
         @Override
@@ -20,53 +41,16 @@ public class Compagnie implements Parcelable {
         }
     };
 
-    private String nom_compagnie;
-    private String nom_contact;
-    private String email;
-    private String telephone;
-    private String site_web;
-    private String adresse;
-    private String ville;
-    private String code_postal;
-    private String date_contact;
-
-
-    public Compagnie(String nom_compagnie, String nom_contact, String email, String telephone, String site_web, String adresse, String ville, String code_postal, String date_contact) {
-        this.nom_compagnie = nom_compagnie;
-        this.nom_contact = nom_contact;
-        this.email = email;
-        this.telephone = telephone;
-        this.site_web = site_web;
-        this.adresse = adresse;
-        this.ville = ville;
-        this.code_postal = code_postal;
-        this.date_contact = date_contact;
-    }
-
-    public void ajouterCompagnie(String nom_compagnie, String nom_contact, String email, String telephone, String site_web, String adresse, String ville, String code_postal, String date_contact){
-        Compagnie nouvelleCompagnie = new Compagnie(
-                nom_compagnie.toString().trim(),
-                nom_contact.toString().trim(),
-                email.toString().trim(),
-                telephone.toString().trim(),
-                site_web.toString().trim(),
-                adresse.toString().trim(),
-                ville.toString().trim(),
-                code_postal.toString().trim(),
-                date_contact.toString().trim());
-
-    }
-
     protected Compagnie(Parcel in) {
-        nom_compagnie = in.readString();
-        nom_contact = in.readString();
+        nomCompagnie = in.readString();
+        nomContact = in.readString();
         email = in.readString();
         telephone = in.readString();
-        site_web = in.readString();
+        siteWeb = in.readString();
         adresse = in.readString();
         ville = in.readString();
-        code_postal = in.readString();
-        date_contact = in.readString();
+        codePostal = in.readString();
+        dateContact = in.readString();
     }
 
     /**
@@ -93,14 +77,50 @@ public class Compagnie implements Parcelable {
      */
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(nom_compagnie);
-        dest.writeString(nom_contact);
+        dest.writeString(nomCompagnie);
+        dest.writeString(nomContact);
         dest.writeString(email);
         dest.writeString(telephone);
-        dest.writeString(site_web);
+        dest.writeString(siteWeb);
         dest.writeString(adresse);
         dest.writeString(ville);
-        dest.writeString(code_postal);
-        dest.writeString(date_contact);
+        dest.writeString(codePostal);
+        dest.writeString(dateContact);
+    }
+
+    public String getNomCompagnie() {
+        return nomCompagnie;
+    }
+
+    public String getNomContact() {
+        return nomContact;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public String getSiteWeb() {
+        return siteWeb;
+    }
+
+    public String getAdresse() {
+        return adresse;
+    }
+
+    public String getVille() {
+        return ville;
+    }
+
+    public String getCodePostal() {
+        return codePostal;
+    }
+
+    public String getDateContact() {
+        return dateContact;
     }
 }

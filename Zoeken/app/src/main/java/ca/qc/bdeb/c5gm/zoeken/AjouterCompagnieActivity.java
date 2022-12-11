@@ -40,7 +40,7 @@ public class AjouterCompagnieActivity extends AppCompatActivity {
         try {
             ajouterCompagnieDansArray();
             ajouterCompagnieDansBd();
-            Toast.makeText(AjouterCompagnieActivity.this,
+            Toast.makeText(getApplicationContext(),
                     "Compagnie ajoutée avec succès!", Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -52,23 +52,31 @@ public class AjouterCompagnieActivity extends AppCompatActivity {
     }
 
     private void ajouterCompagnieDansArray() {
-        Compagnie nouvelleCompagnie = new Compagnie(et_nom_compagnie.getText().toString(),
-                et_nom_contact.getText().toString(), et_email.getText().toString(),
-                et_telephone.getText().toString(), et_site_web.getText().toString(),
-                et_adresse.getText().toString(), et_ville.getText().toString(),
-                et_code_postal.getText().toString(),
-                et_date_contact.getText().toString());
-        listeCompagnies.add(nouvelleCompagnie);
+        Toast.makeText(getApplicationContext(), "nouvelleCompagnieArray", Toast.LENGTH_SHORT).show();
 
+        Compagnie nouvelleCompagnie = new Compagnie(
+                et_nom_compagnie.getText().toString().trim(),
+                et_nom_contact.getText().toString().trim(),
+                et_email.getText().toString().trim(),
+                et_telephone.getText().toString().trim(),
+                et_site_web.getText().toString().trim(),
+                et_adresse.getText().toString().trim(),
+                et_ville.getText().toString().trim(),
+                et_code_postal.getText().toString().trim(),
+                et_date_contact.getText().toString().trim());
+        listeCompagnies.add(nouvelleCompagnie);
     }
 
     private void ajouterCompagnieDansBd() {
         ZoekenDatabaseHelper bd = new ZoekenDatabaseHelper(AjouterCompagnieActivity.this);
         bd.ajouterCompagnie(
                 et_nom_compagnie.getText().toString().trim(),
-                et_nom_contact.getText().toString().trim(), et_email.getText().toString().trim(),
-                et_telephone.getText().toString().trim(), et_site_web.getText().toString().trim(),
-                et_adresse.getText().toString().trim(), et_ville.getText().toString().trim(),
+                et_nom_contact.getText().toString().trim(),
+                et_email.getText().toString().trim(),
+                et_telephone.getText().toString().trim(),
+                et_site_web.getText().toString().trim(),
+                et_adresse.getText().toString().trim(),
+                et_ville.getText().toString().trim(),
                 et_code_postal.getText().toString().trim(),
                 et_date_contact.getText().toString().trim());
     }

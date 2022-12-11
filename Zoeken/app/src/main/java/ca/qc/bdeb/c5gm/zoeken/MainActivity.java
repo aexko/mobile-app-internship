@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 //            site_web, adresse, ville, code_postal, date_de_contact;
     private InterfaceAdapter adapteur;
 
-    public static ArrayList<Compagnie> listeCompagnies;
+    public static List<Compagnie> listeCompagnies;
 
 
     @Override
@@ -36,21 +37,9 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recycler_view);
 
         bd = new ZoekenDatabaseHelper(MainActivity.this);
-//        listeCompagnies = new ArrayList<>();
-//        id_compagnie = new ArrayList<>();
-//        nom_compagnie = new ArrayList<>();
-//        nom_contact = new ArrayList<>();
-//        email = new ArrayList<>();
-//        telephone = new ArrayList<>();
-//        site_web = new ArrayList<>();
-//        adresse = new ArrayList<>();
-//        ville = new ArrayList<>();
-//        code_postal = new ArrayList<>();
-//        date_de_contact = new ArrayList<>();
-
         listeCompagnies = new ArrayList<>();
 
-        adapteur = new InterfaceAdapter(this, listeCompagnies, MainActivity.this);
+        adapteur = new InterfaceAdapter();
         recyclerView.setAdapter(adapteur);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
