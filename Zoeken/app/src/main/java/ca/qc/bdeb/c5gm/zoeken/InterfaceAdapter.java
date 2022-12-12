@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -184,7 +183,7 @@ public class InterfaceAdapter extends RecyclerView.Adapter<InterfaceAdapter.View
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            tv_nom_compagnie = itemView.findViewById(R.id.tv_nom_compagnie);
+            tv_nom_compagnie = itemView.findViewById(R.id.tv_nom);
             layoutMain = itemView.findViewById(R.id.layoutMain);
         }
     }

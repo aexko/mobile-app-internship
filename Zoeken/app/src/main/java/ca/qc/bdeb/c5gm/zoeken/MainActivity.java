@@ -12,20 +12,20 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import ca.qc.bdeb.c5gm.zoeken.Authentification.MonApi;
 import ca.qc.bdeb.c5gm.zoeken.Authentification.MonApiClient;
-import ca.qc.bdeb.c5gm.zoeken.POJO.CompteEtudiant;
+import ca.qc.bdeb.c5gm.zoeken.POJO.ComptePOJO;
 import ca.qc.bdeb.c5gm.zoeken.POJO.ConnectUtils;
-import ca.qc.bdeb.c5gm.zoeken.POJO.LoginData;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
             site_web, adresse, ville, code_postal, date_de_contact;
 
     private InterfaceAdapter adapteur;
+    private InterfaceAdapterProf adapterProf;
 
     private MonApi client;
 
@@ -74,7 +75,11 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(myToolbar);
         TextView tv_dashboard = (TextView) myToolbar.findViewById(R.id.tv_toolbar);
 
+        if (ConnectUtils.typeCompte == ComptePOJO.TypeCompte.PROFESSEUR) {
+            getListeEtudiants();
+        } else {
 
+        }
 
 
 
@@ -93,11 +98,45 @@ public class MainActivity extends AppCompatActivity {
 
         sauvegarderCompagnies();
 
-        adapteur = new InterfaceAdapter(this, id_compagnie, nom_compagnie, nom_contact,
-                email, telephone, site_web, adresse, ville, code_postal, date_de_contact,
-                MainActivity.this);
-        recyclerView.setAdapter(adapteur);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+//        adapteur = new InterfaceAdapter(this, id_compagnie, nom_compagnie, nom_contact,
+//                email, telephone, site_web, adresse, ville, code_postal, date_de_contact,
+//                MainActivity.this);
+//        recyclerView.setAdapter(adapteur);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+    private void getListeEtudiants() {
+        client.getComptesEleves(ConnectUtils.authToken).enqueue(
+                new Callback<List<ComptePOJO>>() {
+                    @Override
+                    public void onResponse(Call<List<ComptePOJO>> call, Response<List<ComptePOJO>> response) {
+
+                        if (response.isSuccessful()) {
+                            Toast.makeText(MainActivity.this, "OK", Toast.LENGTH_SHORT).show();
+                            List<ComptePOJO> listeEtudiants = response.body();
+//                            List<ComptePOJO> listeEtudiants = new ArrayList<ComptePOJO>();
+
+                            adapterProf = new InterfaceAdapterProf(listeEtudiants, MainActivity.this);
+                            recyclerView.setLayoutManager(new GridLayoutManager(MainActivity.this, 1));
+                            recyclerView.setAdapter(adapterProf);
+//                            String affichage = "" + response.code();
+//                            List<ComptePOJO> comptes = response.body();
+//                            List<ComptePOJO> comptes = response.body();
+//                            for (ComptePOJO compte : comptes) {
+//                                listeEtudiants.add(new ComptePOJO(compte.getNom()));
+////                                Toast.makeText(MainActivity.this, "Compte" + compte.getNom(), Toast.LENGTH_SHORT).show();
+//                            }
+
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<ComptePOJO>> call, Throwable t) {
+
+                    }
+                }
+        );
     }
 
     /**

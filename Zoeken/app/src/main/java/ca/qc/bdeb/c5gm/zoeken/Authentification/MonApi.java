@@ -2,7 +2,8 @@ package ca.qc.bdeb.c5gm.zoeken.Authentification;
 
 import java.util.List;
 
-import ca.qc.bdeb.c5gm.zoeken.POJO.CompteEtudiant;
+import ca.qc.bdeb.c5gm.zoeken.POJO.ComptePOJO;
+import ca.qc.bdeb.c5gm.zoeken.POJO.CompteResult;
 import ca.qc.bdeb.c5gm.zoeken.POJO.CreationCompteData;
 import ca.qc.bdeb.c5gm.zoeken.POJO.LoginData;
 import okhttp3.ResponseBody;
@@ -26,14 +27,13 @@ public interface MonApi {
     Call<ResponseBody> deconnecter(@Header("Authorization") String token);
 
     @POST("/auth/connexion")
-
-    Call<CompteEtudiant> connecter(@Body LoginData loginData);
+    Call<CompteResult> connecter(@Body LoginData loginData);
 
     @POST("/inscription")
-    Call<CompteEtudiant> creerCompte(@Body CreationCompteData loginData);
+    Call<ComptePOJO> creerCompte(@Body CreationCompteData loginData);
 
     @GET("/compte/getcomptesetudiantsactifs")
-    Call<List<CompteEtudiant>> getComptesEleves(@Header("Authorization") String token);
+    Call<List<ComptePOJO>> getComptesEleves(@Header("Authorization") String token);
 
     @DELETE("/stage/{idStage}")
     Call<ResponseBody> supprStage(@Header("Authorization") String token, @Path("idStage") String idStage);

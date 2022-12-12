@@ -11,7 +11,9 @@ import android.widget.Toast;
 
 import ca.qc.bdeb.c5gm.zoeken.Authentification.MonApi;
 import ca.qc.bdeb.c5gm.zoeken.Authentification.MonApiClient;
-import ca.qc.bdeb.c5gm.zoeken.POJO.CompteEtudiant;
+import ca.qc.bdeb.c5gm.zoeken.POJO.ComptePOJO;
+import ca.qc.bdeb.c5gm.zoeken.POJO.CompteResult;
+import ca.qc.bdeb.c5gm.zoeken.POJO.ConnectUtils;
 import ca.qc.bdeb.c5gm.zoeken.POJO.LoginData;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -58,17 +60,22 @@ public class PageConnexion extends AppCompatActivity {
 //        pour les tests
         LoginData loginData = new LoginData("prof1@test.com", "secret");
         client.connecter(loginData).enqueue(
-                new Callback<CompteEtudiant>() {
+                new Callback<CompteResult>() {
                     @Override
-                    public void onResponse(Call<CompteEtudiant> call, Response<CompteEtudiant> response) {
+                    public void onResponse(Call<CompteResult> call, Response<CompteResult> response) {
                         if (response.isSuccessful()) {
                             Toast.makeText(PageConnexion.this, "Connexion réussie", Toast.LENGTH_SHORT).show();
+                            CompteResult json = response.body();
+                            ConnectUtils.authId = json.getId();
+                            ConnectUtils.authToken = json.getAccessToken();
+                            ConnectUtils.typeCompte = json.getTypeCompte();
                             ouvrirDashboard();
+
                         }
                     }
 
                     @Override
-                    public void onFailure(Call<CompteEtudiant> call, Throwable t) {
+                    public void onFailure(Call<CompteResult> call, Throwable t) {
                         Toast.makeText(PageConnexion.this, "Connexion invalide", Toast.LENGTH_SHORT).show();
                     }
 

@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import ca.qc.bdeb.c5gm.zoeken.Authentification.MonApi;
 import ca.qc.bdeb.c5gm.zoeken.Authentification.MonApiClient;
-import ca.qc.bdeb.c5gm.zoeken.POJO.CompteEtudiant;
+import ca.qc.bdeb.c5gm.zoeken.POJO.ComptePOJO;
 import ca.qc.bdeb.c5gm.zoeken.POJO.CreationCompteData;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -57,9 +57,9 @@ public class PageInscription extends AppCompatActivity {
     private void inscrire(String contenuNom, String contenuPrenom, String contenuEmail, String contenuMdp, String contenuMdpConformation) {
         CreationCompteData creationCompteData = new CreationCompteData(contenuNom, contenuPrenom, contenuEmail, contenuMdp, contenuMdpConformation);
         client.creerCompte(creationCompteData).enqueue(
-                new Callback<CompteEtudiant>() {
+                new Callback<ComptePOJO>() {
                     @Override
-                    public void onResponse(Call<CompteEtudiant> call, Response<CompteEtudiant> response) {
+                    public void onResponse(Call<ComptePOJO> call, Response<ComptePOJO> response) {
                         if (response.isSuccessful()) {
                             Toast.makeText(PageInscription.this, "Inscription réussie", Toast.LENGTH_SHORT).show();
                             ouvrirDashboard();
@@ -67,7 +67,7 @@ public class PageInscription extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onFailure(Call<CompteEtudiant> call, Throwable t) {
+                    public void onFailure(Call<ComptePOJO> call, Throwable t) {
                         Toast.makeText(PageInscription.this, "Inscription non réussie", Toast.LENGTH_SHORT).show();
                     }
                 }

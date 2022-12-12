@@ -7,9 +7,13 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.lang.reflect.Type;
 import java.util.List;
 
-public class CompteEtudiant implements Serializable {
+public class ComptePOJO  {
+
+
+
     @SerializedName("id")
     @Expose
     private String id;
@@ -27,11 +31,15 @@ public class CompteEtudiant implements Serializable {
     private Boolean stageTrouve;
     @SerializedName("typeCompte")
     @Expose
-    private String typeCompte;
+    private TypeCompte typeCompte;
     @SerializedName("entreprises")
     @Expose
     private List<Entreprise> entreprises = null;
     private final static long serialVersionUID = -8308703459862838231L;
+
+    public ComptePOJO(String nom) {
+        this.nom = nom;
+    }
 
     public String getId() {
         return id;
@@ -73,11 +81,11 @@ public class CompteEtudiant implements Serializable {
         this.stageTrouve = stageTrouve;
     }
 
-    public String getTypeCompte() {
+    public TypeCompte getTypeCompte() {
         return typeCompte;
     }
 
-    public void setTypeCompte(String typeCompte) {
+    public void setTypeCompte(TypeCompte typeCompte) {
         this.typeCompte = typeCompte;
     }
 
