@@ -36,6 +36,7 @@ public class InterfaceAdapterEtudiant extends RecyclerView.Adapter<InterfaceAdap
     @Override
     public void onBindViewHolder(@NonNull InterfaceAdapterEtudiant.ViewHolder holder, int position) {
         holder.tv_nom_compagnie.setText(String.valueOf(listeEntreprises.get(position).getNom()));
+        holder.tv_nombre_stages.setEnabled(false);
     }
 
     @Override
@@ -45,11 +46,13 @@ public class InterfaceAdapterEtudiant extends RecyclerView.Adapter<InterfaceAdap
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView tv_nom_compagnie;
+        TextView tv_nombre_stages;
         LinearLayout layoutMain;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tv_nom_compagnie = itemView.findViewById(R.id.tv_nom);
+            tv_nombre_stages = itemView.findViewById(R.id.tv_nombre_stages);
             layoutMain = itemView.findViewById(R.id.layoutMain);
         }
     }
