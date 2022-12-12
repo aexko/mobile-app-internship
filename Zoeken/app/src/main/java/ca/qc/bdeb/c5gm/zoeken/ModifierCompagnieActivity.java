@@ -22,11 +22,11 @@ public class ModifierCompagnieActivity extends AppCompatActivity {
 
     public static int REQUEST_CALL = 1;
 
-    EditText et_nom_compagnie, et_nom_contact, et_email, et_telephone, et_site_web,
-            et_adresse, et_ville, et_code_postal, et_date_contact;
+    private EditText et_nom_compagnie, et_nom_contact, et_email, et_telephone, et_site_web,
+            et_adresse, et_ville, et_province, et_code_postal, et_date_contact;
 
-    String id_compagnie, nom_compagnie, nom_contact, email, telephone,
-            site_web, adresse, ville, code_postal, date_contact;
+    private String id_compagnie, nom_compagnie, nom_contact, email, telephone,
+            site_web, adresse, ville, province,code_postal, date_contact;
 
 
     @Override
@@ -41,6 +41,7 @@ public class ModifierCompagnieActivity extends AppCompatActivity {
         et_site_web = findViewById(R.id.et_site_web_m);
         et_adresse = findViewById(R.id.et_adresse_m);
         et_ville = findViewById(R.id.et_ville_m);
+        et_province = findViewById(R.id.et_province_m);
         et_code_postal = findViewById(R.id.et_code_postal_m);
         et_date_contact = findViewById(R.id.et_date_contact_m);
 
@@ -60,6 +61,7 @@ public class ModifierCompagnieActivity extends AppCompatActivity {
         site_web = getIntent().getStringExtra("site_web");
         adresse = getIntent().getStringExtra("adresse");
         ville = getIntent().getStringExtra("ville");
+        province = getIntent().getStringExtra("province");
         code_postal = getIntent().getStringExtra("code_postal");
         date_contact = getIntent().getStringExtra("date_contact");
 
@@ -70,6 +72,7 @@ public class ModifierCompagnieActivity extends AppCompatActivity {
         et_site_web.setText(site_web);
         et_adresse.setText(adresse);
         et_ville.setText(ville);
+        et_province.setText(province);
         et_code_postal.setText(code_postal);
         et_date_contact.setText(date_contact);
     }
@@ -118,6 +121,7 @@ public class ModifierCompagnieActivity extends AppCompatActivity {
                 ZoekenDatabaseHelper bd = new ZoekenDatabaseHelper
                         (ModifierCompagnieActivity.this);
                 bd.supprimerCompagnie(id_compagnie);
+
                 finish();
             }
         });

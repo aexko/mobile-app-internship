@@ -3,7 +3,6 @@ package ca.qc.bdeb.c5gm.zoeken;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -63,7 +62,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Setup de toolbar
         Toolbar myToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
         TextView tv_dashboard = (TextView) myToolbar.findViewById(R.id.tv_toolbar);
@@ -112,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
                 });
     }
 
-        private void getListeEtudiants() {
+    private void getListeEtudiants() {
         client.getComptesEleves(ConnectUtils.authToken).enqueue(
                 new Callback<List<ComptePOJO>>() {
                     @Override
@@ -151,6 +149,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // MODIFIER
+
     /**
      * Sauvegarde les compagnies dans la base de données SQLite
      */
@@ -170,27 +169,11 @@ public class MainActivity extends AppCompatActivity {
                 code_postal.add(curseur.getString(8));
                 date_de_contact.add(curseur.getString(9));
             }
-            ajouterCompagnieDansListe(curseur);
-
         } else {
             Toast.makeText(this, "Aucune compagnie à afficher", Toast.LENGTH_SHORT).show();
         }
     }
 
-    // MODIFIER
-    private void ajouterCompagnieDansListe(Cursor curseur) {
-        if (curseur.getCount() != 0) {
-            while (curseur.moveToNext()) {
-                String strNomCompagnie = curseur.getString(1);
-                String strAdresse = curseur.getString(6);
-                String strVille = curseur.getString(7);
-                String strCodePostal = curseur.getString(8);
-                Compagnie nouvelleCompagnie = new Compagnie(strNomCompagnie, strAdresse, strVille, strCodePostal);
-                Log.d("ajoutCompagnie", "ajouterCompagnieDansListe: " + nouvelleCompagnie);
-                listeCompagnies.add(nouvelleCompagnie);
-            }
-        }
-    }
 
     /**
      * Pour ouvrir l'activité "MapsActivity" avec le bouton
@@ -229,10 +212,5 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "NON-OK", Toast.LENGTH_SHORT).show();
             }
         });
-    }
-
-    private void ouvrirPageConnexion() {
-        Intent intent = new Intent(MainActivity.this, PageConnexion.class);
-        startActivity(intent);
     }
 }

@@ -1,6 +1,7 @@
 package ca.qc.bdeb.c5gm.zoeken;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,7 +37,6 @@ public class InterfaceAdapterEtudiant extends RecyclerView.Adapter<InterfaceAdap
     @Override
     public void onBindViewHolder(@NonNull InterfaceAdapterEtudiant.ViewHolder holder, int position) {
         holder.tv_nom_compagnie.setText(String.valueOf(listeEntreprises.get(position).getNom()));
-        holder.tv_nombre_stages.setEnabled(false);
     }
 
     @Override
@@ -46,14 +46,35 @@ public class InterfaceAdapterEtudiant extends RecyclerView.Adapter<InterfaceAdap
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView tv_nom_compagnie;
-        TextView tv_nombre_stages;
         LinearLayout layoutMain;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tv_nom_compagnie = itemView.findViewById(R.id.tv_nom);
-            tv_nombre_stages = itemView.findViewById(R.id.tv_nombre_stages);
             layoutMain = itemView.findViewById(R.id.layoutMain);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int position = getAdapterPosition();
+                    if (position != -1) { // -1: aucune position
+                        Entreprise entreprise = listeEntreprises.get(position);
+                        Intent intent = new Intent(context, ModifierCompagnieActivity.class);
+                        intent.putExtra("nom_compagnie", entreprise.getNom());
+                        intent.putExtra("nom_contact", entreprise.getContact());
+                        intent.putExtra("email", entreprise.getEmail());
+                        intent.putExtra("telephone", entreprise.getTelephone());
+                        intent.putExtra("site_web", entreprise.getSiteWeb());
+                        intent.putExtra("adresse", entreprise.getAdresse());
+                        intent.putExtra("ville", entreprise.getVille());
+                        intent.putExtra("province", entreprise.getProvince());
+                        intent.putExtra("code_postal", entreprise.getCodePostal());
+                        intent.putExtra("date_contact", entreprise.getDateContact());
+                        context.startActivity(intent);
+                    }
+                }
+            });
+
         }
     }
 }

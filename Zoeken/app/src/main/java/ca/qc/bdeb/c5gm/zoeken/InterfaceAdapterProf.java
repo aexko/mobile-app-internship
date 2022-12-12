@@ -1,6 +1,7 @@
 package ca.qc.bdeb.c5gm.zoeken;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import org.w3c.dom.Text;
 import java.util.List;
 
 import ca.qc.bdeb.c5gm.zoeken.POJO.ComptePOJO;
+import ca.qc.bdeb.c5gm.zoeken.POJO.Entreprise;
 
 public class InterfaceAdapterProf extends RecyclerView.Adapter<InterfaceAdapterProf.ViewHolder> {
 
@@ -56,6 +58,8 @@ public class InterfaceAdapterProf extends RecyclerView.Adapter<InterfaceAdapterP
             tv_nom_etudiant = itemView.findViewById(R.id.tv_nom);
             tv_nombre_de_stages = itemView.findViewById(R.id.tv_nombre_stages);
             layoutMain = itemView.findViewById(R.id.layoutMain);
+
+
         }
     }
 }

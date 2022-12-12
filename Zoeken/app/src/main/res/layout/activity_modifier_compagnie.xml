@@ -30,7 +30,7 @@
                 android:minHeight="48dp"
                 android:textColorHint="#757575"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/et_ville_m" />
+                app:layout_constraintTop_toBottomOf="@+id/et_province_m" />
 
             <EditText
                 android:id="@+id/et_email_m"
@@ -152,7 +152,7 @@
                 android:minHeight="48dp"
                 android:textColorHint="#757575"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/et_ville_m" />
+                app:layout_constraintTop_toBottomOf="@+id/et_province_m" />
 
             <EditText
                 android:id="@+id/et_adresse_m"
@@ -204,6 +204,19 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btn_call"
                 app:srcCompat="@drawable/ic_baseline_web_24" />
+
+            <EditText
+                android:id="@+id/et_province_m"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:ems="10"
+                android:hint="@string/province"
+                android:inputType="textPersonName"
+                android:textColorHint="#757575"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_ville_m" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
