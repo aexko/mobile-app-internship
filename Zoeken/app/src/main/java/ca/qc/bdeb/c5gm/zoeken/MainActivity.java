@@ -22,6 +22,7 @@ import ca.qc.bdeb.c5gm.zoeken.Authentification.MonApi;
 import ca.qc.bdeb.c5gm.zoeken.Authentification.MonApiClient;
 import ca.qc.bdeb.c5gm.zoeken.POJO.ComptePOJO;
 import ca.qc.bdeb.c5gm.zoeken.POJO.ConnectUtils;
+import ca.qc.bdeb.c5gm.zoeken.POJO.Entreprise;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -35,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<String> id_compagnie, nom_compagnie, nom_contact, email, telephone,
             site_web, adresse, ville, code_postal, date_de_contact;
 
-    private InterfaceAdapter adapteur;
+    private InterfaceAdapterEtudiant adapterEtudiant;
     private InterfaceAdapterProf adapterProf;
 
     private MonApi client;
@@ -70,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         if (ConnectUtils.typeCompte == ComptePOJO.TypeCompte.PROFESSEUR) {
             getListeEtudiants();
         } else {
-
+            getListeEntreprises();
         }
 
         // MODIFIER
@@ -89,7 +90,29 @@ public class MainActivity extends AppCompatActivity {
         sauvegarderCompagnies();
     }
 
-    private void getListeEtudiants() {
+    private void getListeEntreprises() {
+        client.getEtudiantConnecte(ConnectUtils.authToken).enqueue(
+                new Callback<ComptePOJO>() {
+                    @Override
+                    public void onResponse(Call<ComptePOJO> call, Response<ComptePOJO> response) {
+                        if (response.isSuccessful()) {
+                            Toast.makeText(MainActivity.this, "Succès: Récupération des entreprises de l'étudiant", Toast.LENGTH_SHORT).show();
+                            ComptePOJO comptePOJO = response.body();
+                            List<Entreprise> listeEntreprises = comptePOJO.getEntreprises();
+                            adapterEtudiant = new InterfaceAdapterEtudiant(listeEntreprises, MainActivity.this);
+                            recyclerView.setLayoutManager(new GridLayoutManager(MainActivity.this, 1));
+                            recyclerView.setAdapter(adapterEtudiant);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ComptePOJO> call, Throwable t) {
+
+                    }
+                });
+    }
+
+        private void getListeEtudiants() {
         client.getComptesEleves(ConnectUtils.authToken).enqueue(
                 new Callback<List<ComptePOJO>>() {
                     @Override
