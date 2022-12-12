@@ -6,13 +6,9 @@ package ca.qc.bdeb.c5gm.zoeken.POJO;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.io.Serializable;
-import java.lang.reflect.Type;
 import java.util.List;
 
-public class ComptePOJO  {
-
-
+public class ComptePOJO {
 
     @SerializedName("id")
     @Expose

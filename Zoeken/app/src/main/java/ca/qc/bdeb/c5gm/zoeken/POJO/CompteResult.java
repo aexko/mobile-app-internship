@@ -29,7 +29,6 @@ public class CompteResult {
     private final static long serialVersionUID = -4644635962262338195L;
 
     /**
-     *
      * @param typeCompte
      * @param id
      * @param accessToken

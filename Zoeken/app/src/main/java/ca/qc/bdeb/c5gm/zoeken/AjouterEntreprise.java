@@ -1,6 +1,5 @@
 package ca.qc.bdeb.c5gm.zoeken;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -60,7 +59,7 @@ public class AjouterEntreprise extends AppCompatActivity {
                 String contenuProvince = et_province.getText().toString().trim();
                 String contenuCodePostal = et_code_postal.getText().toString().trim();
                 String contenuDateContact = et_date_contact.getText().toString().trim();
-                ajouterEntreprise(contenuNomEntreprise, contenuNomContact, contenuEmail, contenuTelephone, contenuSiteWeb, contenuAdresse, contenuVille,contenuProvince, contenuCodePostal, contenuDateContact);
+                ajouterEntreprise(contenuNomEntreprise, contenuNomContact, contenuEmail, contenuTelephone, contenuSiteWeb, contenuAdresse, contenuVille, contenuProvince, contenuCodePostal, contenuDateContact);
             }
         });
     }

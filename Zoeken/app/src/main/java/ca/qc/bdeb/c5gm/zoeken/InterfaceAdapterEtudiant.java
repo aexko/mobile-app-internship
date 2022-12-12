@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-import ca.qc.bdeb.c5gm.zoeken.POJO.ComptePOJO;
 import ca.qc.bdeb.c5gm.zoeken.POJO.Entreprise;
 
 public class InterfaceAdapterEtudiant extends RecyclerView.Adapter<InterfaceAdapterEtudiant.ViewHolder> {
@@ -21,7 +20,7 @@ public class InterfaceAdapterEtudiant extends RecyclerView.Adapter<InterfaceAdap
     private List<Entreprise> listeEntreprises;
     private Context context;
 
-    public InterfaceAdapterEtudiant(List<Entreprise> listeEntreprises , Context context) {
+    public InterfaceAdapterEtudiant(List<Entreprise> listeEntreprises, Context context) {
         this.listeEntreprises = listeEntreprises;
         this.context = context;
     }
@@ -29,7 +28,7 @@ public class InterfaceAdapterEtudiant extends RecyclerView.Adapter<InterfaceAdap
     @NonNull
     @Override
     public InterfaceAdapterEtudiant.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.item, parent, false);
         return new InterfaceAdapterEtudiant.ViewHolder(view);
     }

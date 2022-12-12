@@ -26,7 +26,7 @@ public class ModifierCompagnieActivity extends AppCompatActivity {
             et_adresse, et_ville, et_province, et_code_postal, et_date_contact;
 
     private String id_compagnie, nom_compagnie, nom_contact, email, telephone,
-            site_web, adresse, ville, province,code_postal, date_contact;
+            site_web, adresse, ville, province, code_postal, date_contact;
 
 
     @Override

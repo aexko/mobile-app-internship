@@ -1,7 +1,5 @@
 package ca.qc.bdeb.c5gm.zoeken;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -9,9 +7,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import ca.qc.bdeb.c5gm.zoeken.Authentification.MonApi;
 import ca.qc.bdeb.c5gm.zoeken.Authentification.MonApiClient;
-import ca.qc.bdeb.c5gm.zoeken.POJO.ComptePOJO;
 import ca.qc.bdeb.c5gm.zoeken.POJO.CompteResult;
 import ca.qc.bdeb.c5gm.zoeken.POJO.ConnectUtils;
 import ca.qc.bdeb.c5gm.zoeken.POJO.LoginData;

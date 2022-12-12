@@ -32,17 +32,14 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private ZoekenDatabaseHelper bd;
-    private ArrayList<String> id_compagnie, nom_compagnie, nom_contact, email, telephone,
-            site_web, adresse, ville, code_postal, date_de_contact;
+//    private ArrayList<String> id_compagnie, nom_compagnie, nom_contact, email, telephone,
+//            site_web, adresse, ville, code_postal, date_de_contact;
 
     private InterfaceAdapterEtudiant adapterEtudiant;
     private InterfaceAdapterProf adapterProf;
 
     private MonApi client;
 
-
-    // MODIFIER
-    private List<Compagnie> listeCompagnies;
     private Button btnDeconnexion;
 
 
@@ -74,16 +71,16 @@ public class MainActivity extends AppCompatActivity {
 
         // MODIFIER
         bd = new ZoekenDatabaseHelper(MainActivity.this);
-        id_compagnie = new ArrayList<>();
-        nom_compagnie = new ArrayList<>();
-        nom_contact = new ArrayList<>();
-        email = new ArrayList<>();
-        telephone = new ArrayList<>();
-        site_web = new ArrayList<>();
-        adresse = new ArrayList<>();
-        ville = new ArrayList<>();
-        code_postal = new ArrayList<>();
-        date_de_contact = new ArrayList<>();
+//        id_compagnie = new ArrayList<>();
+//        nom_compagnie = new ArrayList<>();
+//        nom_contact = new ArrayList<>();
+//        email = new ArrayList<>();
+//        telephone = new ArrayList<>();
+//        site_web = new ArrayList<>();
+//        adresse = new ArrayList<>();
+//        ville = new ArrayList<>();
+//        code_postal = new ArrayList<>();
+//        date_de_contact = new ArrayList<>();
 
         sauvegarderCompagnies();
     }
@@ -158,16 +155,16 @@ public class MainActivity extends AppCompatActivity {
         Cursor curseur = bd.lireBd();
         if (curseur.getCount() != 0) {
             while (curseur.moveToNext()) {
-                id_compagnie.add(curseur.getString(0));
-                nom_compagnie.add(curseur.getString(1));
-                nom_contact.add(curseur.getString(2));
-                email.add(curseur.getString(3));
-                telephone.add(curseur.getString(4));
-                site_web.add(curseur.getString(5));
-                adresse.add(curseur.getString(6));
-                ville.add(curseur.getString(7));
-                code_postal.add(curseur.getString(8));
-                date_de_contact.add(curseur.getString(9));
+//                id_compagnie.add(curseur.getString(0));
+//                nom_compagnie.add(curseur.getString(1));
+//                nom_contact.add(curseur.getString(2));
+//                email.add(curseur.getString(3));
+//                telephone.add(curseur.getString(4));
+//                site_web.add(curseur.getString(5));
+//                adresse.add(curseur.getString(6));
+//                ville.add(curseur.getString(7));
+//                code_postal.add(curseur.getString(8));
+//                date_de_contact.add(curseur.getString(9));
             }
         } else {
             Toast.makeText(this, "Aucune compagnie à afficher", Toast.LENGTH_SHORT).show();

@@ -1,30 +1,25 @@
 package ca.qc.bdeb.c5gm.zoeken;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.w3c.dom.Text;
-
 import java.util.List;
 
 import ca.qc.bdeb.c5gm.zoeken.POJO.ComptePOJO;
-import ca.qc.bdeb.c5gm.zoeken.POJO.Entreprise;
 
 public class InterfaceAdapterProf extends RecyclerView.Adapter<InterfaceAdapterProf.ViewHolder> {
 
     private List<ComptePOJO> listeEtudiants;
     private Context context;
 
-    public InterfaceAdapterProf(List<ComptePOJO> listeEtudiants , Context context) {
+    public InterfaceAdapterProf(List<ComptePOJO> listeEtudiants, Context context) {
         this.listeEtudiants = listeEtudiants;
         this.context = context;
     }
@@ -32,7 +27,7 @@ public class InterfaceAdapterProf extends RecyclerView.Adapter<InterfaceAdapterP
     @NonNull
     @Override
     public InterfaceAdapterProf.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.item, parent, false);
         return new InterfaceAdapterProf.ViewHolder(view);
     }
@@ -58,8 +53,6 @@ public class InterfaceAdapterProf extends RecyclerView.Adapter<InterfaceAdapterP
             tv_nom_etudiant = itemView.findViewById(R.id.tv_nom);
             tv_nombre_de_stages = itemView.findViewById(R.id.tv_nombre_stages);
             layoutMain = itemView.findViewById(R.id.layoutMain);
-
-
         }
     }
 }
