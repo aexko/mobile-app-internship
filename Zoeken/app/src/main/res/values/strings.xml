@@ -29,4 +29,6 @@
     <string name="nom">Nom</string>
     <string name="confirmation_mot_de_passe">Confirmation mot de passe</string>
     <string name="se_d_connecter">Se déconnecter</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="province">Province</string>
 </resources>

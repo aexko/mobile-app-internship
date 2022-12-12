@@ -28,7 +28,6 @@ public class CompteResult {
     private String expiresAt;
     private final static long serialVersionUID = -4644635962262338195L;
 
-
     /**
      *
      * @param typeCompte

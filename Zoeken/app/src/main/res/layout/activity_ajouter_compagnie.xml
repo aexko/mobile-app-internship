@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="16dp"
-    tools:context=".AjouterCompagnieActivity">
+    tools:context=".AjouterEntreprise">
 
     <EditText
         android:id="@+id/et_nom_compagnie"
@@ -111,7 +111,7 @@
     <EditText
         android:id="@+id/et_code_postal"
         android:layout_width="179dp"
-        android:layout_height="56dp"
+        android:layout_height="49dp"
         android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="@string/code_postal"
@@ -119,12 +119,12 @@
         android:minHeight="48dp"
         android:textColorHint="#757575"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_ville" />
+        app:layout_constraintTop_toBottomOf="@+id/et_province" />
 
     <EditText
         android:id="@+id/et_date_contact"
         android:layout_width="179dp"
-        android:layout_height="56dp"
+        android:layout_height="49dp"
         android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="@string/date_contact"
@@ -132,17 +132,28 @@
         android:minHeight="48dp"
         android:textColorHint="#757575"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_ville" />
+        app:layout_constraintTop_toBottomOf="@+id/et_province" />
 
     <Button
         android:id="@+id/btn_ajouter_compagnie"
         android:layout_width="0dp"
         android:layout_height="56dp"
         android:layout_marginTop="32dp"
-        android:onClick="ajouterCompagnie"
         android:text="@string/ajouter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_date_contact" />
+
+    <EditText
+        android:id="@+id/et_province"
+        android:layout_width="0dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="@string/province"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_ville" />
 </androidx.constraintlayout.widget.ConstraintLayout>

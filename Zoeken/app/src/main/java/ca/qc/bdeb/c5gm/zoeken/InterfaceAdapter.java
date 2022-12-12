@@ -74,7 +74,6 @@ public class InterfaceAdapter extends RecyclerView.Adapter<InterfaceAdapter.View
         this.code_postal = code_postal;
         this.date_contact = date_contact;
         this.activity = activity;
-
     }
 
     /**
@@ -88,8 +87,7 @@ public class InterfaceAdapter extends RecyclerView.Adapter<InterfaceAdapter.View
      */
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
-        holder.tv_nom_compagnie.setText(String.valueOf(nom_compagnie.get(holder.
-                getAdapterPosition())));
+        holder.tv_nom_compagnie.setText(String.valueOf(nom_compagnie.get(holder.getAdapterPosition())));
         holder.layoutMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -158,8 +156,6 @@ public class InterfaceAdapter extends RecyclerView.Adapter<InterfaceAdapter.View
                 (holder.getAdapterPosition())));
         intent.putExtra("date_contact", String.valueOf(date_contact.get
                 (holder.getAdapterPosition())));
-//        intent.putExtra("logo_compagnie", String.valueOf(logo_compagnie.get
-//                (holder.getAdapterPosition())));
 
         activity.startActivityForResult(intent, CODE_DEMANDE);
     }

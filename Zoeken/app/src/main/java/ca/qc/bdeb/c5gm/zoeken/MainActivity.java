@@ -4,9 +4,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -16,7 +13,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -46,8 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     // MODIFIER
-    private ArrayList<Compagnie> listeCompagnies;
-//    private MenuItem menuItemDeconnexion;
+    private List<Compagnie> listeCompagnies;
     private Button btnDeconnexion;
 
 
@@ -55,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
         recyclerView = findViewById(R.id.recycler_view);
         btnDeconnexion = (Button) findViewById(R.id.btn_deconnexion);
@@ -68,8 +62,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
         // Setup de toolbar
         Toolbar myToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
@@ -80,8 +72,6 @@ public class MainActivity extends AppCompatActivity {
         } else {
 
         }
-
-
 
         // MODIFIER
         bd = new ZoekenDatabaseHelper(MainActivity.this);
@@ -97,12 +87,6 @@ public class MainActivity extends AppCompatActivity {
         date_de_contact = new ArrayList<>();
 
         sauvegarderCompagnies();
-
-//        adapteur = new InterfaceAdapter(this, id_compagnie, nom_compagnie, nom_contact,
-//                email, telephone, site_web, adresse, ville, code_postal, date_de_contact,
-//                MainActivity.this);
-//        recyclerView.setAdapter(adapteur);
-//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
     private void getListeEtudiants() {
@@ -110,30 +94,19 @@ public class MainActivity extends AppCompatActivity {
                 new Callback<List<ComptePOJO>>() {
                     @Override
                     public void onResponse(Call<List<ComptePOJO>> call, Response<List<ComptePOJO>> response) {
-
                         if (response.isSuccessful()) {
-                            Toast.makeText(MainActivity.this, "OK", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, "Récupération de la liste des étudiants réussie", Toast.LENGTH_SHORT).show();
                             List<ComptePOJO> listeEtudiants = response.body();
-//                            List<ComptePOJO> listeEtudiants = new ArrayList<ComptePOJO>();
 
                             adapterProf = new InterfaceAdapterProf(listeEtudiants, MainActivity.this);
                             recyclerView.setLayoutManager(new GridLayoutManager(MainActivity.this, 1));
                             recyclerView.setAdapter(adapterProf);
-//                            String affichage = "" + response.code();
-//                            List<ComptePOJO> comptes = response.body();
-//                            List<ComptePOJO> comptes = response.body();
-//                            for (ComptePOJO compte : comptes) {
-//                                listeEtudiants.add(new ComptePOJO(compte.getNom()));
-////                                Toast.makeText(MainActivity.this, "Compte" + compte.getNom(), Toast.LENGTH_SHORT).show();
-//                            }
-
                         }
-
                     }
 
                     @Override
                     public void onFailure(Call<List<ComptePOJO>> call, Throwable t) {
-
+                        Toast.makeText(MainActivity.this, "Récupération de la liste des étudiants non réussie", Toast.LENGTH_SHORT).show();
                     }
                 }
         );
@@ -152,7 +125,6 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == 1) {
             recreate();
         }
-
     }
 
     // MODIFIER
@@ -193,7 +165,6 @@ public class MainActivity extends AppCompatActivity {
                 Compagnie nouvelleCompagnie = new Compagnie(strNomCompagnie, strAdresse, strVille, strCodePostal);
                 Log.d("ajoutCompagnie", "ajouterCompagnieDansListe: " + nouvelleCompagnie);
                 listeCompagnies.add(nouvelleCompagnie);
-
             }
         }
     }
@@ -214,35 +185,8 @@ public class MainActivity extends AppCompatActivity {
      * @param view
      */
     public void ouvrirAjouterCompagnie(View view) {
-        Intent intent = new Intent(this, AjouterCompagnieActivity.class);
+        Intent intent = new Intent(this, AjouterEntreprise.class);
         startActivity(intent);
-    }
-
-
-
-    /**
-     * Pour faire apparaître le toolbar avec le menu
-     *
-     * @param menu
-     * @return
-     */
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu, menu);
-        return true;
-    }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle item selection
-        switch (item.getItemId()) {
-            case R.id.menu_item_deconnexion:
-
-                deconnexion();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
     }
 
 

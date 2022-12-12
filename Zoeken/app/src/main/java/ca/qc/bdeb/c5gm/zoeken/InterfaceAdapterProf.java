@@ -11,6 +11,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 import ca.qc.bdeb.c5gm.zoeken.POJO.ComptePOJO;
@@ -35,13 +37,8 @@ public class InterfaceAdapterProf extends RecyclerView.Adapter<InterfaceAdapterP
 
     @Override
     public void onBindViewHolder(@NonNull InterfaceAdapterProf.ViewHolder holder, int position) {
-
-//        ComptePOJO comptePOJO = listeEtudiants.get(position);
-        Toast.makeText(context, "Nom compte : " + listeEtudiants.get(position).getNom(), Toast.LENGTH_SHORT).show();
-
         holder.tv_nom_etudiant.setText(String.valueOf(listeEtudiants.get(position).getNom()));
-
-
+        holder.tv_nombre_de_stages.setText(String.valueOf(listeEtudiants.get(position).getEntreprises().size()));
     }
 
     @Override
@@ -50,13 +47,14 @@ public class InterfaceAdapterProf extends RecyclerView.Adapter<InterfaceAdapterP
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-
         TextView tv_nom_etudiant;
+        TextView tv_nombre_de_stages;
         LinearLayout layoutMain;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tv_nom_etudiant = itemView.findViewById(R.id.tv_nom);
+            tv_nombre_de_stages = itemView.findViewById(R.id.tv_nombre_stages);
             layoutMain = itemView.findViewById(R.id.layoutMain);
         }
     }

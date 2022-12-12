@@ -3,10 +3,28 @@ package ca.qc.bdeb.c5gm.zoeken.POJO;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.UUID;
+
 public class Entreprise {
+
+    public Entreprise(UUID id, String nom, String contact, String email, String telephone, String siteWeb, String adresse, String ville, String province, String codePostal, String dateContact, Boolean estFavorite) {
+        this.id = id;
+        this.nom = nom;
+        this.contact = contact;
+        this.email = email;
+        this.telephone = telephone;
+        this.siteWeb = siteWeb;
+        this.adresse = adresse;
+        this.ville = ville;
+        this.province = province;
+        this.codePostal = codePostal;
+        this.dateContact = dateContact;
+        this.estFavorite = estFavorite;
+    }
+
     @SerializedName("id")
     @Expose
-    private String id;
+    private UUID id;
     @SerializedName("nom")
     @Expose
     private String nom;
@@ -42,11 +60,11 @@ public class Entreprise {
     private Boolean estFavorite;
     private final static long serialVersionUID = -8437459210334057704L;
 
-    public String getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
