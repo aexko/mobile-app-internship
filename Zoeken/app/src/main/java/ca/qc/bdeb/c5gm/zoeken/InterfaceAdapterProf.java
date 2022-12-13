@@ -36,7 +36,8 @@ public class InterfaceAdapterProf extends RecyclerView.Adapter<InterfaceAdapterP
 
     @Override
     public void onBindViewHolder(@NonNull InterfaceAdapterProf.ViewHolder holder, int position) {
-        holder.tv_nom_etudiant.setText(String.valueOf(listeEtudiants.get(position).getNom()));
+        String nomComplet = listeEtudiants.get(position).getPrenom() + " " + listeEtudiants.get(position).getNom();
+        holder.tv_nom_etudiant.setText(nomComplet);
         holder.tv_nombre_de_stages.setText(String.valueOf(listeEtudiants.get(position).getEntreprises().size()));
         if (listeEtudiants.get(position).getStageTrouve() != null) {
             holder.cv_stage_trouve.setChecked(listeEtudiants.get(position).getStageTrouve());

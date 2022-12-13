@@ -34,4 +34,6 @@
     <string name="stage_trouv">Stage trouvé</string>
     <string name="texte">Texte</string>
     <string name="recherche">Recherche</string>
+    <string name="stages_appliqu_es">stages appliqués</string>
+    <string name="nb">NB</string>
 </resources>
