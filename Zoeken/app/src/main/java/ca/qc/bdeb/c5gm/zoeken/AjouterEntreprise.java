@@ -91,6 +91,7 @@ public class AjouterEntreprise extends AppCompatActivity {
             public void onResponse(Call<Entreprise> call, Response<Entreprise> response) {
                 if (response.isSuccessful()) {
                     Toast.makeText(AjouterEntreprise.this, "Succès: Création d'entreprise", Toast.LENGTH_SHORT).show();
+                    finish();
                 }
             }
 

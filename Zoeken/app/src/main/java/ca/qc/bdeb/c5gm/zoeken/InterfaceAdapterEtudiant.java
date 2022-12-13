@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import ca.qc.bdeb.c5gm.zoeken.POJO.ComptePOJO;
 import ca.qc.bdeb.c5gm.zoeken.POJO.Entreprise;
 
 public class InterfaceAdapterEtudiant extends RecyclerView.Adapter<InterfaceAdapterEtudiant.ViewHolder> {
@@ -55,7 +56,7 @@ public class InterfaceAdapterEtudiant extends RecyclerView.Adapter<InterfaceAdap
             tv_nom_compagnie = itemView.findViewById(R.id.tv_nom);
             layoutMain = itemView.findViewById(R.id.layoutMain);
             cb_stage_trouve = itemView.findViewById(R.id.cb_stage_trouve);
-            cb_stage_trouve.setEnabled(false);
+            cb_stage_trouve.setVisibility(View.GONE); // https://stackoverflow.com/questions/41223413/how-to-hide-an-item-from-recycler-view-on-a-particular-condition
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -81,5 +82,10 @@ public class InterfaceAdapterEtudiant extends RecyclerView.Adapter<InterfaceAdap
             });
 
         }
+    }
+    public void initialiserListeRechercheEntreprises(List<Entreprise> listeEntreprisesTrouvees) {
+        this.listeEntreprises = listeEntreprisesTrouvees;
+        notifyDataSetChanged();
+
     }
 }

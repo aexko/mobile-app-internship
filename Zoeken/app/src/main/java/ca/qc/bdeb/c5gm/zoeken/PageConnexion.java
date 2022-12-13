@@ -21,7 +21,7 @@ import retrofit2.Response;
 
 public class PageConnexion extends AppCompatActivity {
 
-    private EditText email_connexion, mdp_connexion;
+    private EditText emailConnexion, mdpConnexion;
     private Button btnConnexion, btnInscription;
     private MonApi client;
 
@@ -32,15 +32,15 @@ public class PageConnexion extends AppCompatActivity {
 
         btnConnexion = (Button) findViewById(R.id.btn_connexion);
         btnInscription = (Button) findViewById(R.id.btn_inscription);
-        email_connexion = findViewById(R.id.et_connexion_email);
-        mdp_connexion = findViewById(R.id.et_connexion_mdp);
+        emailConnexion = findViewById(R.id.et_connexion_email);
+        mdpConnexion = findViewById(R.id.et_connexion_mdp);
 
         client = MonApiClient.getRetrofit().create(MonApi.class);
         btnConnexion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String contenuEmail = email_connexion.getText().toString();
-                String contenuMdp = mdp_connexion.getText().toString();
+                String contenuEmail = emailConnexion.getText().toString();
+                String contenuMdp = mdpConnexion.getText().toString();
                 connecter(contenuEmail, contenuMdp);
             }
         });
@@ -57,8 +57,8 @@ public class PageConnexion extends AppCompatActivity {
     private void connecter(String email, String mdp) {
 //        LoginData loginData = new LoginData(email, mdp);
 //        pour les tests
-        LoginData loginData = new LoginData("prof1@test.com", "secret");
-        LoginData loginData1 = new LoginData("alexkao@gmail.com", "secret");
+        LoginData loginData1 = new LoginData("prof1@test.com", "secret");
+        LoginData loginData = new LoginData("alexkao@gmail.com", "secret");
 
         client.connecter(loginData).enqueue(
                 new Callback<CompteResult>() {

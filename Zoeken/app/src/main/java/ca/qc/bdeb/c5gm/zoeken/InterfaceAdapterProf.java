@@ -48,11 +48,20 @@ public class InterfaceAdapterProf extends RecyclerView.Adapter<InterfaceAdapterP
         TextView tv_nombre_de_stages;
         LinearLayout layoutMain;
 
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tv_nom_etudiant = itemView.findViewById(R.id.tv_nom);
             tv_nombre_de_stages = itemView.findViewById(R.id.tv_nombre_stages);
             layoutMain = itemView.findViewById(R.id.layoutMain);
+
         }
     }
+
+    public void initialiserListeRechercheEtudiants(List<ComptePOJO> listeEtudiantsTrouves) {
+        this.listeEtudiants = listeEtudiantsTrouves;
+        notifyDataSetChanged();
+
+    }
+
 }

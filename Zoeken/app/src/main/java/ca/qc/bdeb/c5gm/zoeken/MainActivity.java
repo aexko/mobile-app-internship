@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,7 +17,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import ca.qc.bdeb.c5gm.zoeken.Authentification.MonApi;
 import ca.qc.bdeb.c5gm.zoeken.Authentification.MonApiClient;
@@ -44,6 +47,12 @@ public class MainActivity extends AppCompatActivity {
     private Button btnDeconnexion;
     private FloatingActionButton btnOuvrirAjouterEntreprise;
 
+    private SearchView searchView;
+    private List<ComptePOJO> listeEtudiants;
+    private List<Entreprise> listeEntreprises;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,18 +71,34 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        searchView = findViewById(R.id.sv_rechercher);
+//        searchView.clearFocus();
+//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            @Override
+//            public boolean onQueryTextSubmit(String s) {
+//                initialiserSearchViewProfs();
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String s) {
+//                return false;
+//            }
+//        });
+
 
 
         Toolbar myToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
-        TextView tv_dashboard = (TextView) myToolbar.findViewById(R.id.tv_toolbar_nom);
 
         if (ConnectUtils.typeCompte == ComptePOJO.TypeCompte.PROFESSEUR) {
-            getListeEtudiants();
             btnOuvrirAjouterEntreprise.hide();
+            getListeEtudiants();
+            initialiserSearchViewProfs();
 
         } else {
             getListeEntreprises();
+            initialiserSearchViewEtudiants();
         }
 
         // MODIFIER
@@ -92,6 +117,62 @@ public class MainActivity extends AppCompatActivity {
         sauvegarderCompagnies();
     }
 
+    private void initialiserSearchViewEtudiants() {
+        searchView.clearFocus();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                List<Entreprise> listeEntreprisesTrouvees = new ArrayList<Entreprise>();
+                for (Entreprise entreprise : listeEntreprises) {
+                    if (entreprise.getNom().toLowerCase().contains(s.toLowerCase(Locale.ROOT))) {
+                        listeEntreprisesTrouvees.add(entreprise);
+                    }
+                }
+                if (listeEntreprisesTrouvees.isEmpty()) {
+                    Toast.makeText(MainActivity.this, "Pas de résultats trouvés", Toast.LENGTH_SHORT).show();
+                    adapterEtudiant.initialiserListeRechercheEntreprises(listeEntreprisesTrouvees);
+                } else {
+                    adapterEtudiant.initialiserListeRechercheEntreprises(listeEntreprisesTrouvees);
+                }
+                return true;
+            }
+        });
+    }
+
+    private void initialiserSearchViewProfs() {
+        searchView.clearFocus();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                List<ComptePOJO> listeEtudiantsTrouves = new ArrayList<ComptePOJO>();
+                for (ComptePOJO etudiant : listeEtudiants) {
+                    if (etudiant.getNom().toLowerCase().contains(s.toLowerCase(Locale.ROOT))) {
+                        listeEtudiantsTrouves.add(etudiant);
+                    }
+                }
+                if (listeEtudiantsTrouves.isEmpty()) {
+                    Toast.makeText(MainActivity.this, "Pas de résultats trouvés", Toast.LENGTH_SHORT).show();
+                } else {
+                    adapterProf.initialiserListeRechercheEtudiants(listeEtudiantsTrouves);
+                }
+                return true;
+            }
+        });
+    }
+
+
     private void getListeEntreprises() {
         client.getEtudiantConnecte(ConnectUtils.authToken).enqueue(
                 new Callback<ComptePOJO>() {
@@ -100,7 +181,7 @@ public class MainActivity extends AppCompatActivity {
                         if (response.isSuccessful()) {
                             Toast.makeText(MainActivity.this, "Succès: Récupération des entreprises de l'étudiant", Toast.LENGTH_SHORT).show();
                             ComptePOJO comptePOJO = response.body();
-                            List<Entreprise> listeEntreprises = comptePOJO.getEntreprises();
+                            listeEntreprises = comptePOJO.getEntreprises();
                             adapterEtudiant = new InterfaceAdapterEtudiant(listeEntreprises, MainActivity.this);
                             recyclerView.setLayoutManager(new GridLayoutManager(MainActivity.this, 1));
                             recyclerView.setAdapter(adapterEtudiant);
@@ -121,7 +202,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(Call<List<ComptePOJO>> call, Response<List<ComptePOJO>> response) {
                         if (response.isSuccessful()) {
                             Toast.makeText(MainActivity.this, "Récupération de la liste des étudiants réussie", Toast.LENGTH_SHORT).show();
-                            List<ComptePOJO> listeEtudiants = response.body();
+                            listeEtudiants = response.body();
 
                             adapterProf = new InterfaceAdapterProf(listeEtudiants, MainActivity.this);
                             recyclerView.setLayoutManager(new GridLayoutManager(MainActivity.this, 1));
@@ -135,6 +216,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
         );
+
     }
 
     /**
