@@ -31,4 +31,6 @@
     <string name="se_d_connecter">Se déconnecter</string>
     <string name="dashboard">Dashboard</string>
     <string name="province">Province</string>
+    <string name="stage_trouv">Stage trouvé</string>
+    <string name="texte">Texte</string>
 </resources>
