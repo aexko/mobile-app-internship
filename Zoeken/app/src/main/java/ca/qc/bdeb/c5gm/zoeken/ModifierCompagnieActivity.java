@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -37,7 +38,7 @@ public class ModifierCompagnieActivity extends AppCompatActivity {
     private String id_compagnie, nom_compagnie, nom_contact, email, telephone,
             site_web, adresse, ville, province, code_postal, date_contact;
 
-    private Button btnSupprimer;
+    private Button btnSupprimer, btnModifier;
 
     private MonApi client;
 
@@ -59,10 +60,19 @@ public class ModifierCompagnieActivity extends AppCompatActivity {
         et_date_contact = findViewById(R.id.et_date_contact_m);
 
         btnSupprimer = findViewById(R.id.btn_supprimer_compagnie);
+        btnModifier = findViewById(R.id.btn_modifier_compagnie);
+
         btnSupprimer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 supprimerEntreprise();
+            }
+        });
+
+        btnModifier.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ouvrirDialogueConfirmation();
             }
         });
 
@@ -74,7 +84,7 @@ public class ModifierCompagnieActivity extends AppCompatActivity {
 
     private void supprimerEntreprise() {
 
-        client.supprEntreprise(ConnectUtils.authToken,id_compagnie).enqueue(
+        client.supprEntreprise(ConnectUtils.authToken, id_compagnie).enqueue(
                 new Callback<Entreprise>() {
                     @Override
                     public void onResponse(Call<Entreprise> call, Response<Entreprise> response) {
@@ -146,15 +156,6 @@ public class ModifierCompagnieActivity extends AppCompatActivity {
     }
 
     /**
-     * Pour supprimer une compagnie
-     *
-     * @param view
-     */
-    public void supprimerCompagnie(View view) {
-        ouvrirDialogueConfirmation();
-    }
-
-    /**
      * Pour ouvrir une fenêtre pour confirmer la supression d'une compagnie
      */
     void ouvrirDialogueConfirmation() {
@@ -168,7 +169,7 @@ public class ModifierCompagnieActivity extends AppCompatActivity {
                 ZoekenDatabaseHelper bd = new ZoekenDatabaseHelper
                         (ModifierCompagnieActivity.this);
                 bd.supprimerCompagnie(id_compagnie);
-
+                supprimerEntreprise();
                 finish();
             }
         });
@@ -230,6 +231,13 @@ public class ModifierCompagnieActivity extends AppCompatActivity {
     public void envoyerEmail(View view) {
         String[] email = new String[1];
         email[0] = et_email.getText().toString();
+
+        if (!Patterns.EMAIL_ADDRESS.matcher(email[0]).matches()) {
+            Toast.makeText(this, "Erreur, adresse courriel non valide.",
+                    Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         Intent intent = new Intent(Intent.ACTION_SENDTO);
         intent.setData(Uri.parse("mailto:"));
         intent.putExtra(Intent.EXTRA_EMAIL, email);
