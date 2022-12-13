@@ -146,7 +146,8 @@ public class MainActivity extends AppCompatActivity {
             public boolean onQueryTextChange(String s) {
                 List<ComptePOJO> listeEtudiantsTrouves = new ArrayList<ComptePOJO>();
                 for (ComptePOJO etudiant : listeEtudiants) {
-                    if (etudiant.getNom().toLowerCase().contains(s.toLowerCase(Locale.ROOT))) {
+                    if (etudiant.getNom().toLowerCase().contains(s.toLowerCase(Locale.ROOT)) ||
+                            etudiant.getPrenom().toLowerCase().contains(s.toLowerCase(Locale.ROOT))) {
                         listeEtudiantsTrouves.add(etudiant);
                     }
                 }
