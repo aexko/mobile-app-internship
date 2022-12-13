@@ -62,10 +62,11 @@ public class PageInscription extends AppCompatActivity {
 
     /**
      * Permet de s'inscrire dans le serveur distant
-     * @param contenuNom nom entre de l'utilisateur
-     * @param contenuPrenom prenom entre de l'utilisateur
-     * @param contenuEmail email entre de l'utilisateur
-     * @param contenuMdp mdp entre de l'utilisateur
+     *
+     * @param contenuNom             nom entre de l'utilisateur
+     * @param contenuPrenom          prenom entre de l'utilisateur
+     * @param contenuEmail           email entre de l'utilisateur
+     * @param contenuMdp             mdp entre de l'utilisateur
      * @param contenuMdpConformation mdp confirme de l'utilisateur
      */
     private void inscrire(String contenuNom, String contenuPrenom, String contenuEmail, String contenuMdp, String contenuMdpConformation) {

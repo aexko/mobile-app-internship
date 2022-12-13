@@ -20,6 +20,7 @@ public class MonApiClient {
 
     /**
      * Initialisation de Retrofit
+     *
      * @return retrofit
      */
     public static Retrofit getRetrofit() {

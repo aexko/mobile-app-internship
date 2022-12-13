@@ -26,10 +26,11 @@ public class CreationCompteData {
 
     /**
      * Constructeur de la classe CreationCompteData
-     * @param nom nom du nouvel etudiant
-     * @param prenom prenom du nouvel etudiant
-     * @param email email du nouvel etudiant
-     * @param motDePasse mdp du nouvel etudiant
+     *
+     * @param nom                    nom du nouvel etudiant
+     * @param prenom                 prenom du nouvel etudiant
+     * @param email                  email du nouvel etudiant
+     * @param motDePasse             mdp du nouvel etudiant
      * @param motDePasseConfirmation mdp confirme du nouvel etudiant
      */
     public CreationCompteData(String nom, String prenom, String email, String motDePasse, String motDePasseConfirmation) {

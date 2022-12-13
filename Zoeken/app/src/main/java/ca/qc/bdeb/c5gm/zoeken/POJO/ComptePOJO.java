@@ -38,6 +38,7 @@ public class ComptePOJO {
 
     /**
      * Constructeur de ComptePOJO
+     *
      * @param nom
      */
     public ComptePOJO(String nom) {

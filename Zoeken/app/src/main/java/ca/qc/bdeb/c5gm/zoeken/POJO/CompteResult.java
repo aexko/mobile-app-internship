@@ -34,13 +34,14 @@ public class CompteResult {
 
     /**
      * Constructeur de CompteResult
-     * @param typeCompte type de compte
-     * @param id id du compte
+     *
+     * @param typeCompte  type de compte
+     * @param id          id du compte
      * @param accessToken token du compte
-     * @param nom nom du compte
-     * @param prenom prenom du compte
-     * @param email email du compte
-     * @param expiresAt expiration du compte
+     * @param nom         nom du compte
+     * @param prenom      prenom du compte
+     * @param email       email du compte
+     * @param expiresAt   expiration du compte
      */
     public CompteResult(String id, String nom, String prenom, String email, ComptePOJO.TypeCompte typeCompte, String accessToken) {
         super();

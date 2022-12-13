@@ -27,6 +27,7 @@ public interface MonApi {
 
     /**
      * Pour la deconnexion
+     *
      * @param token ConnectUtils.authToken
      * @return reponse du serveur
      */
@@ -38,6 +39,7 @@ public interface MonApi {
 
     /**
      * Pour la connexion
+     *
      * @param loginData Entrees de l'utilisateur
      * @return reponse du serveur
      */
@@ -46,6 +48,7 @@ public interface MonApi {
 
     /**
      * Pour l'inscription
+     *
      * @param loginData Entrees de l'utilisateur
      * @return reponse du serveur
      */
@@ -54,6 +57,7 @@ public interface MonApi {
 
     /**
      * Pour recuperer les comptes des eleves
+     *
      * @param token ConnectUtils.authToken
      * @return reponse du serveur
      */
@@ -62,6 +66,7 @@ public interface MonApi {
 
     /**
      * Pour recuperer les informations de l'etudiant connecte
+     *
      * @param token ConnectUtils.authToken
      * @return reponse du serveur
      */
@@ -70,7 +75,8 @@ public interface MonApi {
 
     /**
      * Pour supprimer un stage (non utilise dans le TP)
-     * @param token ConnectUtils.authToken
+     *
+     * @param token   ConnectUtils.authToken
      * @param idStage id du stage
      * @return reponse du serveur
      */
@@ -79,7 +85,8 @@ public interface MonApi {
 
     /**
      * Pour creer une entreprise
-     * @param token ConnectUtils.authToken
+     *
+     * @param token      ConnectUtils.authToken
      * @param entreprise Objet Entreprise
      * @return reponse du serveur
      */
@@ -87,7 +94,6 @@ public interface MonApi {
     Call<Entreprise> creerEntreprise(@Header("Authorization") String token, @Body Entreprise entreprise);
 
     /**
-     *
      * @param token ConnectUtils.authToken
      * @return reponse du serveur
      */
@@ -95,22 +101,20 @@ public interface MonApi {
     Call<List<Entreprise>> lireEntreprises(@Header("Authorization") String token);
 
     /**
-     *
-     * @param token ConnectUtils.authToken
+     * @param token        ConnectUtils.authToken
      * @param idEntreprise id de l'entreprise
-     * @param entreprise Objet Entreprise
+     * @param entreprise   Objet Entreprise
      * @return reponse du serveur
      */
     @PATCH("/entreprise/{idEntreprise}")
     Call<Entreprise> modifierEntreprise(@Header("Authorization") String token, @Path("idEntreprise") String idEntreprise, @Body Entreprise entreprise);
 
     /**
-     *
-     * @param token ConnectUtils.authToken
+     * @param token        ConnectUtils.authToken
      * @param idEntreprise id de l'entreprise
      * @return reponse du serveur
      */
     @DELETE("/entreprise/{idEntreprise}")
     Call<Entreprise> supprEntreprise(@Header("Authorization") String token, @Path("idEntreprise") String idEntreprise);
-    
+
 }

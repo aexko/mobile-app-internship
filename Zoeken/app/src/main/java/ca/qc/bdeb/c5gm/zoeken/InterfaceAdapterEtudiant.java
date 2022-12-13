@@ -2,7 +2,6 @@ package ca.qc.bdeb.c5gm.zoeken;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,8 +23,9 @@ public class InterfaceAdapterEtudiant extends RecyclerView.Adapter<InterfaceAdap
 
     /**
      * Constructeur de InterfaceAdapterEtudiant
+     *
      * @param listeEntreprises liste d'entreprises
-     * @param context context actuel
+     * @param context          context actuel
      */
     public InterfaceAdapterEtudiant(List<Entreprise> listeEntreprises, Context context) {
         this.listeEntreprises = listeEntreprises;
@@ -100,6 +100,7 @@ public class InterfaceAdapterEtudiant extends RecyclerView.Adapter<InterfaceAdap
 
     /**
      * Change la liste des entreprises selon l'entree de l'etudiant
+     *
      * @param listeEntreprisesTrouvees liste des entreprises trouvees par la recherche
      */
     public void initialiserListeRechercheEntreprises(List<Entreprise> listeEntreprisesTrouvees) {

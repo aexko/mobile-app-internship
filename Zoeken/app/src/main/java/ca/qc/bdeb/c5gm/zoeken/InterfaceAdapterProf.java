@@ -1,7 +1,6 @@
 package ca.qc.bdeb.c5gm.zoeken;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,8 +22,9 @@ public class InterfaceAdapterProf extends RecyclerView.Adapter<InterfaceAdapterP
 
     /**
      * Constructeur de InterfaceAdapterProf
+     *
      * @param listeEtudiants liste des etudiants
-     * @param context context actuel
+     * @param context        context actuel
      */
     public InterfaceAdapterProf(List<ComptePOJO> listeEtudiants, Context context) {
         this.listeEtudiants = listeEtudiants;
@@ -72,6 +72,7 @@ public class InterfaceAdapterProf extends RecyclerView.Adapter<InterfaceAdapterP
 
     /**
      * Change la liste des etudiants selon l'entree du prof
+     *
      * @param listeEtudiantsTrouves liste des etudiants trouves par la recherche
      */
     public void initialiserListeRechercheEtudiants(List<ComptePOJO> listeEtudiantsTrouves) {

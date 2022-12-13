@@ -17,7 +17,8 @@ public class LoginData {
 
     /**
      * Constructeur de la classe LoginData
-     * @param email email de l'utilisateur
+     *
+     * @param email      email de l'utilisateur
      * @param motDePasse mdp de l'utilisateur
      */
     public LoginData(String email, String motDePasse) {

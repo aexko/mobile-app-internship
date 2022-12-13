@@ -21,8 +21,6 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 
-import java.util.ArrayList;
-
 import ca.qc.bdeb.c5gm.zoeken.databinding.ActivityMapsBinding;
 
 // SOURCE: Exemple du professeur

@@ -136,7 +136,6 @@ public class ModifierEntreprise extends AppCompatActivity {
      * pour remplir les champs
      */
     public void mettreAJourDonneesAffichage() {
-        Toast.makeText(this, "id" + id_compagnie, Toast.LENGTH_SHORT).show();
         id_compagnie = getIntent().getStringExtra("id_compagnie");
         id_compagnie_uuid = UUID.fromString(id_compagnie);
         nom_compagnie = getIntent().getStringExtra("nom_compagnie");

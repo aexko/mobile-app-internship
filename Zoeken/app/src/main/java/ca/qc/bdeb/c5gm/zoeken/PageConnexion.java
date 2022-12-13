@@ -62,6 +62,7 @@ public class PageConnexion extends AppCompatActivity {
 
     /**
      * Permet la connexion d'un utilisateur au serveur distant
+     *
      * @param email email entre de l'utilisateur
      * @param mdp   mdp entre de l'utilisateur
      */

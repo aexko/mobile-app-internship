@@ -1,6 +1,5 @@
 package ca.qc.bdeb.c5gm.zoeken;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -74,16 +73,17 @@ public class AjouterEntreprise extends AppCompatActivity {
 
     /**
      * Ajoute une entreprise dans le serveur
+     *
      * @param contenuNomEntreprise nom entre de l'entreprise
-     * @param contenuNomContact contact entre de l'entreprise
-     * @param contenuEmail email entre de l'entreprise
-     * @param contenuTelephone telephone entre de l'entreprise
-     * @param contenuSiteWeb site web entre de l'entreprise
-     * @param contenuAdresse adresse entree de l'entreprise
-     * @param contenuVille ville entree de l'entreprise
-     * @param contenuProvince province entree de l'entreprise
-     * @param contenuCodePostal code postal de l'entreprise
-     * @param contenuDateContact date contact de l'entreprise
+     * @param contenuNomContact    contact entre de l'entreprise
+     * @param contenuEmail         email entre de l'entreprise
+     * @param contenuTelephone     telephone entre de l'entreprise
+     * @param contenuSiteWeb       site web entre de l'entreprise
+     * @param contenuAdresse       adresse entree de l'entreprise
+     * @param contenuVille         ville entree de l'entreprise
+     * @param contenuProvince      province entree de l'entreprise
+     * @param contenuCodePostal    code postal de l'entreprise
+     * @param contenuDateContact   date contact de l'entreprise
      */
     private void ajouterEntreprise(String contenuNomEntreprise, String contenuNomContact, String contenuEmail, String contenuTelephone, String contenuSiteWeb, String contenuAdresse, String contenuVille, String contenuProvince, String contenuCodePostal, String contenuDateContact) {
         Entreprise entreprise = new Entreprise(UUID.randomUUID(), contenuNomEntreprise, contenuNomContact, contenuEmail, contenuTelephone, contenuSiteWeb, contenuAdresse, contenuVille, contenuProvince, contenuCodePostal, contenuDateContact, false);
