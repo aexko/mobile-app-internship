@@ -5,8 +5,26 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.UUID;
 
+/**
+ * Classe Entreprise
+ */
 public class Entreprise {
 
+    /**
+     * Constructeur de la classe entreprise
+     * @param id
+     * @param nom
+     * @param contact
+     * @param email
+     * @param telephone
+     * @param siteWeb
+     * @param adresse
+     * @param ville
+     * @param province
+     * @param codePostal
+     * @param dateContact
+     * @param estFavorite
+     */
     public Entreprise(UUID id, String nom, String contact, String email, String telephone, String siteWeb, String adresse, String ville, String province, String codePostal, String dateContact, Boolean estFavorite) {
         this.id = id;
         this.nom = nom;
@@ -59,6 +77,7 @@ public class Entreprise {
     @Expose
     private Boolean estFavorite;
     private final static long serialVersionUID = -8437459210334057704L;
+
 
     public UUID getId() {
         return id;

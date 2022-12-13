@@ -134,6 +134,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_province" />
 
+    <EditText
+        android:id="@+id/et_province"
+        android:layout_width="0dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="@string/province"
+        android:inputType="textPersonName"
+        android:textColorHint="#757575"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_ville" />
+
     <Button
         android:id="@+id/btn_ajouter_compagnie"
         android:layout_width="0dp"
@@ -144,16 +157,4 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_date_contact" />
-
-    <EditText
-        android:id="@+id/et_province"
-        android:layout_width="0dp"
-        android:layout_height="49dp"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:hint="@string/province"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_ville" />
 </androidx.constraintlayout.widget.ConstraintLayout>

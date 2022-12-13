@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -15,6 +16,14 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+
+import ca.qc.bdeb.c5gm.zoeken.Authentification.MonApi;
+import ca.qc.bdeb.c5gm.zoeken.Authentification.MonApiClient;
+import ca.qc.bdeb.c5gm.zoeken.POJO.ConnectUtils;
+import ca.qc.bdeb.c5gm.zoeken.POJO.Entreprise;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 // SOURCE: https://www.youtube.com/playlist?list=PLSrm9z4zp4mGK0g_0_jxYGgg3os9tqRUQ
 
@@ -27,6 +36,10 @@ public class ModifierCompagnieActivity extends AppCompatActivity {
 
     private String id_compagnie, nom_compagnie, nom_contact, email, telephone,
             site_web, adresse, ville, province, code_postal, date_contact;
+
+    private Button btnSupprimer;
+
+    private MonApi client;
 
 
     @Override
@@ -45,7 +58,40 @@ public class ModifierCompagnieActivity extends AppCompatActivity {
         et_code_postal = findViewById(R.id.et_code_postal_m);
         et_date_contact = findViewById(R.id.et_date_contact_m);
 
+        btnSupprimer = findViewById(R.id.btn_supprimer_compagnie);
+        btnSupprimer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                supprimerEntreprise();
+            }
+        });
+
         mettreAJourDonneesAffichage();
+
+        client = MonApiClient.getRetrofit().create(MonApi.class);
+
+    }
+
+    private void supprimerEntreprise() {
+
+        client.supprEntreprise(ConnectUtils.authToken,id_compagnie).enqueue(
+                new Callback<Entreprise>() {
+                    @Override
+                    public void onResponse(Call<Entreprise> call, Response<Entreprise> response) {
+                        if (response.isSuccessful()) {
+                            Toast.makeText(ModifierCompagnieActivity.this, "Succes: suppression de l'entreprise", Toast.LENGTH_SHORT).show();
+                            finish();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Entreprise> call, Throwable t) {
+                        Toast.makeText(ModifierCompagnieActivity.this, "Echec: suppression de l'entreprise", Toast.LENGTH_SHORT).show();
+                    }
+                }
+        );
+
+
     }
 
     /**
@@ -53,6 +99,7 @@ public class ModifierCompagnieActivity extends AppCompatActivity {
      * pour remplir les champs de la compagnie
      */
     public void mettreAJourDonneesAffichage() {
+        Toast.makeText(this, "id" + id_compagnie, Toast.LENGTH_SHORT).show();
         id_compagnie = getIntent().getStringExtra("id_compagnie");
         nom_compagnie = getIntent().getStringExtra("nom_compagnie");
         nom_contact = getIntent().getStringExtra("nom_contact");

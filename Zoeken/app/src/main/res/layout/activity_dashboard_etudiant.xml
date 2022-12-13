@@ -36,6 +36,8 @@
             android:id="@+id/btn_deconnexion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTintMode="src_in"
+            android:shadowColor="#00FFFFFF"
             android:text="@string/se_d_connecter" />
 
 

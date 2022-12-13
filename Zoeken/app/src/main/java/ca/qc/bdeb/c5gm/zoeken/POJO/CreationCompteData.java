@@ -3,6 +3,9 @@ package ca.qc.bdeb.c5gm.zoeken.POJO;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+/**
+ * Classe CreationCompteData
+ */
 public class CreationCompteData {
     @SerializedName("nom")
     @Expose
@@ -21,6 +24,14 @@ public class CreationCompteData {
     private String motDePasseConfirmation;
     private final static long serialVersionUID = -3798612850575773101L;
 
+    /**
+     * Constructeur de la classe CreationCompteData
+     * @param nom
+     * @param prenom
+     * @param email
+     * @param motDePasse
+     * @param motDePasseConfirmation
+     */
     public CreationCompteData(String nom, String prenom, String email, String motDePasse, String motDePasseConfirmation) {
         this.nom = nom;
         this.prenom = prenom;

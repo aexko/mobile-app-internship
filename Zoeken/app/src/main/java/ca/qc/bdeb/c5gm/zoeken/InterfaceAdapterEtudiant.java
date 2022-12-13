@@ -59,6 +59,7 @@ public class InterfaceAdapterEtudiant extends RecyclerView.Adapter<InterfaceAdap
                     if (position != -1) { // -1: aucune position
                         Entreprise entreprise = listeEntreprises.get(position);
                         Intent intent = new Intent(context, ModifierCompagnieActivity.class);
+                        intent.putExtra("id_compagnie", entreprise.getId().toString());
                         intent.putExtra("nom_compagnie", entreprise.getNom());
                         intent.putExtra("nom_contact", entreprise.getContact());
                         intent.putExtra("email", entreprise.getEmail());

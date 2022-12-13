@@ -8,6 +8,9 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+/**
+ * Classe ComptePOJO
+ */
 public class ComptePOJO {
 
     @SerializedName("id")

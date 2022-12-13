@@ -19,7 +19,7 @@
                 android:id="@+id/et_code_postal"
                 android:layout_width="0dp"
                 android:layout_height="56dp"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:ems="10"
                 android:hint="@string/code_postal"
@@ -32,7 +32,7 @@
 
             <EditText
                 android:id="@+id/et_adresse"
-                android:layout_width="0dp"
+                android:layout_width="413dp"
                 android:layout_height="56dp"
                 android:layout_marginTop="8dp"
                 android:ems="10"
@@ -40,15 +40,31 @@
                 android:inputType="text"
                 android:minHeight="48dp"
                 android:textColorHint="#757575"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_telephone" />
+
+            <EditText
+                android:id="@+id/et_province"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:ems="10"
+                android:hint="@string/province"
+                android:inputType="textPersonName"
+                android:textColorHint="#757575"
+                app:layout_constraintBottom_toTopOf="@+id/et_code_postal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/et_adresse"
                 app:layout_constraintTop_toBottomOf="@+id/et_telephone" />
 
             <EditText
                 android:id="@+id/et_telephone"
                 android:layout_width="0dp"
                 android:layout_height="56dp"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:ems="10"
                 android:hint="@string/telephone"
@@ -94,12 +110,13 @@
                 android:onClick="ajouterCompagnie"
                 android:text="@string/ajouter"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/et_date_contact" />
 
             <EditText
                 android:id="@+id/et_email"
-                android:layout_width="471dp"
+                android:layout_width="413dp"
                 android:layout_height="56dp"
                 android:layout_marginTop="8dp"
                 android:ems="10"
@@ -139,7 +156,7 @@
 
             <EditText
                 android:id="@+id/et_ville"
-                android:layout_width="449dp"
+                android:layout_width="413dp"
                 android:layout_height="56dp"
                 android:layout_marginTop="8dp"
                 android:ems="10"

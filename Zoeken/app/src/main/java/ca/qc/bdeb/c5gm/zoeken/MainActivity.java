@@ -14,6 +14,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
     private MonApi client;
 
     private Button btnDeconnexion;
+    private FloatingActionButton btnOuvrirAjouterEntreprise;
 
 
     @Override
@@ -50,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recycler_view);
         btnDeconnexion = (Button) findViewById(R.id.btn_deconnexion);
+        btnOuvrirAjouterEntreprise = (FloatingActionButton) findViewById(R.id.btn_ouvrir_ajouter_compagnie);
         client = MonApiClient.getRetrofit().create(MonApi.class);
 
         btnDeconnexion.setOnClickListener(new View.OnClickListener() {
@@ -59,12 +63,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+
         Toolbar myToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
         TextView tv_dashboard = (TextView) myToolbar.findViewById(R.id.tv_toolbar);
 
         if (ConnectUtils.typeCompte == ComptePOJO.TypeCompte.PROFESSEUR) {
             getListeEtudiants();
+            btnOuvrirAjouterEntreprise.hide();
+
         } else {
             getListeEntreprises();
         }

@@ -57,8 +57,8 @@ public class PageConnexion extends AppCompatActivity {
     private void connecter(String email, String mdp) {
 //        LoginData loginData = new LoginData(email, mdp);
 //        pour les tests
-        LoginData loginData1 = new LoginData("prof1@test.com", "secret");
-        LoginData loginData = new LoginData("alexkao@gmail.com", "secret");
+        LoginData loginData = new LoginData("prof1@test.com", "secret");
+        LoginData loginData1 = new LoginData("alexkao@gmail.com", "secret");
 
         client.connecter(loginData).enqueue(
                 new Callback<CompteResult>() {

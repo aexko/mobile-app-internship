@@ -5,6 +5,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class CompteProf {
 
+    /**
+     * Classe CompteProf
+     */
     @SerializedName("id")
     @Expose
     private String id;
