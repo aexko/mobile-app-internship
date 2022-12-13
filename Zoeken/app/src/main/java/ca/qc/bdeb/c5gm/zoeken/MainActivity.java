@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import ca.qc.bdeb.c5gm.zoeken.Authentification.MonApi;
@@ -67,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar myToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
-        TextView tv_dashboard = (TextView) myToolbar.findViewById(R.id.tv_toolbar);
+        TextView tv_dashboard = (TextView) myToolbar.findViewById(R.id.tv_toolbar_nom);
 
         if (ConnectUtils.typeCompte == ComptePOJO.TypeCompte.PROFESSEUR) {
             getListeEtudiants();

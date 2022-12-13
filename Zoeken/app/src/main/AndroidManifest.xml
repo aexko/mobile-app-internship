@@ -18,13 +18,6 @@
         android:theme="@style/Theme.Zoeken"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".DashboardEtudiant"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".PageInscription"
             android:exported="false">
             <meta-data
