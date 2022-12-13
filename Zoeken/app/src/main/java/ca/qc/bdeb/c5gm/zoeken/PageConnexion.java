@@ -72,7 +72,7 @@ public class PageConnexion extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<CompteResult> call, Response<CompteResult> response) {
                         if (response.isSuccessful()) {
-                            Toast.makeText(PageConnexion.this, "Connexion réussie", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(PageConnexion.this, "Succès: Connexion de l'utilisateur", Toast.LENGTH_SHORT).show();
                             CompteResult json = response.body();
                             ConnectUtils.authId = json.getId();
                             ConnectUtils.authToken = json.getAccessToken();
@@ -83,7 +83,7 @@ public class PageConnexion extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<CompteResult> call, Throwable t) {
-                        Toast.makeText(PageConnexion.this, "Connexion invalide", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PageConnexion.this, "Échec: Connexion de l'utilisateur", Toast.LENGTH_SHORT).show();
                     }
 
                 }

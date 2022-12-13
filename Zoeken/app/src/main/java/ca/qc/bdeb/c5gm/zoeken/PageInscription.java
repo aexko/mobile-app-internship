@@ -75,7 +75,7 @@ public class PageInscription extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<ComptePOJO> call, Response<ComptePOJO> response) {
                         if (response.isSuccessful()) {
-                            Toast.makeText(PageInscription.this, "Inscription réussie", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(PageInscription.this, "Succès: Inscription de l'étudiant", Toast.LENGTH_SHORT).show();
                             ouvrirDashboard();
                             finish();
                         }
@@ -83,7 +83,7 @@ public class PageInscription extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<ComptePOJO> call, Throwable t) {
-                        Toast.makeText(PageInscription.this, "Inscription non réussie", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PageInscription.this, "Échec: Inscription de l'étudiant", Toast.LENGTH_SHORT).show();
                     }
                 }
         );

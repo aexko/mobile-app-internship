@@ -66,6 +66,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        btnOuvrirAjouterEntreprise.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ouvrirPageAjouterEntreprise();
+            }
+        });
+
         if (ConnectUtils.typeCompte == ComptePOJO.TypeCompte.PROFESSEUR) {
             btnOuvrirAjouterEntreprise.hide();
             getListeEtudiants();
@@ -77,6 +84,14 @@ public class MainActivity extends AppCompatActivity {
 
         // Partie SQLite auquelle je n'ai pas vraiment travaillee
         bd = new ZoekenDatabaseHelper(MainActivity.this);
+    }
+
+    /**
+     * Ouvre la page d'inscription
+     */
+    private void ouvrirPageAjouterEntreprise() {
+        Intent intent = new Intent(MainActivity.this, AjouterEntreprise.class);
+        startActivity(intent);
     }
 
     /**
@@ -168,7 +183,7 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<ComptePOJO> call, Throwable t) {
-
+                        Toast.makeText(MainActivity.this, "Échec: Récupération des entreprises de l'étudiant", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
@@ -182,7 +197,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<List<ComptePOJO>> call, Response<List<ComptePOJO>> response) {
                         if (response.isSuccessful()) {
-                            Toast.makeText(MainActivity.this, "Récupération de la liste des étudiants réussie", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, "Succès: Récupération de la liste des étudiants", Toast.LENGTH_SHORT).show();
                             listeEtudiants = response.body();
                             adapterProf = new InterfaceAdapterProf(listeEtudiants, MainActivity.this);
                             recyclerView.setLayoutManager(new GridLayoutManager(MainActivity.this, 1));
@@ -192,7 +207,7 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<List<ComptePOJO>> call, Throwable t) {
-                        Toast.makeText(MainActivity.this, "Récupération de la liste des étudiants non réussie", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "Échec: Récupération de la liste des étudiants", Toast.LENGTH_SHORT).show();
                     }
                 }
         );
@@ -222,14 +237,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful()) {
-                    Toast.makeText(MainActivity.this, "OK", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Succès: Déconnexion de l'utilisateur", Toast.LENGTH_SHORT).show();
                     finish();
                 }
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Toast.makeText(MainActivity.this, "NON-OK", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Échec: Déconnexion de l'utilisateur", Toast.LENGTH_SHORT).show();
             }
         });
     }

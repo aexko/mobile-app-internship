@@ -1,5 +1,6 @@
 package ca.qc.bdeb.c5gm.zoeken;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -92,6 +93,8 @@ public class AjouterEntreprise extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     Toast.makeText(AjouterEntreprise.this, "Succès: Création d'entreprise", Toast.LENGTH_SHORT).show();
                     finish();
+                    startActivity(getIntent());
+
                 }
             }
 

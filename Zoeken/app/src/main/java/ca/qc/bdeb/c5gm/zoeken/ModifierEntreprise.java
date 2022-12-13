@@ -96,13 +96,14 @@ public class ModifierEntreprise extends AppCompatActivity {
             @Override
             public void onResponse(Call<Entreprise> call, Response<Entreprise> response) {
                 if (response.isSuccessful()) {
-                    Toast.makeText(ModifierEntreprise.this, "Succès: modification de l'entreprise", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ModifierEntreprise.this, "Succès: Modification de l'entreprise", Toast.LENGTH_SHORT).show();
                     finish();
                 }
             }
 
             @Override
             public void onFailure(Call<Entreprise> call, Throwable t) {
+                Toast.makeText(ModifierEntreprise.this, "Échec: Modification de l'entreprise", Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -115,14 +116,14 @@ public class ModifierEntreprise extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<Entreprise> call, Response<Entreprise> response) {
                         if (response.isSuccessful()) {
-                            Toast.makeText(ModifierEntreprise.this, "Succes: suppression de l'entreprise", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ModifierEntreprise.this, "Succès: Suppression de l'entreprise", Toast.LENGTH_SHORT).show();
                             finish();
                         }
                     }
 
                     @Override
                     public void onFailure(Call<Entreprise> call, Throwable t) {
-                        Toast.makeText(ModifierEntreprise.this, "Echec: suppression de l'entreprise", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ModifierEntreprise.this, "Échec: suppression de l'entreprise", Toast.LENGTH_SHORT).show();
                     }
                 }
         );
