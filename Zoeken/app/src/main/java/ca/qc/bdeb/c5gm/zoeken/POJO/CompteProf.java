@@ -3,11 +3,11 @@ package ca.qc.bdeb.c5gm.zoeken.POJO;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+/**
+ * Classe CompteProf
+ */
 public class CompteProf {
 
-    /**
-     * Classe CompteProf
-     */
     @SerializedName("id")
     @Expose
     private String id;
@@ -31,6 +31,9 @@ public class CompteProf {
     private String expiresAt;
     private final static long serialVersionUID = 8831403954845905001L;
 
+    /**
+     * Tous les getter et setter de CompteProf
+     */
     public String getId() {
         return id;
     }

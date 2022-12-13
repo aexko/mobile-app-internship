@@ -33,32 +33,30 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-
     private RecyclerView recyclerView;
     private ZoekenDatabaseHelper bd;
-//    private ArrayList<String> id_compagnie, nom_compagnie, nom_contact, email, telephone,
-//            site_web, adresse, ville, code_postal, date_de_contact;
-
     private InterfaceAdapterEtudiant adapterEtudiant;
     private InterfaceAdapterProf adapterProf;
-
-    private MonApi client;
-
     private Button btnDeconnexion;
     private FloatingActionButton btnOuvrirAjouterEntreprise;
 
-    private SearchView searchView;
+    private MonApi client;
+
     private List<ComptePOJO> listeEtudiants;
     private List<Entreprise> listeEntreprises;
+
+    private SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        recyclerView = findViewById(R.id.recycler_view);
-        btnDeconnexion = (Button) findViewById(R.id.btn_deconnexion);
-        btnOuvrirAjouterEntreprise = (FloatingActionButton) findViewById(R.id.btn_ouvrir_ajouter_compagnie);
+        initialisationComposants();
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
         client = MonApiClient.getRetrofit().create(MonApi.class);
 
         btnDeconnexion.setOnClickListener(new View.OnClickListener() {
@@ -67,11 +65,6 @@ public class MainActivity extends AppCompatActivity {
                 deconnexion();
             }
         });
-
-        searchView = findViewById(R.id.sv_rechercher);
-
-        Toolbar myToolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(myToolbar);
 
         if (ConnectUtils.typeCompte == ComptePOJO.TypeCompte.PROFESSEUR) {
             btnOuvrirAjouterEntreprise.hide();
@@ -82,23 +75,23 @@ public class MainActivity extends AppCompatActivity {
             initialiserSearchViewEtudiants();
         }
 
-        // MODIFIER
+        // Partie SQLite auquelle je n'ai pas vraiment travaillee
         bd = new ZoekenDatabaseHelper(MainActivity.this);
-//        id_compagnie = new ArrayList<>();
-//        nom_compagnie = new ArrayList<>();
-//        nom_contact = new ArrayList<>();
-//        email = new ArrayList<>();
-//        telephone = new ArrayList<>();
-//        site_web = new ArrayList<>();
-//        adresse = new ArrayList<>();
-//        ville = new ArrayList<>();
-//        code_postal = new ArrayList<>();
-//        date_de_contact = new ArrayList<>();
-
-        sauvegarderCompagnies();
     }
 
+    /**
+     * Initialise les composants
+     */
+    private void initialisationComposants() {
+        recyclerView = findViewById(R.id.recycler_view);
+        btnDeconnexion = (Button) findViewById(R.id.btn_deconnexion);
+        btnOuvrirAjouterEntreprise = (FloatingActionButton) findViewById(R.id.btn_ouvrir_ajouter_compagnie);
+        searchView = findViewById(R.id.sv_rechercher);
+    }
 
+    /**
+     * Initialise la recherche pour etudiants
+     */
     private void initialiserSearchViewEtudiants() {
         searchView.clearFocus();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -124,6 +117,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Initialise la recherche pour les profs
+     */
     private void initialiserSearchViewProfs() {
         searchView.clearFocus();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -150,6 +146,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Permet de recuperer la liste des entreprises
+     */
     private void getListeEntreprises() {
         client.getEtudiantConnecte(ConnectUtils.authToken).enqueue(
                 new Callback<ComptePOJO>() {
@@ -174,6 +173,9 @@ public class MainActivity extends AppCompatActivity {
                 });
     }
 
+    /**
+     * Permet de recuperer la liste des etudiants
+     */
     private void getListeEtudiants() {
         client.getComptesEleves(ConnectUtils.authToken).enqueue(
                 new Callback<List<ComptePOJO>>() {
@@ -212,55 +214,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    // MODIFIER
-
     /**
-     * Sauvegarde les compagnies dans la base de données SQLite
+     * Permet la deconnexion le l'utilisateur
      */
-    public void sauvegarderCompagnies() {
-
-        Cursor curseur = bd.lireBd();
-        if (curseur.getCount() != 0) {
-            while (curseur.moveToNext()) {
-//                id_compagnie.add(curseur.getString(0));
-//                nom_compagnie.add(curseur.getString(1));
-//                nom_contact.add(curseur.getString(2));
-//                email.add(curseur.getString(3));
-//                telephone.add(curseur.getString(4));
-//                site_web.add(curseur.getString(5));
-//                adresse.add(curseur.getString(6));
-//                ville.add(curseur.getString(7));
-//                code_postal.add(curseur.getString(8));
-//                date_de_contact.add(curseur.getString(9));
-            }
-        } else {
-            Toast.makeText(this, "Aucune compagnie à afficher", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-
-    /**
-     * Pour ouvrir l'activité "MapsActivity" avec le bouton
-     *
-     * @param view
-     */
-    public void ouvrirMaps(View view) {
-        Intent intent = new Intent(this, MapsActivity.class);
-        startActivity(intent);
-    }
-
-    /**
-     * Pour ouvrir l'activité "AjouterCompagnie" avec le bouton
-     *
-     * @param view
-     */
-    public void ouvrirAjouterCompagnie(View view) {
-        Intent intent = new Intent(this, AjouterEntreprise.class);
-        startActivity(intent);
-    }
-
-
-    public void deconnexion() {
+    private void deconnexion() {
         client.deconnecter(ConnectUtils.authToken).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -268,7 +225,6 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "OK", Toast.LENGTH_SHORT).show();
                     finish();
                 }
-
             }
 
             @Override

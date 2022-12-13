@@ -2,6 +2,7 @@ package ca.qc.bdeb.c5gm.zoeken;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,8 +20,13 @@ import ca.qc.bdeb.c5gm.zoeken.POJO.Entreprise;
 public class InterfaceAdapterEtudiant extends RecyclerView.Adapter<InterfaceAdapterEtudiant.ViewHolder> {
 
     private List<Entreprise> listeEntreprises;
-    private Context context;
+    private final Context context;
 
+    /**
+     * Constructeur de InterfaceAdapterEtudiant
+     * @param listeEntreprises liste d'entreprises
+     * @param context context actuel
+     */
     public InterfaceAdapterEtudiant(List<Entreprise> listeEntreprises, Context context) {
         this.listeEntreprises = listeEntreprises;
         this.context = context;
@@ -37,6 +43,9 @@ public class InterfaceAdapterEtudiant extends RecyclerView.Adapter<InterfaceAdap
     @Override
     public void onBindViewHolder(@NonNull InterfaceAdapterEtudiant.ViewHolder holder, int position) {
         holder.tv_nom_compagnie.setText(String.valueOf(listeEntreprises.get(position).getNom()));
+        holder.tv_nombre_stages.setVisibility(View.INVISIBLE); // SOURCE: https://stackoverflow.com/questions/38060002/how-to-show-hide-textview-in-android-xml-file-and-java-file
+        holder.tv_stages_trouves.setVisibility(View.INVISIBLE); // casse la vue lorsqu'on met View.GONE, alors je mets View.INVISIBLE
+        holder.cb_stage_trouve.setVisibility(View.INVISIBLE);
 
     }
 
@@ -45,17 +54,23 @@ public class InterfaceAdapterEtudiant extends RecyclerView.Adapter<InterfaceAdap
         return listeEntreprises.size();
     }
 
+    /**
+     * ViewHolder
+     */
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView tv_nom_compagnie;
         LinearLayout layoutMain;
+        TextView tv_nombre_stages;
+        TextView tv_stages_trouves;
         CheckBox cb_stage_trouve;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tv_nom_compagnie = itemView.findViewById(R.id.tv_nom);
             layoutMain = itemView.findViewById(R.id.layoutMain);
+            tv_nombre_stages = itemView.findViewById(R.id.tv_nombre_stages);
+            tv_stages_trouves = itemView.findViewById(R.id.tv_stages_appliques);
             cb_stage_trouve = itemView.findViewById(R.id.cb_stage_trouve);
-            cb_stage_trouve.setVisibility(View.GONE); // https://stackoverflow.com/questions/41223413/how-to-hide-an-item-from-recycler-view-on-a-particular-condition
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -82,6 +97,11 @@ public class InterfaceAdapterEtudiant extends RecyclerView.Adapter<InterfaceAdap
 
         }
     }
+
+    /**
+     * Change la liste des entreprises selon l'entree de l'etudiant
+     * @param listeEntreprisesTrouvees liste des entreprises trouvees par la recherche
+     */
     public void initialiserListeRechercheEntreprises(List<Entreprise> listeEntreprisesTrouvees) {
         this.listeEntreprises = listeEntreprisesTrouvees;
         notifyDataSetChanged();

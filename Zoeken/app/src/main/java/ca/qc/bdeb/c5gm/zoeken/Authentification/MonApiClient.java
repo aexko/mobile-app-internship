@@ -9,12 +9,19 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 // SOURCE: Docs du cours
 
+/**
+ * Classe MonApiClient
+ */
 public class MonApiClient {
     private static Retrofit retrofit = null;
     private static OkHttpClient client = null;
     private static String adresse = "192.168.56.1"; // adresse IP de VirtualBox
     private static String server_url = "http://" + adresse + ":8888/";
 
+    /**
+     * Initialisation de Retrofit
+     * @return retrofit
+     */
     public static Retrofit getRetrofit() {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);

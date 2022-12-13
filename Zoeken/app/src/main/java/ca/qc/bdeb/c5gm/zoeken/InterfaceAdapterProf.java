@@ -19,8 +19,13 @@ import ca.qc.bdeb.c5gm.zoeken.POJO.ComptePOJO;
 public class InterfaceAdapterProf extends RecyclerView.Adapter<InterfaceAdapterProf.ViewHolder> {
 
     private List<ComptePOJO> listeEtudiants;
-    private Context context;
+    private final Context context;
 
+    /**
+     * Constructeur de InterfaceAdapterProf
+     * @param listeEtudiants liste des etudiants
+     * @param context context actuel
+     */
     public InterfaceAdapterProf(List<ComptePOJO> listeEtudiants, Context context) {
         this.listeEtudiants = listeEtudiants;
         this.context = context;
@@ -42,10 +47,6 @@ public class InterfaceAdapterProf extends RecyclerView.Adapter<InterfaceAdapterP
         if (listeEtudiants.get(position).getStageTrouve() != null) {
             holder.cv_stage_trouve.setChecked(listeEtudiants.get(position).getStageTrouve());
         }
-//        Log.d("Stage trouve", "stage trouve: " + listeEtudiants.get(position).getStageTrouve());
-//            if (listeEtudiants.get(position).getStageTrouve()) {
-//                holder.cv_stage_trouve.setChecked(true);
-//            }
     }
 
     @Override
@@ -59,18 +60,20 @@ public class InterfaceAdapterProf extends RecyclerView.Adapter<InterfaceAdapterP
         LinearLayout layoutMain;
         CheckBox cv_stage_trouve;
 
-
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tv_nom_etudiant = itemView.findViewById(R.id.tv_nom);
             tv_nombre_de_stages = itemView.findViewById(R.id.tv_nombre_stages);
             layoutMain = itemView.findViewById(R.id.layoutMain);
             cv_stage_trouve = itemView.findViewById(R.id.cb_stage_trouve);
-            cv_stage_trouve.setEnabled(false); // pour ne pas permettre de changement au click
-
+            cv_stage_trouve.setEnabled(false); // pour ne pas permettre de changement manuel
         }
     }
 
+    /**
+     * Change la liste des etudiants selon l'entree du prof
+     * @param listeEtudiantsTrouves liste des etudiants trouves par la recherche
+     */
     public void initialiserListeRechercheEtudiants(List<ComptePOJO> listeEtudiantsTrouves) {
         this.listeEtudiants = listeEtudiantsTrouves;
         notifyDataSetChanged();

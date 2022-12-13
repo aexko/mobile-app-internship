@@ -12,18 +12,18 @@ public class Entreprise {
 
     /**
      * Constructeur de la classe entreprise
-     * @param id
-     * @param nom
-     * @param contact
-     * @param email
-     * @param telephone
-     * @param siteWeb
-     * @param adresse
-     * @param ville
-     * @param province
-     * @param codePostal
-     * @param dateContact
-     * @param estFavorite
+     * @param id id de l'entreprise
+     * @param nom nom de l'entreprise
+     * @param contact contact de l'entreprise
+     * @param email email de l'entreprise
+     * @param telephone telephone de l'entreprise
+     * @param siteWeb site web de l'entreprise
+     * @param adresse adresse de l'entreprise
+     * @param ville ville de l'entreprise
+     * @param province province de l'entreprise
+     * @param codePostal code postal de l'entreprise
+     * @param dateContact date de contact de l'entreprise
+     * @param estFavorite favori ou non de l'utilisateur
      */
     public Entreprise(UUID id, String nom, String contact, String email, String telephone, String siteWeb, String adresse, String ville, String province, String codePostal, String dateContact, Boolean estFavorite) {
         this.id = id;
@@ -79,6 +79,9 @@ public class Entreprise {
     private final static long serialVersionUID = -8437459210334057704L;
 
 
+    /**
+     * Tous les getter et setter de Entreprise
+     */
     public UUID getId() {
         return id;
     }

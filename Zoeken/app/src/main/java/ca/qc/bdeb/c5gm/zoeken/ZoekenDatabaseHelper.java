@@ -93,6 +93,19 @@ public class ZoekenDatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    /**
+     * Met a jour la BD
+     * @param id_compagnie  id de l'entreprise
+     * @param nom_compagnie nom de l'entreprise
+     * @param nom_contact contact de l'entreprise
+     * @param email email de l'entreprise
+     * @param telephone telephone de l'entreprise
+     * @param site_web site web de l'entreprise
+     * @param adresse adresse de l'entreprise
+     * @param ville ville de l'entreprise
+     * @param code_postal code postal de l'entreprise
+     * @param date_contact date de contact de l'entreprise
+     */
     void mettreAJourBd(String id_compagnie, String nom_compagnie, String nom_contact, String email,
                        String telephone, String site_web, String adresse, String ville,
                        String code_postal, String date_contact) {
@@ -122,6 +135,10 @@ public class ZoekenDatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    /**
+     * Permet la lecture de la BD
+     * @return un curseur, mais il est mieux de retourner une liste a la place
+     */
     Cursor lireBd() {
         SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
         Cursor cursor = null;
@@ -131,6 +148,10 @@ public class ZoekenDatabaseHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
+    /**
+     * Permet la suppression d'une entreprise dans la BD
+     * @param id_compagnie id de l'entreprise
+     */
     void supprimerCompagnie(String id_compagnie) {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         long resultat = sqLiteDatabase.delete(NOM_TABLE, "_id=?",
@@ -143,5 +164,4 @@ public class ZoekenDatabaseHelper extends SQLiteOpenHelper {
                     Toast.LENGTH_SHORT).show();
         }
     }
-
 }

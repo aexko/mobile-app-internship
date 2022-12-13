@@ -18,6 +18,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import java.util.UUID;
+
 import ca.qc.bdeb.c5gm.zoeken.Authentification.MonApi;
 import ca.qc.bdeb.c5gm.zoeken.Authentification.MonApiClient;
 import ca.qc.bdeb.c5gm.zoeken.POJO.ConnectUtils;
@@ -38,6 +40,8 @@ public class ModifierEntreprise extends AppCompatActivity {
     private String id_compagnie, nom_compagnie, nom_contact, email, telephone,
             site_web, adresse, ville, province, code_postal, date_contact;
 
+    private UUID id_compagnie_uuid;
+
     private Button btnSupprimer, btnModifier;
 
     private MonApi client;
@@ -48,6 +52,29 @@ public class ModifierEntreprise extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_modifier_entreprise);
 
+        initialiserComposants();
+
+        btnSupprimer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ouvrirDialogueConfirmation();
+            }
+        });
+
+        btnModifier.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                modifierEntreprise();
+            }
+        });
+
+        mettreAJourDonneesAffichage();
+
+        client = MonApiClient.getRetrofit().create(MonApi.class);
+
+    }
+
+    private void initialiserComposants() {
         et_nom_compagnie = findViewById(R.id.et_nom_compagnie_m);
         et_nom_contact = findViewById(R.id.et_nom_contact_m);
         et_email = findViewById(R.id.et_email_m);
@@ -61,25 +88,24 @@ public class ModifierEntreprise extends AppCompatActivity {
 
         btnSupprimer = findViewById(R.id.btn_supprimer_compagnie);
         btnModifier = findViewById(R.id.btn_modifier_compagnie);
+    }
 
-        btnSupprimer.setOnClickListener(new View.OnClickListener() {
+    private void modifierEntreprise() {
+        Entreprise entreprise = new Entreprise(id_compagnie_uuid, nom_compagnie, nom_contact, email, telephone, site_web, adresse, ville, province, code_postal, date_contact, false);
+        client.modifierEntreprise(ConnectUtils.authToken, id_compagnie, entreprise).enqueue(new Callback<Entreprise>() {
             @Override
-            public void onClick(View view) {
-                supprimerEntreprise();
+            public void onResponse(Call<Entreprise> call, Response<Entreprise> response) {
+                if (response.isSuccessful()) {
+                    Toast.makeText(ModifierEntreprise.this, "Succès: modification de l'entreprise", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Entreprise> call, Throwable t) {
+
             }
         });
-
-        btnModifier.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ouvrirDialogueConfirmation();
-            }
-        });
-
-        mettreAJourDonneesAffichage();
-
-        client = MonApiClient.getRetrofit().create(MonApi.class);
-
     }
 
     private void supprimerEntreprise() {
@@ -105,12 +131,13 @@ public class ModifierEntreprise extends AppCompatActivity {
     }
 
     /**
-     * GET et SET les données correspondantes (passées par InterfaceAdapter)
-     * pour remplir les champs de la compagnie
+     * GET et SET les données correspondantes (passées par InterfaceAdapterEtudiant)
+     * pour remplir les champs
      */
     public void mettreAJourDonneesAffichage() {
         Toast.makeText(this, "id" + id_compagnie, Toast.LENGTH_SHORT).show();
         id_compagnie = getIntent().getStringExtra("id_compagnie");
+        id_compagnie_uuid = UUID.fromString(id_compagnie);
         nom_compagnie = getIntent().getStringExtra("nom_compagnie");
         nom_contact = getIntent().getStringExtra("nom_contact");
         email = getIntent().getStringExtra("email");
@@ -182,7 +209,11 @@ public class ModifierEntreprise extends AppCompatActivity {
         alertDialogBuilder.create().show();
     }
 
-    // SOURCE: https://developer.android.com/guide/components/intents-common#Browser
+    /**
+     * Permet d'aller sur le web
+     * @source https://developer.android.com/guide/components/intents-common#Browser
+     * @param view Bouton
+     */
     public void allerVersSite(View view) {
         String entreeUtilisateur = et_site_web.getText().toString();
         String url;
@@ -203,7 +234,12 @@ public class ModifierEntreprise extends AppCompatActivity {
         }
     }
 
-    // SOURCE: https://www.youtube.com/watch?v=UDwj5j4tBYg
+
+    /**
+     * Permet d'appeler avec le numero
+     * @source https://www.youtube.com/watch?v=UDwj5j4tBYg
+     * @param view Bouton
+     */
     public void appelerTelephone(View view) {
         String numero_telephone = et_telephone.getText().toString();
         if (numero_telephone.length() != 10) {
@@ -227,7 +263,11 @@ public class ModifierEntreprise extends AppCompatActivity {
         }
     }
 
-    // SOURCE: https://developer.android.com/guide/components/intents-common#ComposeEmail
+    /**
+     * Permet d'envoyer un email
+     * @source https://developer.android.com/guide/components/intents-common#ComposeEmail
+     * @param view Bouton
+     */
     public void envoyerEmail(View view) {
         String[] email = new String[1];
         email[0] = et_email.getText().toString();

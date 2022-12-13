@@ -30,10 +30,7 @@ public class PageConnexion extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_page_connexion);
 
-        btnConnexion = (Button) findViewById(R.id.btn_connexion);
-        btnInscription = (Button) findViewById(R.id.btn_inscription);
-        emailConnexion = findViewById(R.id.et_connexion_email);
-        mdpConnexion = findViewById(R.id.et_connexion_mdp);
+        initialiserComposants();
 
         client = MonApiClient.getRetrofit().create(MonApi.class);
 
@@ -53,13 +50,23 @@ public class PageConnexion extends AppCompatActivity {
         });
     }
 
+    /**
+     * Initialise les composants
+     */
+    private void initialiserComposants() {
+        btnConnexion = (Button) findViewById(R.id.btn_connexion);
+        btnInscription = (Button) findViewById(R.id.btn_inscription);
+        emailConnexion = findViewById(R.id.et_connexion_email);
+        mdpConnexion = findViewById(R.id.et_connexion_mdp);
+    }
 
+    /**
+     * Permet la connexion d'un utilisateur au serveur distant
+     * @param email email entre de l'utilisateur
+     * @param mdp   mdp entre de l'utilisateur
+     */
     private void connecter(String email, String mdp) {
-//        LoginData loginData = new LoginData(email, mdp);
-//        pour les tests
-        LoginData loginData = new LoginData("prof1@test.com", "secret");
-        LoginData loginData1 = new LoginData("genevieve.tremblay@test.com", "secret");
-
+        LoginData loginData = new LoginData(email, mdp);
         client.connecter(loginData).enqueue(
                 new Callback<CompteResult>() {
                     @Override
@@ -83,11 +90,17 @@ public class PageConnexion extends AppCompatActivity {
         );
     }
 
+    /**
+     * Ouvre la page d'inscription
+     */
     private void ouvrirPageInscription() {
         Intent intent = new Intent(PageConnexion.this, PageInscription.class);
         startActivity(intent);
     }
 
+    /**
+     * Ouvre le dashboard (MainActivity)
+     */
     private void ouvrirDashboard() {
         Intent intent = new Intent(PageConnexion.this, MainActivity.class);
         startActivity(intent);

@@ -43,6 +43,7 @@
                 android:layout_marginEnd="16dp"
                 android:gravity="center"
                 android:text="@string/nb"
+                android:textColor="@color/MAIN_BLUE"
                 android:textSize="28sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -65,7 +66,7 @@
                 app:layout_constraintVertical_bias="0.0" />
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/tv_stages_appliques"
                 android:layout_width="73dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"

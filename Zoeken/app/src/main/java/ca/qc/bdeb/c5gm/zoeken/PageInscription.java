@@ -29,12 +29,7 @@ public class PageInscription extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_page_inscription);
 
-        etPrenom = findViewById(R.id.et_inscription_prenom);
-        etNom = findViewById(R.id.et_inscription_nom);
-        etEmail = findViewById(R.id.et_inscription_email);
-        etMdp = findViewById(R.id.et_inscription_mdp);
-        etMdpConfirmation = findViewById((R.id.et_inscription_confirmation_mdp));
-        btnInscription = (Button) findViewById(R.id.btn_confirmer_inscription);
+        initialiserComposants();
 
         client = MonApiClient.getRetrofit().create(MonApi.class);
 
@@ -47,13 +42,32 @@ public class PageInscription extends AppCompatActivity {
                 String contenuMdp = etMdp.getText().toString().trim();
                 String contenuMdpConformation = etMdpConfirmation.getText().toString().trim();
                 inscrire(contenuNom, contenuPrenom, contenuEmail, contenuMdp, contenuMdpConformation);
-
             }
         });
 
 
     }
 
+    /**
+     * Initialise les composants
+     */
+    private void initialiserComposants() {
+        etPrenom = findViewById(R.id.et_inscription_prenom);
+        etNom = findViewById(R.id.et_inscription_nom);
+        etEmail = findViewById(R.id.et_inscription_email);
+        etMdp = findViewById(R.id.et_inscription_mdp);
+        etMdpConfirmation = findViewById((R.id.et_inscription_confirmation_mdp));
+        btnInscription = (Button) findViewById(R.id.btn_confirmer_inscription);
+    }
+
+    /**
+     * Permet de s'inscrire dans le serveur distant
+     * @param contenuNom nom entre de l'utilisateur
+     * @param contenuPrenom prenom entre de l'utilisateur
+     * @param contenuEmail email entre de l'utilisateur
+     * @param contenuMdp mdp entre de l'utilisateur
+     * @param contenuMdpConformation mdp confirme de l'utilisateur
+     */
     private void inscrire(String contenuNom, String contenuPrenom, String contenuEmail, String contenuMdp, String contenuMdpConformation) {
         CreationCompteData creationCompteData = new CreationCompteData(contenuNom, contenuPrenom, contenuEmail, contenuMdp, contenuMdpConformation);
         client.creerCompte(creationCompteData).enqueue(
@@ -63,6 +77,7 @@ public class PageInscription extends AppCompatActivity {
                         if (response.isSuccessful()) {
                             Toast.makeText(PageInscription.this, "Inscription réussie", Toast.LENGTH_SHORT).show();
                             ouvrirDashboard();
+                            finish();
                         }
                     }
 
@@ -74,6 +89,9 @@ public class PageInscription extends AppCompatActivity {
         );
     }
 
+    /**
+     * Ouvre le dashboard (MainActivity)
+     */
     private void ouvrirDashboard() {
         Intent intent = new Intent(PageInscription.this, MainActivity.class);
         startActivity(intent);

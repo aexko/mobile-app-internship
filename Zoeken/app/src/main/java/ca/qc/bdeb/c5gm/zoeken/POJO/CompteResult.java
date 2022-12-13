@@ -3,11 +3,12 @@ package ca.qc.bdeb.c5gm.zoeken.POJO;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+/**
+ * Classe CompteResult
+ */
 public class CompteResult {
 
-    /**
-     * Classe CompteResult
-     */
+
     @SerializedName("id")
     @Expose
     private String id;
@@ -32,13 +33,14 @@ public class CompteResult {
     private final static long serialVersionUID = -4644635962262338195L;
 
     /**
-     * @param typeCompte
-     * @param id
-     * @param accessToken
-     * @param nom
-     * @param prenom
-     * @param email
-     * @param expiresAt
+     * Constructeur de CompteResult
+     * @param typeCompte type de compte
+     * @param id id du compte
+     * @param accessToken token du compte
+     * @param nom nom du compte
+     * @param prenom prenom du compte
+     * @param email email du compte
+     * @param expiresAt expiration du compte
      */
     public CompteResult(String id, String nom, String prenom, String email, ComptePOJO.TypeCompte typeCompte, String accessToken) {
         super();
@@ -50,6 +52,9 @@ public class CompteResult {
         this.accessToken = accessToken;
     }
 
+    /**
+     * Tous les getter et setter de CompteResult
+     */
     public String getId() {
         return id;
     }

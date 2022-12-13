@@ -32,16 +32,7 @@ public class AjouterEntreprise extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ajouter_entreprise);
 
-        et_nom_entreprise = findViewById(R.id.et_nom_compagnie);
-        et_nom_contact = findViewById(R.id.et_nom_contact);
-        et_email = findViewById(R.id.et_email);
-        et_telephone = findViewById(R.id.et_telephone);
-        et_site_web = findViewById(R.id.et_site_web);
-        et_adresse = findViewById(R.id.et_adresse);
-        et_ville = findViewById(R.id.et_ville);
-        et_province = findViewById(R.id.et_province);
-        et_code_postal = findViewById(R.id.et_code_postal);
-        et_date_contact = findViewById(R.id.et_date_contact);
+        initialisationComposants();
 
         client = MonApiClient.getRetrofit().create(MonApi.class);
 
@@ -64,26 +55,35 @@ public class AjouterEntreprise extends AppCompatActivity {
         });
     }
 
-//    /**
-//     * Ajoute une compagnie dans la base de données SQLite
-//     *
-//     */
-//    public void ajouterCompagnie() {
-//        try {
-//            ajouterCompagnieDansBd();
-//            Toast.makeText(AjouterEntreprise.this,
-//                    "Compagnie ajoutée avec succès!", Toast.LENGTH_SHORT).show();
-//        } catch (Exception e) {
-//            System.out.println(e.getMessage());
-//        }
-//
-//        startActivity(new Intent(AjouterEntreprise.this, MainActivity.class));
-//        finish();
-//
-//
-//
-//    }
+    /**
+     * Initialise les composants
+     */
+    private void initialisationComposants() {
+        et_nom_entreprise = findViewById(R.id.et_nom_compagnie);
+        et_nom_contact = findViewById(R.id.et_nom_contact);
+        et_email = findViewById(R.id.et_email);
+        et_telephone = findViewById(R.id.et_telephone);
+        et_site_web = findViewById(R.id.et_site_web);
+        et_adresse = findViewById(R.id.et_adresse);
+        et_ville = findViewById(R.id.et_ville);
+        et_province = findViewById(R.id.et_province);
+        et_code_postal = findViewById(R.id.et_code_postal);
+        et_date_contact = findViewById(R.id.et_date_contact);
+    }
 
+    /**
+     * Ajoute une entreprise dans le serveur
+     * @param contenuNomEntreprise nom entre de l'entreprise
+     * @param contenuNomContact contact entre de l'entreprise
+     * @param contenuEmail email entre de l'entreprise
+     * @param contenuTelephone telephone entre de l'entreprise
+     * @param contenuSiteWeb site web entre de l'entreprise
+     * @param contenuAdresse adresse entree de l'entreprise
+     * @param contenuVille ville entree de l'entreprise
+     * @param contenuProvince province entree de l'entreprise
+     * @param contenuCodePostal code postal de l'entreprise
+     * @param contenuDateContact date contact de l'entreprise
+     */
     private void ajouterEntreprise(String contenuNomEntreprise, String contenuNomContact, String contenuEmail, String contenuTelephone, String contenuSiteWeb, String contenuAdresse, String contenuVille, String contenuProvince, String contenuCodePostal, String contenuDateContact) {
         Entreprise entreprise = new Entreprise(UUID.randomUUID(), contenuNomEntreprise, contenuNomContact, contenuEmail, contenuTelephone, contenuSiteWeb, contenuAdresse, contenuVille, contenuProvince, contenuCodePostal, contenuDateContact, false);
         client.creerEntreprise(ConnectUtils.authToken, entreprise).enqueue(new Callback<Entreprise>() {
@@ -102,7 +102,9 @@ public class AjouterEntreprise extends AppCompatActivity {
         });
     }
 
-
+    /**
+     * Ajoute une compagnie dans SQLite
+     */
     private void ajouterCompagnieDansBd() {
         ZoekenDatabaseHelper bd = new ZoekenDatabaseHelper(AjouterEntreprise.this);
         bd.ajouterCompagnie(et_nom_entreprise.getText().toString().trim(),
@@ -115,6 +117,4 @@ public class AjouterEntreprise extends AppCompatActivity {
                 et_code_postal.getText().toString().trim(),
                 et_date_contact.getText().toString().trim());
     }
-
-
 }

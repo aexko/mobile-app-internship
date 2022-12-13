@@ -5,6 +5,9 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+/**
+ * Classe Stage
+ */
 public class Stage {
     @SerializedName("id")
     @Expose
@@ -29,6 +32,9 @@ public class Stage {
     private List<Object> entreprises = null;
     private final static long serialVersionUID = -7030779357688058456L;
 
+    /**
+     * Tous les getter et setter de Stage
+     */
     public String getId() {
         return id;
     }

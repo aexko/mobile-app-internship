@@ -36,10 +36,17 @@ public class ComptePOJO {
     private List<Entreprise> entreprises = null;
     private final static long serialVersionUID = -8308703459862838231L;
 
+    /**
+     * Constructeur de ComptePOJO
+     * @param nom
+     */
     public ComptePOJO(String nom) {
         this.nom = nom;
     }
 
+    /**
+     * Tous les getter et setter de ComptePOJO
+     */
     public String getId() {
         return id;
     }
@@ -52,16 +59,8 @@ public class ComptePOJO {
         return nom;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
     public String getPrenom() {
         return prenom;
-    }
-
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
     }
 
     public String getEmail() {
@@ -76,26 +75,13 @@ public class ComptePOJO {
         return stageTrouve;
     }
 
-    public void setStageTrouve(Boolean stageTrouve) {
-        this.stageTrouve = stageTrouve;
-    }
-
-    public TypeCompte getTypeCompte() {
-        return typeCompte;
-    }
-
-    public void setTypeCompte(TypeCompte typeCompte) {
-        this.typeCompte = typeCompte;
-    }
-
     public List<Entreprise> getEntreprises() {
         return entreprises;
     }
 
-    public void setEntreprises(List<Entreprise> entreprises) {
-        this.entreprises = entreprises;
-    }
-
+    /**
+     * Enums pour le types de compte
+     */
     public enum TypeCompte {
         ETUDIANT,
         ADMINISTRATEUR,

@@ -17,8 +17,8 @@ public class LoginData {
 
     /**
      * Constructeur de la classe LoginData
-     * @param email
-     * @param motDePasse
+     * @param email email de l'utilisateur
+     * @param motDePasse mdp de l'utilisateur
      */
     public LoginData(String email, String motDePasse) {
         this.email = email;
@@ -26,33 +26,20 @@ public class LoginData {
     }
 
     /**
-     * getEmail
-     * @return
+     * Tous les getter et setter de LoginData
      */
     public String getEmail() {
         return email;
     }
 
-    /**
-     * setEmail
-     * @param email
-     */
     public void setEmail(String email) {
         this.email = email;
     }
 
-    /**
-     * getMdp
-     * @return
-     */
     public String getMotDePasse() {
         return motDePasse;
     }
 
-    /**
-     * setMdp
-     * @param motDePasse
-     */
     public void setMotDePasse(String motDePasse) {
         this.motDePasse = motDePasse;
     }
