@@ -30,7 +30,7 @@ public class AjouterEntreprise extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ajouter_compagnie);
+        setContentView(R.layout.activity_ajouter_entreprise);
 
         et_nom_entreprise = findViewById(R.id.et_nom_compagnie);
         et_nom_contact = findViewById(R.id.et_nom_contact);

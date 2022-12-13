@@ -38,7 +38,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ModifierCompagnieActivity"
+            android:name=".ModifierEntreprise"
             android:exported="false"
             android:label="Modifier les détails"
             android:parentActivityName=".MainActivity">

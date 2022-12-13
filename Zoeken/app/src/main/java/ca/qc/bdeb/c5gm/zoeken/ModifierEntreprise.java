@@ -28,7 +28,7 @@ import retrofit2.Response;
 
 // SOURCE: https://www.youtube.com/playlist?list=PLSrm9z4zp4mGK0g_0_jxYGgg3os9tqRUQ
 
-public class ModifierCompagnieActivity extends AppCompatActivity {
+public class ModifierEntreprise extends AppCompatActivity {
 
     public static int REQUEST_CALL = 1;
 
@@ -46,7 +46,7 @@ public class ModifierCompagnieActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_modifier_compagnie);
+        setContentView(R.layout.activity_modifier_entreprise);
 
         et_nom_compagnie = findViewById(R.id.et_nom_compagnie_m);
         et_nom_contact = findViewById(R.id.et_nom_contact_m);
@@ -89,14 +89,14 @@ public class ModifierCompagnieActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<Entreprise> call, Response<Entreprise> response) {
                         if (response.isSuccessful()) {
-                            Toast.makeText(ModifierCompagnieActivity.this, "Succes: suppression de l'entreprise", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ModifierEntreprise.this, "Succes: suppression de l'entreprise", Toast.LENGTH_SHORT).show();
                             finish();
                         }
                     }
 
                     @Override
                     public void onFailure(Call<Entreprise> call, Throwable t) {
-                        Toast.makeText(ModifierCompagnieActivity.this, "Echec: suppression de l'entreprise", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ModifierEntreprise.this, "Echec: suppression de l'entreprise", Toast.LENGTH_SHORT).show();
                     }
                 }
         );
@@ -140,7 +140,7 @@ public class ModifierCompagnieActivity extends AppCompatActivity {
      * @param view
      */
     public void modifierCompagnie(View view) {
-        ZoekenDatabaseHelper bd = new ZoekenDatabaseHelper(ModifierCompagnieActivity.this);
+        ZoekenDatabaseHelper bd = new ZoekenDatabaseHelper(ModifierEntreprise.this);
         bd.mettreAJourBd(
                 id_compagnie,
                 et_nom_compagnie.getText().toString().trim(),
@@ -167,7 +167,7 @@ public class ModifierCompagnieActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 ZoekenDatabaseHelper bd = new ZoekenDatabaseHelper
-                        (ModifierCompagnieActivity.this);
+                        (ModifierEntreprise.this);
                 bd.supprimerCompagnie(id_compagnie);
                 supprimerEntreprise();
                 finish();
@@ -215,9 +215,9 @@ public class ModifierCompagnieActivity extends AppCompatActivity {
                 Uri.encode(numero_telephone)));
         intent.setData((Uri.parse("tel:" + numero_telephone)));
         if (numero_telephone.trim().length() > 0) {
-            if (ContextCompat.checkSelfPermission(ModifierCompagnieActivity.this,
+            if (ContextCompat.checkSelfPermission(ModifierEntreprise.this,
                     Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(ModifierCompagnieActivity.this,
+                ActivityCompat.requestPermissions(ModifierEntreprise.this,
                         new String[]{Manifest.permission.CALL_PHONE}, REQUEST_CALL);
             }
             startActivity(intent);

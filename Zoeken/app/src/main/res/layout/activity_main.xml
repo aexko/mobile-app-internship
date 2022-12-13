@@ -60,7 +60,7 @@
         android:onClick="ouvrirAjouterCompagnie"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_baseline_ajouter_compagnie" />
+        app:srcCompat="@drawable/ic_baseline_ajouter_entreprise" />
 
     <SearchView
         android:id="@+id/sv_rechercher"

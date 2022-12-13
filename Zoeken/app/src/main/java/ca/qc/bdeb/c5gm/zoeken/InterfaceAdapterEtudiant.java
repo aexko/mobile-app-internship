@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-import ca.qc.bdeb.c5gm.zoeken.POJO.ComptePOJO;
 import ca.qc.bdeb.c5gm.zoeken.POJO.Entreprise;
 
 public class InterfaceAdapterEtudiant extends RecyclerView.Adapter<InterfaceAdapterEtudiant.ViewHolder> {
@@ -64,7 +63,7 @@ public class InterfaceAdapterEtudiant extends RecyclerView.Adapter<InterfaceAdap
                     int position = getAdapterPosition();
                     if (position != -1) { // -1: aucune position
                         Entreprise entreprise = listeEntreprises.get(position);
-                        Intent intent = new Intent(context, ModifierCompagnieActivity.class);
+                        Intent intent = new Intent(context, ModifierEntreprise.class);
                         intent.putExtra("id_compagnie", entreprise.getId().toString());
                         intent.putExtra("nom_compagnie", entreprise.getNom());
                         intent.putExtra("nom_contact", entreprise.getContact());
