@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -36,6 +37,7 @@ public class InterfaceAdapterEtudiant extends RecyclerView.Adapter<InterfaceAdap
     @Override
     public void onBindViewHolder(@NonNull InterfaceAdapterEtudiant.ViewHolder holder, int position) {
         holder.tv_nom_compagnie.setText(String.valueOf(listeEntreprises.get(position).getNom()));
+
     }
 
     @Override
@@ -46,11 +48,14 @@ public class InterfaceAdapterEtudiant extends RecyclerView.Adapter<InterfaceAdap
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView tv_nom_compagnie;
         LinearLayout layoutMain;
+        CheckBox cb_stage_trouve;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tv_nom_compagnie = itemView.findViewById(R.id.tv_nom);
             layoutMain = itemView.findViewById(R.id.layoutMain);
+            cb_stage_trouve = itemView.findViewById(R.id.cb_stage_trouve);
+            cb_stage_trouve.setEnabled(false);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
