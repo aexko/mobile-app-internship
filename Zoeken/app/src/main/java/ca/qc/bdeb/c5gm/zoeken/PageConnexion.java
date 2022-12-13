@@ -36,6 +36,7 @@ public class PageConnexion extends AppCompatActivity {
         mdpConnexion = findViewById(R.id.et_connexion_mdp);
 
         client = MonApiClient.getRetrofit().create(MonApi.class);
+
         btnConnexion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -44,7 +45,6 @@ public class PageConnexion extends AppCompatActivity {
                 connecter(contenuEmail, contenuMdp);
             }
         });
-
         btnInscription.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -57,8 +57,8 @@ public class PageConnexion extends AppCompatActivity {
     private void connecter(String email, String mdp) {
 //        LoginData loginData = new LoginData(email, mdp);
 //        pour les tests
-        LoginData loginData1 = new LoginData("prof1@test.com", "secret");
-        LoginData loginData = new LoginData("alexkao@gmail.com", "secret");
+        LoginData loginData = new LoginData("prof1@test.com", "secret");
+        LoginData loginData1 = new LoginData("genevieve.tremblay@test.com", "secret");
 
         client.connecter(loginData).enqueue(
                 new Callback<CompteResult>() {

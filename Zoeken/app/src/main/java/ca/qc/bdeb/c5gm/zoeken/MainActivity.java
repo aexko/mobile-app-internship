@@ -51,9 +51,6 @@ public class MainActivity extends AppCompatActivity {
     private List<ComptePOJO> listeEtudiants;
     private List<Entreprise> listeEntreprises;
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,21 +69,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         searchView = findViewById(R.id.sv_rechercher);
-//        searchView.clearFocus();
-//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-//            @Override
-//            public boolean onQueryTextSubmit(String s) {
-//                initialiserSearchViewProfs();
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean onQueryTextChange(String s) {
-//                return false;
-//            }
-//        });
-
-
 
         Toolbar myToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
@@ -95,7 +77,6 @@ public class MainActivity extends AppCompatActivity {
             btnOuvrirAjouterEntreprise.hide();
             getListeEtudiants();
             initialiserSearchViewProfs();
-
         } else {
             getListeEntreprises();
             initialiserSearchViewEtudiants();
@@ -117,12 +98,12 @@ public class MainActivity extends AppCompatActivity {
         sauvegarderCompagnies();
     }
 
+
     private void initialiserSearchViewEtudiants() {
         searchView.clearFocus();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
-
                 return false;
             }
 
@@ -135,11 +116,9 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
                 if (listeEntreprisesTrouvees.isEmpty()) {
-                    Toast.makeText(MainActivity.this, "Pas de résultats trouvés", Toast.LENGTH_SHORT).show();
-                    adapterEtudiant.initialiserListeRechercheEntreprises(listeEntreprisesTrouvees);
-                } else {
-                    adapterEtudiant.initialiserListeRechercheEntreprises(listeEntreprisesTrouvees);
+                    Toast.makeText(MainActivity.this, "Pas de entreprises trouvées", Toast.LENGTH_SHORT).show();
                 }
+                adapterEtudiant.initialiserListeRechercheEntreprises(listeEntreprisesTrouvees);
                 return true;
             }
         });
@@ -163,15 +142,13 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
                 if (listeEtudiantsTrouves.isEmpty()) {
-                    Toast.makeText(MainActivity.this, "Pas de résultats trouvés", Toast.LENGTH_SHORT).show();
-                } else {
-                    adapterProf.initialiserListeRechercheEtudiants(listeEtudiantsTrouves);
+                    Toast.makeText(MainActivity.this, "Pas de d'étudiants trouvés", Toast.LENGTH_SHORT).show();
                 }
+                adapterProf.initialiserListeRechercheEtudiants(listeEtudiantsTrouves);
                 return true;
             }
         });
     }
-
 
     private void getListeEntreprises() {
         client.getEtudiantConnecte(ConnectUtils.authToken).enqueue(
@@ -181,7 +158,9 @@ public class MainActivity extends AppCompatActivity {
                         if (response.isSuccessful()) {
                             Toast.makeText(MainActivity.this, "Succès: Récupération des entreprises de l'étudiant", Toast.LENGTH_SHORT).show();
                             ComptePOJO comptePOJO = response.body();
-                            listeEntreprises = comptePOJO.getEntreprises();
+                            if (comptePOJO != null) {
+                                listeEntreprises = comptePOJO.getEntreprises();
+                            }
                             adapterEtudiant = new InterfaceAdapterEtudiant(listeEntreprises, MainActivity.this);
                             recyclerView.setLayoutManager(new GridLayoutManager(MainActivity.this, 1));
                             recyclerView.setAdapter(adapterEtudiant);
@@ -203,7 +182,6 @@ public class MainActivity extends AppCompatActivity {
                         if (response.isSuccessful()) {
                             Toast.makeText(MainActivity.this, "Récupération de la liste des étudiants réussie", Toast.LENGTH_SHORT).show();
                             listeEtudiants = response.body();
-
                             adapterProf = new InterfaceAdapterProf(listeEtudiants, MainActivity.this);
                             recyclerView.setLayoutManager(new GridLayoutManager(MainActivity.this, 1));
                             recyclerView.setAdapter(adapterProf);

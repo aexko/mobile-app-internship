@@ -1,9 +1,11 @@
 package ca.qc.bdeb.c5gm.zoeken;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -36,6 +38,13 @@ public class InterfaceAdapterProf extends RecyclerView.Adapter<InterfaceAdapterP
     public void onBindViewHolder(@NonNull InterfaceAdapterProf.ViewHolder holder, int position) {
         holder.tv_nom_etudiant.setText(String.valueOf(listeEtudiants.get(position).getNom()));
         holder.tv_nombre_de_stages.setText(String.valueOf(listeEtudiants.get(position).getEntreprises().size()));
+        if (listeEtudiants.get(position).getStageTrouve() != null) {
+            holder.cv_stage_trouve.setChecked(listeEtudiants.get(position).getStageTrouve());
+        }
+//        Log.d("Stage trouve", "stage trouve: " + listeEtudiants.get(position).getStageTrouve());
+//            if (listeEtudiants.get(position).getStageTrouve()) {
+//                holder.cv_stage_trouve.setChecked(true);
+//            }
     }
 
     @Override
@@ -47,6 +56,7 @@ public class InterfaceAdapterProf extends RecyclerView.Adapter<InterfaceAdapterP
         TextView tv_nom_etudiant;
         TextView tv_nombre_de_stages;
         LinearLayout layoutMain;
+        CheckBox cv_stage_trouve;
 
 
         public ViewHolder(@NonNull View itemView) {
@@ -54,6 +64,8 @@ public class InterfaceAdapterProf extends RecyclerView.Adapter<InterfaceAdapterP
             tv_nom_etudiant = itemView.findViewById(R.id.tv_nom);
             tv_nombre_de_stages = itemView.findViewById(R.id.tv_nombre_stages);
             layoutMain = itemView.findViewById(R.id.layoutMain);
+            cv_stage_trouve = itemView.findViewById(R.id.cb_stage_trouve);
+            cv_stage_trouve.setEnabled(false); // pour ne pas permettre de changement au click
 
         }
     }

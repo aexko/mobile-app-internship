@@ -97,9 +97,9 @@ public class ComptePOJO {
     }
 
     public enum TypeCompte {
+        ETUDIANT,
         ADMINISTRATEUR,
         PROFESSEUR,
-        ETUDIANT
     }
 
 
